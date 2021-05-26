@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Cidades</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Lista das Cidades</h5>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><p>ID</p></th>
+            <th>DESCRICAO</th>
+            <th>FK_UF</th>
+            <th>FK_UF</th>
+            <th>FK_UF</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cidade of cidades">
+            <td>{{cidade.id}}</td>
+            <td>{{cidade.descricao_cidade}}</td>
+            <td>{{cidade.fk_uf}}</td>
+            <td>{{cidade.fk_uf}}</td>
+            <td>{{cidade.fk_uf}}</td>
+
+        </tr>
+    </tbody>
+</table>
+
+    </div>
+  </div>
