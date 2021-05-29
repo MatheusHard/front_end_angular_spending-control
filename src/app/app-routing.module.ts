@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CidadesComponent } from './cidades/cidades.component';
-import { FormComponent } from './cidades/form.component';
+import { CidadeFormComponent } from './cidades/form-cidade.component';
 
 const routes: Routes = [
   //{path: 'home', component: MainNavComponent},
   {path:'cidades/list', component: CidadesComponent  },
-  {path:'cidades/form', component: FormComponent  },
+  {path:'cidades/form', component: CidadeFormComponent  },
 
   //{path:'cidades/create', component: DialogElementsExample  },
   //{path:'cidades/:id', component: CidadeUpdateComponent  },

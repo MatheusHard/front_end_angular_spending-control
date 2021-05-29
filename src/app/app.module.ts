@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer/footer.component';
 import { CidadesComponent } from './cidades/cidades.component';
 import { CidadeService } from './cidades/cidade.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormComponent } from './cidades/form.component';
+import { CidadeFormComponent } from './cidades/form-cidade.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     CidadesComponent,
-    FormComponent
+    CidadeFormComponent
     
   ],
   imports: [
