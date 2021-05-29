@@ -17,12 +17,22 @@ export class CidadesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cidades = this.cidadeService.getCidades();
+    this.cidadeService.getCidades().subscribe( res =>
+      {
+      this.cidades = res;
+      });
   }
 
 }
 
+/*
+    this.cidadeService.getCidades().subscribe(res =>{
+    this.cidades = res;
+    this.dataSource = new MatTableDataSource(this.cidades);
 
+    this.ngAfterViewInit();
+  })  
+  */ 
 
 
 
