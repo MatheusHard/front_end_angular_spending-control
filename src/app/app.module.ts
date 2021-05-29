@@ -7,19 +7,23 @@ import { FooterComponent } from './footer/footer/footer.component';
 import { CidadesComponent } from './cidades/cidades.component';
 import { CidadeService } from './cidades/cidade.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormComponent } from './cidades/form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    CidadesComponent
+    CidadesComponent,
+    FormComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
     
   ],
   providers: [CidadeService],

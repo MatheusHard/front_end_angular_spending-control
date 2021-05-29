@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class CidadeService {
 
-  private URL_BASE:string = 'http://localhost:8080/api/';
-  private URL_GET_CIDADES:string = 'cidades';
+  private URL_BASE: string = 'http://localhost:8080/api/';
+  private URL_GET_CIDADES: string = 'cidades';
 
 
   constructor(private http: HttpClient) { }
