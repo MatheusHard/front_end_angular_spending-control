@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>DESCRICAO</th>
             <th>FK_UF</th>
+            <th>EDITAR</th>
            
         </tr>
     </thead>
@@ -19,6 +20,9 @@
             <td>{{cidade.id}}</td>
             <td>{{cidade.descricao_cidade}}</td>
             <td>{{cidade.fk_uf}}</td>
+            <td> 
+                <button type="button" name="button" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
+            </td>
         </tr>
     </tbody>
 </table>

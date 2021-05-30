@@ -7,9 +7,7 @@ const routes: Routes = [
   //{path: 'home', component: MainNavComponent},
   {path:'cidades/list', component: CidadesComponent  },
   {path:'cidades/form', component: CidadeFormComponent  },
-
-  //{path:'cidades/create', component: DialogElementsExample  },
-  //{path:'cidades/:id', component: CidadeUpdateComponent  },
+  {path:'cidades/form/:id', component: CidadeFormComponent  },
   {path:'', redirectTo: 'home', pathMatch: 'full'  }
 ];
 

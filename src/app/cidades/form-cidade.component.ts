@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Cidade } from './cidade';
 import { CidadeService } from './cidade.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-form',
@@ -13,14 +14,27 @@ export class CidadeFormComponent implements OnInit {
    cidade: Cidade = new Cidade();
    titulo:string = "Cadastrar Cidade";
 
-  constructor(private cidadeService: CidadeService, private router: Router) { }
+  constructor(private cidadeService: CidadeService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.carregarCidade();
   }
 
-  public create(): void {
+  create(): void {
       this.cidadeService.create(this.cidade).subscribe(
-          response => this.router.navigate(['/cidades/list'])
+          cidade => {
+                     this.router.navigate(['/cidades/list'])
+                     swal.fire('Nova Cidade', `Cidade ${this.cidade.descricao_cidade}/${this.cidade.fk_uf} criada com sucesso!!!`, 'info')
+                    }
       )
   }
+carregarCidade(): void {
+  this.activateRoute.params.subscribe( params => {
+    let id = params['id']
+    if(id){
+      this.cidadeService.getCidade(id).subscribe( (cidade) => this.cidade = cidade)
+    }
+  })
+}
+
 }

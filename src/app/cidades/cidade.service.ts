@@ -19,8 +19,11 @@ export class CidadeService {
     return this.http.get<Cidade[]>(`${this.URL_BASE}`);
 
   }
-create(cidade: Cidade) : Observable<Cidade>{
-  return this.http.post<Cidade>(this.URL_BASE, cidade, {headers: this.httpHeaders})
-}
+  create(cidade: Cidade) : Observable<Cidade>{
+    return this.http.post<Cidade>(this.URL_BASE, cidade, {headers: this.httpHeaders})
+  }
+  getCidade(id): Observable<Cidade>{
+    return this.http.get<Cidade>(`${this.URL_BASE}/${id}`)
+  }
 
 }
