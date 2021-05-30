@@ -25,5 +25,8 @@ export class CidadeService {
   getCidade(id): Observable<Cidade>{
     return this.http.get<Cidade>(`${this.URL_BASE}/${id}`)
   }
+  update(cidade: Cidade): Observable<Cidade>{
+    return this.http.put<Cidade>(`${this.URL_BASE}/${cidade.id}`, cidade, {headers: this.httpHeaders})
+  }
 
 }
