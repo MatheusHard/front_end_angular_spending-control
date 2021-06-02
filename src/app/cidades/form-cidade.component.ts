@@ -26,28 +26,31 @@ export class CidadeFormComponent implements OnInit {
     this.carregarUfs();
   }
 
+  carregarCidade(): void {
+    this.activateRoute.params.subscribe( params => {
+      let id = params['id']
+      if(id){
+        this.cidadeService.getCidade(id).subscribe((cidade) => this.cidade = cidade)
+      }
+    })
+  }
+
   create(): void {
       this.cidadeService.create(this.cidade).subscribe(
-          cidade => {
+        response =>   {        
+                     console.log(response);
                      this.router.navigate(['/cidades/list'])
-                     swal.fire('Nova Cidade', `Cidade ${this.cidade.descricao_cidade}/${this.cidade.fk_uf} criada com sucesso!!!`, 'info')
+                     swal.fire('Nova Cidade', `Cidade ${response.cidade.descricao_cidade} criada com sucesso!!!`, 'info')
                     }
-      )
+      );
   }
-carregarCidade(): void {
-  this.activateRoute.params.subscribe( params => {
-    let id = params['id']
-    if(id){
-      this.cidadeService.getCidade(id).subscribe((cidade) => this.cidade = cidade)
-    }
-  })
-}
 
 update(): void {
   this.cidadeService.update(this.cidade).subscribe(
-      cidade => {
-                 this.router.navigate(['/cidades'])
-                 swal.fire('Atualizar Cidade', `Cidade ${this.cidade.descricao_cidade}/${this.cidade.fk_uf} atualizada com sucesso!!!`, 'info')
+    response => {
+                 console.log(response);
+                 this.router.navigate(['/cidades/list'])
+                 swal.fire('Atualizar Cidade', `Cidade ${response.cidade.descricao_cidade} atualizada com sucesso!!!`,'info')
                 }
   )
 }
@@ -55,8 +58,7 @@ update(): void {
 carregarUfs(): void {
 this.ufService.getUfs().subscribe( res => {
   this.ufs = res
-  console.log(this.ufs)
-})
+ })
 }
 
 compararUf(uf_1: Uf, uf_2: Uf): boolean{
@@ -65,5 +67,8 @@ compararUf(uf_1: Uf, uf_2: Uf): boolean{
   }
   return uf_1 === null || uf_2 === null || uf_1 === undefined || uf_2 === undefined ? false: uf_1 === uf_2;
 }
+
+
+
 
 }

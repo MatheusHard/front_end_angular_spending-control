@@ -12,8 +12,8 @@
             <th>DESCRICAO</th>
             <th>FK_UF</th>
             <th>EDITAR</th>
-           
-        </tr>
+            <th>DELETAR</th>
+       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let cidade of cidades">
@@ -21,7 +21,10 @@
             <td>{{cidade.descricao_cidade}}</td>
             <td>{{cidade.fk_uf}}</td>
             <td> 
-                <button type="button" name="button" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
+                <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
+            </td>
+            <td> 
+                <button type="button" name="deletar" (click)="delete(cidade)" class="btn btn-danger">deletar</button>
             </td>
         </tr>
     </tbody>
