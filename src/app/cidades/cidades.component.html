@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>DESCRICAO</th>
             <th>FK_UF</th>
+            <th>DATA CADASTRO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
        </tr>
@@ -20,6 +21,8 @@
             <td>{{cidade.id}}</td>
             <td>{{cidade.descricao_cidade}}</td>
             <td>{{cidade.fk_uf}}</td>
+            <td>{{cidade.createAt}}</td>
+            
             <td> 
                 <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
             </td>

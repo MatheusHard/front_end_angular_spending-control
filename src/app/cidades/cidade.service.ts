@@ -5,6 +5,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import  localeBR  from '@angular/common/locales/pt';
+import { Utils } from '../utils/methods';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +23,17 @@ export class CidadeService {
  /*********GET ALL CIDADES*********/
 
  getCidades(): Observable<Cidade[]> {
-    return this.http.get<Cidade[]>(`${this.URL_BASE}`);
+    return this.http.get<Cidade[]>(`${this.URL_BASE}`).pipe(
+       map(response => {
+       let cidades =  response as Cidade[];
+         return cidades.map(cidade =>{
+              cidade.descricao_cidade = cidade.descricao_cidade.toUpperCase();
+              cidade.createAt = Utils.getDataCadastro(cidade.createAt);
+            
+              return cidade;
+       });
+      })
+    );
 
   }
 
