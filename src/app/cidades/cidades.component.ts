@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Cidade } from './cidade';
 import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
+import { tap } from 'rxjs/operators';
+import {  ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-cidades',
@@ -10,20 +13,26 @@ import swal from 'sweetalert2';
 
 export class CidadesComponent implements OnInit {
 
-  constructor(private cidadeService: CidadeService) { }
+  constructor(private cidadeService: CidadeService, private activateRoute: ActivatedRoute) { }
 
   cidades: Cidade[];
 
-
   ngOnInit(): void {
 
-    this.cidadeService.getCidades().subscribe( res =>
-      {
-      this.cidades = res;
-      });
-  }
+    this.activateRoute.paramMap.subscribe(params =>{
 
-  
+      let page: number = +params.get('page');
+
+      if(!page){
+        page = 0;
+      }
+    
+    this.cidadeService.getCidades(page).pipe(
+    ).subscribe( cidades => this.cidades = cidades.content as Cidade[]);
+
+    console.log(this.cidades)
+   });
+  }
 
   delete(cidade: Cidade){
  

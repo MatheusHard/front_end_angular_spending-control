@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cidade } from './cidade';
-import { catchError, map} from 'rxjs/operators';
+import { catchError, map, tap} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -15,6 +15,7 @@ import { Utils } from '../utils/methods';
 export class CidadeService {
 
   private URL_BASE: string = 'http://localhost:8080/api/cidades';
+  private URL_PAGE: string = '/page/'
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
  constructor(private http: HttpClient, private router: Router) { }
@@ -22,19 +23,26 @@ export class CidadeService {
 
  /*********GET ALL CIDADES*********/
 
- getCidades(): Observable<Cidade[]> {
-    return this.http.get<Cidade[]>(`${this.URL_BASE}`).pipe(
-       map(response => {
-       let cidades =  response as Cidade[];
-         return cidades.map(cidade =>{
-              cidade.descricao_cidade = cidade.descricao_cidade.toUpperCase();
-              cidade.createAt = Utils.getDataCadastro(cidade.createAt);
-            
-              return cidade;
-       });
-      })
-    );
+ getCidades(page: number): Observable<any> {
 
+    return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
+   
+      /*tap((response: any)=>{
+        console.log("Cidade: tap 1");
+        (response.content as Cidade[]).forEach(cidade =>{
+          console.log(cidade.descricao_cidade);
+        });
+      }),*/
+      map((response: any) => {
+       
+      (response.content as Cidade[]).map(cidade => {
+        
+        return cidade;
+    
+      });
+      return response;
+    })
+    );
   }
 
   /*********GET UMA CIDADE*********/
@@ -76,8 +84,5 @@ export class CidadeService {
  delete(id: number): Observable<any>{
    return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers:this.httpHeaders});
  }
-
- 
- 
 
 }

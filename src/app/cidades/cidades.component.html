@@ -19,9 +19,9 @@
     <tbody>
         <tr *ngFor="let cidade of cidades">
             <td>{{cidade.id}}</td>
-            <td>{{cidade.descricao_cidade}}</td>
+            <td>{{cidade.descricao_cidade | uppercase}}</td>
             <td>{{cidade.fk_uf}}</td>
-            <td>{{cidade.createAt}}</td>
+            <td>{{cidade.createAt | date: "dd/MM/yyyy"}}</td>
             
             <td> 
                 <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>

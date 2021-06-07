@@ -4,8 +4,8 @@ import { CidadesComponent } from './cidades/cidades.component';
 import { CidadeFormComponent } from './cidades/form-cidade.component';
 
 const routes: Routes = [
-  //{path: 'home', component: MainNavComponent},
   {path:'cidades/list', component: CidadesComponent  },
+  {path:'cidades/page/:page', component: CidadesComponent  },
   {path:'cidades/form', component: CidadeFormComponent  },
   {path:'cidades/form/:id', component: CidadeFormComponent  },
   {path:'', redirectTo: 'home', pathMatch: 'full'  }
