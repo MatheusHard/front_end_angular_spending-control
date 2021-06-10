@@ -10,7 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CidadeFormComponent } from './cidades/form-cidade.component';
 import { FormsModule } from '@angular/forms';
 import {registerLocaleData } from '@angular/common';
-import localeBR from '@angular/common/locales/pt-PT'; 
+import localeBR from '@angular/common/locales/pt-PT';
+import { PaginatorComponent } from './paginator/paginator.component'; 
 
 registerLocaleData(localeBR, 'br');
 
@@ -20,7 +21,8 @@ registerLocaleData(localeBR, 'br');
     HeaderComponent,
     FooterComponent,
     CidadesComponent,
-    CidadeFormComponent
+    CidadeFormComponent,
+    PaginatorComponent
     
   ],
   imports: [

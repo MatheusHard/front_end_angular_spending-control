@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Cidade } from './cidade';
 import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
@@ -17,6 +17,8 @@ export class CidadesComponent implements OnInit {
 
   cidades: Cidade[];
 
+  paginador: any;
+
   ngOnInit(): void {
 
     this.activateRoute.paramMap.subscribe(params =>{
@@ -28,7 +30,12 @@ export class CidadesComponent implements OnInit {
       }
     
     this.cidadeService.getCidades(page).pipe(
-    ).subscribe( cidades => this.cidades = cidades.content as Cidade[]);
+    ).subscribe( response => {
+       this.cidades = response.content as Cidade[];
+       this.paginador = response;
+       console.log(this.paginador);
+
+      });
 
     console.log(this.cidades)
    });
