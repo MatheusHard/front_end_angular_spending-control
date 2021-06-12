@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import  localeBR  from '@angular/common/locales/pt';
 import { Utils } from '../utils/methods';
+import { Uf } from '../ufs/uf';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { Utils } from '../utils/methods';
 export class CidadeService {
 
   private URL_BASE: string = 'http://localhost:8080/api/cidades';
+  private URL_UF: string = 'http://localhost:8080/api/ufs';
   private URL_PAGE: string = '/page/'
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -45,6 +47,12 @@ export class CidadeService {
     );
   }
 
+  /*********GET UFS*********/
+
+  getUfs(): Observable<Uf[]>{
+    return this.http.get<Uf[]>(this.URL_UF);
+  }
+
   /*********GET UMA CIDADE*********/
 
   getCidade(id): Observable<Cidade>{
@@ -71,6 +79,7 @@ export class CidadeService {
   }
    
   
+  /*********UPDATE CIDADE*********/
 
   update(cidade: Cidade): Observable<any>{
     return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade, {headers: this.httpHeaders}).pipe(

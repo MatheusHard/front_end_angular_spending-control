@@ -11,7 +11,8 @@ import { CidadeFormComponent } from './cidades/form-cidade.component';
 import { FormsModule } from '@angular/forms';
 import {registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt-PT';
-import { PaginatorComponent } from './paginator/paginator.component'; 
+import { PaginatorComponent } from './paginator/paginator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 registerLocaleData(localeBR, 'br');
 
@@ -29,7 +30,8 @@ registerLocaleData(localeBR, 'br');
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
     
   ],
   providers: [CidadeService, {provide: LOCALE_ID, useValue: 'br' }],

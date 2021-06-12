@@ -23,24 +23,27 @@ export class CidadeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarCidade();
-    this.carregarUfs();
+    //this.carregarUfs();
   }
 
   carregarCidade(): void {
+
     this.activateRoute.params.subscribe( params => {
       let id = params['id']
       if(id){
         this.cidadeService.getCidade(id).subscribe((cidade) => this.cidade = cidade)
       }
-    })
+    });
+    this.cidadeService.getUfs().subscribe( ufs => this.ufs = ufs);
   }
 
   create(): void {
+    console.log(this.cidade);
       this.cidadeService.create(this.cidade).subscribe(
         response =>   {        
-                     console.log(response);
+                     console.log(this.cidade);
                      this.router.navigate(['/cidades/list'])
-                     swal.fire('Nova Cidade', `Cidade ${response.cidade.descricao_cidade} criada com sucesso!!!`, 'info')
+                   //  swal.fire('Nova Cidade', `Cidade ${response.cidade.descricao_cidade} criada com sucesso!!!`, 'info')
                     }
       );
   }
@@ -55,13 +58,16 @@ update(): void {
   )
 }
 
-carregarUfs(): void {
+/*carregarUfs(): void {
 this.ufService.getUfs().subscribe( res => {
   this.ufs = res
  })
-}
+}*/
 
 compararUf(uf_1: Uf, uf_2: Uf): boolean{
+  console.log(uf_1);
+  console.log(uf_2);
+  
   if(uf_1 === undefined && uf_2 === undefined){
     return true;
   }

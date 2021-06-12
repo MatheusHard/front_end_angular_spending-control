@@ -8,10 +8,10 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>DESCRICAO</th>
-            <th>FK_UF</th>
-            <th>DATA CADASTRO</th>
+            <th>CODIGO</th>
+            <th>CIDADE</th>
+            <th>UF</th>
+            <th>CADASTRADA</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
        </tr>
@@ -20,9 +20,8 @@
         <tr *ngFor="let cidade of cidades">
             <td>{{cidade.id}}</td>
             <td>{{cidade.descricao_cidade | uppercase}}</td>
-            <td>{{cidade.fk_uf}}</td>
+            <td>{{cidade.uf.sigla_uf}}</td>
             <td>{{cidade.createAt | date: "dd/MM/yyyy"}}</td>
-            
             <td> 
                 <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
             </td>

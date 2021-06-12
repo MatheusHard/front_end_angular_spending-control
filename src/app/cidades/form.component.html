@@ -11,9 +11,9 @@
     <div class="form-group row">
         <label for="uf" class="col-form-label col-sm-2">Estado</label>
         <div class="col-sm-6">
-        <select [compareWith]="compararUf" class="form-select form-select-sm" [(ngModel)]="cidade.fk_uf" name="uf" style="width: 200px;">
+        <select [compareWith]="compararUf" class="form-select form-select-sm" [(ngModel)]="cidade.uf" name="uf" style="width: 200px;">
             <option [ngValue]="undefined">selecione o Estado</option>
-            <option *ngFor="let uf of ufs" [ngValue]="uf.id">{{uf.descricao_uf}}</option>
+            <option *ngFor="let uf of ufs" [ngValue]="uf">{{uf.descricao_uf}}</option>
         </select>    
         </div>
     </div>
