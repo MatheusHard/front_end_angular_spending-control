@@ -12,7 +12,9 @@ import { FormsModule } from '@angular/forms';
 import {registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt-PT';
 import { PaginatorComponent } from './paginator/paginator.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { SetoresComponent } from './setores/setores.component'; 
 
 registerLocaleData(localeBR, 'br');
 
@@ -23,7 +25,9 @@ registerLocaleData(localeBR, 'br');
     FooterComponent,
     CidadesComponent,
     CidadeFormComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    FuncionariosComponent,
+    SetoresComponent
     
   ],
   imports: [

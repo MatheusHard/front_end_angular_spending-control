@@ -15,12 +15,13 @@ import { Uf } from '../ufs/uf';
 })
 export class CidadeService {
 
-  private URL_BASE: string = 'http://localhost:8080/api/cidades';
-  private URL_UF: string = 'http://localhost:8080/api/ufs';
-  private URL_PAGE: string = '/page/'
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+private URL_BASE: string = 'http://localhost:8080/api/cidades';
+private URL_UF: string = '/ufs';
+private URL_PAGE: string = '/page/'
 
- constructor(private http: HttpClient, private router: Router) { }
+private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+
+constructor(private http: HttpClient, private router: Router) { }
 
 
  /*********GET ALL CIDADES*********/
@@ -50,7 +51,7 @@ export class CidadeService {
   /*********GET UFS*********/
 
   getUfs(): Observable<Uf[]>{
-    return this.http.get<Uf[]>(this.URL_UF);
+    return this.http.get<Uf[]>(`${this.URL_BASE}${this.URL_UF}`);
   }
 
   /*********GET UMA CIDADE*********/
