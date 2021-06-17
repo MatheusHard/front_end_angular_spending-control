@@ -49,6 +49,7 @@ update(): void {
     response => {
                  console.log(response);
                  this.router.navigate(['/setores/list'])
+                 
                  swal.fire('Atualizar Setor', `Setor ${response.setor.descricao_setor} atualizado com sucesso!!!`,'info')
                 }
   )
