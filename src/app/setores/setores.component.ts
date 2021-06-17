@@ -8,7 +8,6 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-setores',
   templateUrl: './setores.component.html',
-  styleUrls: ['./setores.component.css']
 })
 export class SetoresComponent implements OnInit {
 
@@ -30,6 +29,8 @@ export class SetoresComponent implements OnInit {
     ).subscribe( response => {
        this.setores = response.content as Setor[];
        this.paginador = response;
+
+       console.log("DENTRO GET SETORES");
        console.log(this.paginador);
 
       });

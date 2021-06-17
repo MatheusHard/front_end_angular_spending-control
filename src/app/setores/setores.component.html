@@ -1,1 +1,33 @@
-<p>setores works!</p>
+<div class="card border-primary mb-3">
+    <div class="card-header">Setores</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Lista dos Setores</h5>
+<div class="ny-2 text-left">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/setores/form']">Cadastrar Setor</button>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>CODIGO</th>
+            <th>SETOR</th>
+            <th>EDITAR</th>
+            <th>DELETAR</th>
+       </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let setor of setores">
+            <td>{{setor.id}}</td>
+            <td>{{setor.descricao_setor | uppercase}}</td>
+            <td> 
+                <button type="button" name="editar" [routerLink]="['/setores/form', setor.id]" class="btn btn-primary">editar</button>
+            </td>
+            <td> 
+                <button type="button" name="deletar" (click)="delete(setor)" class="btn btn-danger">deletar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<paginator-nav-setor *ngIf="paginador" [paginador]="paginador"></paginator-nav-setor>
+    </div>
+  </div>

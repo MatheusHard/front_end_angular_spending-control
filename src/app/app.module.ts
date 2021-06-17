@@ -15,6 +15,9 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { SetoresComponent } from './setores/setores.component'; 
+import { SetorService } from './setores/setores.service';
+import { SetoresFormComponent } from './setores/form-setor.component';
+import { PaginatorSetorComponent } from './paginator/paginator-setor.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -26,8 +29,11 @@ registerLocaleData(localeBR, 'br');
     CidadesComponent,
     CidadeFormComponent,
     PaginatorComponent,
+    PaginatorSetorComponent,
     FuncionariosComponent,
-    SetoresComponent
+    SetoresComponent,
+    SetoresFormComponent,
+    
     
   ],
   imports: [
@@ -38,7 +44,7 @@ registerLocaleData(localeBR, 'br');
     BrowserAnimationsModule
     
   ],
-  providers: [CidadeService, {provide: LOCALE_ID, useValue: 'br' }],
+  providers: [CidadeService, SetorService, {provide: LOCALE_ID, useValue: 'br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
