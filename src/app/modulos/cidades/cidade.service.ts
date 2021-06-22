@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import  localeBR  from '@angular/common/locales/pt';
-import { Utils } from '../utils/methods';
+import { Utils } from '../../utils/methods';
 import { Uf } from '../ufs/uf';
 
 @Injectable({

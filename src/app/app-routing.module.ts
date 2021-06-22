@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CidadesComponent } from './cidades/cidades.component';
-import { CidadeFormComponent } from './cidades/form-cidade.component';
-import { SetoresFormComponent } from './setores/form-setor.component';
-import { SetoresComponent } from './setores/setores.component';
+import { CidadesComponent } from './modulos/cidades/cidades.component';
+import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
+import { SetoresFormComponent } from './modulos/setores/form-setor.component';
+import { SetoresComponent } from './modulos/setores/setores.component';
 
 const routes: Routes = [
   {path:'cidades/list', component: CidadesComponent  },
