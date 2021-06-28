@@ -19,7 +19,7 @@ private URL_BASE: string = 'http://localhost:8080/api/cidades';
 private URL_UF: string = '/ufs';
 private URL_PAGE: string = '/page/'
 
-private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+private httpHeaders = Utils.getHttpHeaders();
 
 constructor(private http: HttpClient, private router: Router) { }
 
