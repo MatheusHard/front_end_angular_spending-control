@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CidadesComponent } from './cidades/cidades.component';
-import { CidadeFormComponent } from './cidades/form-cidade.component';
-import { SetoresFormComponent } from './setores/form-setor.component';
-import { SetoresComponent } from './setores/setores.component';
+import { CidadesComponent } from './modulos/cidades/cidades.component';
+import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
+import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
+import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
+import { SetoresFormComponent } from './modulos/setores/form-setor.component';
+import { SetoresComponent } from './modulos/setores/setores.component';
 
 const routes: Routes = [
+  
   {path:'cidades/list', component: CidadesComponent  },
   {path:'cidades/page/:page', component: CidadesComponent  },
   {path:'cidades/form', component: CidadeFormComponent  },
@@ -15,6 +18,12 @@ const routes: Routes = [
   {path:'setores/page/:page', component: SetoresComponent  },
   {path:'setores/form', component: SetoresFormComponent  },
   {path:'setores/form/:id', component: SetoresFormComponent  },
+
+  {path:'funcionarios/list', component: FuncionariosComponent  },
+  {path:'funcionarios/page/:page', component: FuncionariosComponent },
+  {path:'funcionarios/form', component:  FormFuncionarioComponent },
+  {path:'funcionarios/form/:id', component: FormFuncionarioComponent  },
+  
   
   {path:'', redirectTo: 'home', pathMatch: 'full'  }
 ];
