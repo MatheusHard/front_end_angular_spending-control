@@ -20,11 +20,13 @@ import { SetoresFormComponent } from './modulos/setores/form-setor.component';
 import { PaginatorSetorComponent } from './paginator/paginator-setor.component';
 import { FuncionarioService } from './modulos/funcionarios/funcionario.service';
 import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
+import { PaginatorFuncionarioComponent } from './paginator/paginator-funcionario.component';
 
 registerLocaleData(localeBR, 'br');
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -36,8 +38,8 @@ registerLocaleData(localeBR, 'br');
     SetoresComponent,
     SetoresFormComponent,
     FormFuncionarioComponent,
-       
-    
+    PaginatorFuncionarioComponent
+     
   ],
   imports: [
     BrowserModule,
