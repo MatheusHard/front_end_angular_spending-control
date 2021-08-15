@@ -6,6 +6,7 @@ import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionari
 import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
 import { SetoresComponent } from './modulos/setores/setores.component';
+import { LoginComponent } from './modulos/usuarios/login.component';
 
 const routes: Routes = [
   
@@ -23,6 +24,9 @@ const routes: Routes = [
   {path:'funcionarios/page/:page', component: FuncionariosComponent },
   {path:'funcionarios/form', component:  FormFuncionarioComponent },
   {path:'funcionarios/form/:id', component: FormFuncionarioComponent  },
+
+  {path:'login', component: LoginComponent  },
+
   
   
   {path:'', redirectTo: 'home', pathMatch: 'full'  }

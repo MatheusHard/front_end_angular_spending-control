@@ -21,6 +21,7 @@ import { PaginatorSetorComponent } from './paginator/paginator-setor.component';
 import { FuncionarioService } from './modulos/funcionarios/funcionario.service';
 import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
 import { PaginatorFuncionarioComponent } from './paginator/paginator-funcionario.component';
+import { LoginComponent } from './modulos/usuarios/login.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -38,7 +39,8 @@ registerLocaleData(localeBR, 'br');
     SetoresComponent,
     SetoresFormComponent,
     FormFuncionarioComponent,
-    PaginatorFuncionarioComponent
+    PaginatorFuncionarioComponent,
+    LoginComponent
      
   ],
   imports: [
