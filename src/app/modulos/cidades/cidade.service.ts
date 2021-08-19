@@ -21,6 +21,15 @@ private URL_PAGE: string = '/page/'
 
 private httpHeaders = Utils.getHttpHeaders();
 
+private isNaoAutorizado(e):boolean{
+
+if(e.status==401 || e.status==403){
+  this.router.navigate(['login']);
+  return true;
+}
+return false;
+}
+
 constructor(private http: HttpClient, private router: Router) { }
 
 
@@ -29,7 +38,10 @@ constructor(private http: HttpClient, private router: Router) { }
  getCidades(page: number): Observable<any> {
 
     return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
-   
+        catchError(e => {
+          this.isNaoAutorizado(e);
+          return throwError(e);
+        }),
       /*tap((response: any)=>{
         console.log("Cidade: tap 1");
         (response.content as Cidade[]).forEach(cidade =>{
@@ -59,6 +71,10 @@ constructor(private http: HttpClient, private router: Router) { }
   getCidade(id): Observable<Cidade>{
     return this.http.get<Cidade>(`${this.URL_BASE}/${id}`).pipe(
       catchError( e => {
+
+        if(this.isNaoAutorizado(e)){
+          return throwError(e);
+        }
         this.router.navigate(['/cidades/list']);
         console.error(e.error.mensage);
         Swal.fire("Erro ao Editar", e.error.mensagem.toString(), 'error');
@@ -73,6 +89,10 @@ constructor(private http: HttpClient, private router: Router) { }
   create(cidade: Cidade) : Observable<any>{
     return this.http.post<any>(this.URL_BASE, cidade, {headers: this.httpHeaders}).pipe(
        catchError(e => {
+        
+        if(this.isNaoAutorizado(e)){
+          return throwError(e);
+        }
         Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
         return throwError(e);
       })
@@ -85,6 +105,9 @@ constructor(private http: HttpClient, private router: Router) { }
   update(cidade: Cidade): Observable<any>{
     return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+        if(this.isNaoAutorizado(e)){
+          return throwError(e);
+        }
        Swal.fire("Erro ao atualizar a Cidade: ", e.errors.toString(), 'error');
        return throwError(e);
      })
@@ -92,7 +115,16 @@ constructor(private http: HttpClient, private router: Router) { }
  }
  
  delete(id: number): Observable<any>{
-   return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers:this.httpHeaders});
+   return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers:this.httpHeaders}).pipe(
+     catchError(e => {
+      console.log(e)
+      if(this.isNaoAutorizado(e)){
+        return throwError(e);
+      }
+       return throwError(e);
+       
+     })
+   );
  }
 
 }
