@@ -22,6 +22,7 @@ import { FuncionarioService } from './modulos/funcionarios/funcionario.service';
 import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
 import { PaginatorFuncionarioComponent } from './paginator/paginator-funcionario.component';
 import { LoginComponent } from './modulos/usuarios/login.component';
+import { AuthService } from './modulos/usuarios/auth.service';
 
 registerLocaleData(localeBR, 'br');
 
@@ -51,7 +52,7 @@ registerLocaleData(localeBR, 'br');
     BrowserAnimationsModule
     
   ],
-  providers: [CidadeService, FuncionarioService, SetorService, {provide: LOCALE_ID, useValue: 'br' }],
+  providers: [CidadeService, FuncionarioService, SetorService, AuthService, {provide: LOCALE_ID, useValue: 'br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
