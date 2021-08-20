@@ -5,6 +5,7 @@ import { Observable, throwError } from "rxjs";
 import { Setor } from "./setores";
 import { catchError, map, tap} from 'rxjs/operators';
 import Swal from "sweetalert2";
+import { AuthService } from "../usuarios/auth.service";
 
 
 @Injectable({
@@ -17,13 +18,38 @@ import Swal from "sweetalert2";
     
     private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+
+  /**********NÃO AUTORIZADO**********/
+    
+  private isNaoAutorizado(e):boolean{
+
+    if(e.status==401 || e.status==403){
+      this.router.navigate(['login']);
+      return true;
+    }
+    return false;
+    }
+    
+    /*****ADD AUTH NOS POSTs e GETs*****/
   
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer '+ token);
+    }
+    return this.httpHeaders;
+     
+  }
+
+
+
    /*********GET ALL SETORES*********/
 
  getSetores(page: number): Observable<any> {
 
-  return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
+  return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`, 
+                            {headers: this.agregarAuthorizationHeader()}).pipe(
  
    
     map((response: any) => {
@@ -41,14 +67,14 @@ import Swal from "sweetalert2";
 /*********GET SETORES*********/
 
 getUfs(): Observable<Setor[]>{
-  return this.http.get<Setor[]>(`${this.URL_BASE}`);
+  return this.http.get<Setor[]>(`${this.URL_BASE}`, {headers: this.agregarAuthorizationHeader()});
 }
 
 /*********GET UM SETOR*********/
 
 getSetor(id): Observable<Setor>{
 
-  return this.http.get<Setor>(`${this.URL_BASE}/${id}`).pipe(
+  return this.http.get<Setor>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
     catchError( e => {
       this.router.navigate(['/setores/list']);
       console.error(e.error.mensage);
@@ -62,7 +88,7 @@ getSetor(id): Observable<Setor>{
 /*********POST SETOR*********/
 
 create(setor: Setor) : Observable<any>{
-  return this.http.post<any>(this.URL_BASE, setor, {headers: this.httpHeaders}).pipe(
+  return this.http.post<any>(this.URL_BASE, setor, {headers: this.agregarAuthorizationHeader()}).pipe(
      catchError(e => {
       Swal.fire("Erro ao cadastrar o Setor: ", e.error.errors.toString(), 'error');
       return throwError(e);
@@ -74,7 +100,7 @@ create(setor: Setor) : Observable<any>{
 /*********UPDATE SETOR*********/
 
 update(setor: Setor): Observable<any>{
-  return this.http.put<any>(`${this.URL_BASE}/${setor.id}`, setor, {headers: this.httpHeaders}).pipe(
+  return this.http.put<any>(`${this.URL_BASE}/${setor.id}`, setor, {headers: this.agregarAuthorizationHeader()}).pipe(
     catchError(e => {
      Swal.fire("Erro ao atualizar o Setor: ", e.errors.toString(), 'error');
      return throwError(e);
@@ -85,6 +111,6 @@ update(setor: Setor): Observable<any>{
 /*********DELETE SETOR*********/
 
 delete(id: number): Observable<any>{
- return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers:this.httpHeaders});
+ return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()});
 }
 }

@@ -19,10 +19,12 @@ export class HeaderComponent {
     }
 
     logout(): void {
+
       let username = this.authService.usuario.username;
       this.authService.logout();
       Swal.fire('Logout', `Ola Sr.(a) ${username}, encerrada a sessão!`, 'success');
       this.router.navigate(['/login']);
+      
   }
 }
 
