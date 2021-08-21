@@ -5,8 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
-import { DatePipe, registerLocaleData } from '@angular/common';
-import  localeBR  from '@angular/common/locales/pt';
 import { Utils } from '../../utils/methods';
 import { Uf } from '../ufs/uf';
 import { AuthService } from '../usuarios/auth.service';
@@ -22,16 +20,28 @@ private URL_PAGE: string = '/page/'
 
 private httpHeaders = Utils.getHttpHeaders();
 
+constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+
+
+
 private isNaoAutorizado(e):boolean{
 
-if(e.status==401 || e.status==403){
-  this.router.navigate(['login']);
+if(e.status == 401){
+  
+  if(this.authService.isAuthenticated()){
+    this.authService.logout();
+  }
+  this.router.navigate(['/cidades/list']);
+  return true;
+}
+if(e.status == 403){
+  Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
+  this.router.navigate(['/cidades/list']);
   return true;
 }
 return false;
 }
 
-constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
 private agregarAuthorizationHeader(){
   let token = this.authService.token;
