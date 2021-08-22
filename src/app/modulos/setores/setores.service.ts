@@ -17,19 +17,30 @@ import { AuthService } from "../usuarios/auth.service";
     private URL_PAGE: string = '/page/'
     
     private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    authService: AuthService;
+
+    constructor(private http: HttpClient, private router: Router, authService: AuthService) {
+      this.authService = authService;
+     }
+
+     private isNaoAutorizado(e):boolean{
+
+      if(e.status == 401){
+        
+        if(this.authService.isAuthenticated()){
+          this.authService.logout();
+        }
+        this.router.navigate(['/setores/list']);
+        return true;
+      }
+      if(e.status == 403){
+        Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
+        this.router.navigate(['/setores/list']);
+        return true;
+      }
+      return false;
+      }
   
-    constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
-
-  /**********NÃO AUTORIZADO**********/
-    
-  private isNaoAutorizado(e):boolean{
-
-    if(e.status==401 || e.status==403){
-      this.router.navigate(['login']);
-      return true;
-    }
-    return false;
-    }
     
     /*****ADD AUTH NOS POSTs e GETs*****/
   

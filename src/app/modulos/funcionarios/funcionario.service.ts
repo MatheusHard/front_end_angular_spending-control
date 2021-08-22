@@ -29,14 +29,23 @@ import { Funcionario } from "./funcionario";
     
     private isNaoAutorizado(e):boolean{
 
-      if(e.status==401 || e.status==403){
-        this.router.navigate(['login']);
+      if(e.status == 401){
+        
+        if(this.authService.isAuthenticated()){
+          this.authService.logout();
+        }
+        this.router.navigate(['/funcionarios/list']);
+        return true;
+      }
+      if(e.status == 403){
+        Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
+        this.router.navigate(['/cidades/list']);
         return true;
       }
       return false;
       }
-      
-      /*****ADD AUTH NOS POSTs e GETs*****/
+            
+    /*****ADD AUTH NOS POSTs e GETs*****/
     
     private agregarAuthorizationHeader(){
       let token = this.authService.token;

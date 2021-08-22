@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Funcionario } from './funcionario';
 import { FuncionarioService } from './funcionario.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -12,13 +13,18 @@ import swal from 'sweetalert2';
 })
 export class FuncionariosComponent implements OnInit {
 
-  constructor(private funcionarioService: FuncionarioService, private activateRoute: ActivatedRoute) { }
+  authService: AuthService;
+
+  constructor(private funcionarioService: FuncionarioService, private activateRoute: ActivatedRoute, authService: AuthService) {
+    this.authService = authService;
+   }
 
   funcionarios: Funcionario[];
 
   paginador: any;
 
   ngOnInit(): void {
+    
     this.activateRoute.paramMap.subscribe(params =>{
 
       let page: number = +params.get('page');

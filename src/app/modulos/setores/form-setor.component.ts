@@ -39,7 +39,7 @@ export class SetoresFormComponent implements OnInit {
         response =>   { 
 
                      this.router.navigate(['/setores/list'])
-                     swal.fire('Nova Cidade', `Setor ${response.setor.descricao_setor} criado com sucesso!!!`, 'info')
+                     swal.fire('Novo Setor', `Setor ${response.setor.descricao_setor} criado com sucesso!!!`, 'info')
                     }
       );
   }
