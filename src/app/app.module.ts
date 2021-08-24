@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { CidadesComponent } from './modulos/cidades/cidades.component';
 import { CidadeService } from './modulos/cidades/cidade.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
 import { FormsModule } from '@angular/forms';
 import {registerLocaleData } from '@angular/common';
@@ -23,6 +23,7 @@ import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionari
 import { PaginatorFuncionarioComponent } from './paginator/paginator-funcionario.component';
 import { LoginComponent } from './modulos/usuarios/login.component';
 import { AuthService } from './modulos/usuarios/auth.service';
+import { TokenInterceptor } from './modulos/usuarios/interceptors/token.interceptor';
 
 registerLocaleData(localeBR, 'br');
 
@@ -52,7 +53,8 @@ registerLocaleData(localeBR, 'br');
     BrowserAnimationsModule
     
   ],
-  providers: [CidadeService, FuncionarioService, SetorService, AuthService, {provide: LOCALE_ID, useValue: 'br' }],
+  providers: [CidadeService, FuncionarioService, SetorService, AuthService, {provide: LOCALE_ID, useValue: 'br' },
+              {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

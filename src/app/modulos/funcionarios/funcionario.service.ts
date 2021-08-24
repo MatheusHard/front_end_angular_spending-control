@@ -21,8 +21,7 @@ import { Funcionario } from "./funcionario";
 
     private URL_PAGE: string = '/page/'
     
-    private httpHeaders = Utils.getHttpHeaders();
-    
+   
     constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
     
     /**********NÃO AUTORIZADO**********/
@@ -45,23 +44,13 @@ import { Funcionario } from "./funcionario";
       return false;
       }
             
-    /*****ADD AUTH NOS POSTs e GETs*****/
     
-    private agregarAuthorizationHeader(){
-      let token = this.authService.token;
-      if(token != null){
-        return this.httpHeaders.append('Authorization', 'Bearer '+ token);
-      }
-      return this.httpHeaders;
-       
-    }
 
   /*********GET ALL FUNCIONARIOS*********/
 
  getFuncionarios(page: number): Observable<any> {
 
-    return this.http.get<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}${this.URL_PAGE}${page}`, 
-                                {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}${this.URL_PAGE}${page}`).pipe(
 
       catchError(e => {
           this.isNaoAutorizado(e);
@@ -82,15 +71,13 @@ import { Funcionario } from "./funcionario";
   /*********GET SETORES*********/
 
   getSetores(): Observable<Setor[]>{
-    return this.http.get<Setor[]>(`${this.URL_BASE}${this.URL_FUNCIONARIO}${this.URL_SETOR}`, 
-                                  {headers: this.agregarAuthorizationHeader()});
+    return this.http.get<Setor[]>(`${this.URL_BASE}${this.URL_FUNCIONARIO}${this.URL_SETOR}`);
   }
 
   /*********GET UM FUNCIONARIO*********/
 
   getFuncionario(id): Observable<Funcionario>{
-    return this.http.get<Funcionario>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`, 
-                                     {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Funcionario>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`).pipe(
       catchError( e => {
         this.router.navigate(['/funcionarios/list']);
         console.error(e.error.mensage);
@@ -104,7 +91,7 @@ import { Funcionario } from "./funcionario";
   /*********POST FUNCIONARIO*********/
 
   create(funcionario: Funcionario) : Observable<any>{
-    return this.http.post<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}`, funcionario, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.post<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}`, funcionario).pipe(
        catchError(e => {
         Swal.fire("Erro ao cadastrar o Funcionario(a): ", e.error.errors.toString(), 'error');
         return throwError(e);
@@ -115,8 +102,7 @@ import { Funcionario } from "./funcionario";
   /*********UPDATE FUNCIONARIO*********/
 
   update(funcionario: Funcionario): Observable<any>{
-    return this.http.put<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${funcionario.id}`, funcionario, 
-                              {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.put<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${funcionario.id}`, funcionario).pipe(
       catchError(e => {
        Swal.fire("Erro ao atualizar o Funcionario(a): ", e.errors.toString(), 'error');
        return throwError(e);
@@ -127,7 +113,7 @@ import { Funcionario } from "./funcionario";
 /*********DELETE FUNCIONARIO*********/
 
  delete(id: number): Observable<any>{
-   return this.http.delete<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`, {headers: this.agregarAuthorizationHeader()});
+   return this.http.delete<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`);
  }
 
 }

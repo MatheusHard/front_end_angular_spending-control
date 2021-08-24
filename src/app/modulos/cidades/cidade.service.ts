@@ -18,7 +18,7 @@ private URL_BASE: string = 'http://localhost:8080/api/cidades';
 private URL_UF: string = '/ufs';
 private URL_PAGE: string = '/page/'
 
-private httpHeaders = Utils.getHttpHeaders();
+//private httpHeaders = Utils.getHttpHeaders();
 
 constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
@@ -43,21 +43,21 @@ return false;
 }
 
 
-private agregarAuthorizationHeader(){
+/*private agregarAuthorizationHeader(){
   let token = this.authService.token;
   if(token != null){
     return this.httpHeaders.append('Authorization', 'Bearer '+ token);
   }
   return this.httpHeaders;
    
-}
+}*/
 
 
  /*********GET ALL CIDADES*********/
 
  getCidades(page: number): Observable<any> {
 
-    return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
         catchError(e => {
           this.isNaoAutorizado(e);
           return throwError(e);
@@ -83,13 +83,13 @@ private agregarAuthorizationHeader(){
   /*********GET UFS*********/
 
   getUfs(): Observable<Uf[]>{
-    return this.http.get<Uf[]>(`${this.URL_BASE}${this.URL_UF}`, {headers: this.agregarAuthorizationHeader()});
+    return this.http.get<Uf[]>(`${this.URL_BASE}${this.URL_UF}`);
   }
 
   /*********GET UMA CIDADE*********/
 
   getCidade(id): Observable<Cidade>{
-    return this.http.get<Cidade>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Cidade>(`${this.URL_BASE}/${id}`).pipe(
       catchError( e => {
 
         if(this.isNaoAutorizado(e)){
@@ -107,7 +107,7 @@ private agregarAuthorizationHeader(){
   /*********POST CIDADE*********/
 
   create(cidade: Cidade) : Observable<any>{
-    return this.http.post<any>(this.URL_BASE, cidade, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.post<any>(this.URL_BASE, cidade).pipe(
        catchError(e => {
         
         if(this.isNaoAutorizado(e)){
@@ -123,7 +123,7 @@ private agregarAuthorizationHeader(){
   /*********UPDATE CIDADE*********/
 
   update(cidade: Cidade): Observable<any>{
-    return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade).pipe(
       catchError(e => {
         if(this.isNaoAutorizado(e)){
           return throwError(e);
@@ -135,7 +135,7 @@ private agregarAuthorizationHeader(){
  }
  
  delete(id: number): Observable<any>{
-   return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+   return this.http.delete<any>(`${this.URL_BASE}/${id}`).pipe(
      catchError(e => {
       console.log(e)
       if(this.isNaoAutorizado(e)){
