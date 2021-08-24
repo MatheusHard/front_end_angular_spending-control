@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Setor } from './setores';
 import { SetorService } from './setores.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -10,8 +11,12 @@ import swal from 'sweetalert2';
   templateUrl: './setores.component.html',
 })
 export class SetoresComponent implements OnInit {
-
-  constructor(private setorService: SetorService, private activateRoute: ActivatedRoute) { }
+  
+  authService: AuthService;
+  
+  constructor(private setorService: SetorService, private activateRoute: ActivatedRoute, authService: AuthService) {
+    this.authService = authService;
+   }
 
   setores: Setor[];
   paginador: any;

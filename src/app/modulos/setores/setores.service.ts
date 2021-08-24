@@ -16,40 +16,39 @@ import { AuthService } from "../usuarios/auth.service";
     private URL_BASE: string = 'http://localhost:8080/api/setores';
     private URL_PAGE: string = '/page/'
     
-    private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    authService: AuthService;
+
+    constructor(private http: HttpClient, private router: Router, authService: AuthService) {
+      this.authService = authService;
+     }
+
+     private isNaoAutorizado(e):boolean{
+
+      if(e.status == 401){
+        
+        if(this.authService.isAuthenticated()){
+          this.authService.logout();
+        }
+        this.router.navigate(['/setores/list']);
+        return true;
+      }
+      if(e.status == 403){
+        Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
+        this.router.navigate(['/setores/list']);
+        return true;
+      }
+      return false;
+      }
   
-    constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
-
-  /**********NÃO AUTORIZADO**********/
     
-  private isNaoAutorizado(e):boolean{
-
-    if(e.status==401 || e.status==403){
-      this.router.navigate(['login']);
-      return true;
-    }
-    return false;
-    }
     
-    /*****ADD AUTH NOS POSTs e GETs*****/
-  
-  private agregarAuthorizationHeader(){
-    let token = this.authService.token;
-    if(token != null){
-      return this.httpHeaders.append('Authorization', 'Bearer '+ token);
-    }
-    return this.httpHeaders;
-     
-  }
-
 
 
    /*********GET ALL SETORES*********/
 
  getSetores(page: number): Observable<any> {
 
-  return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`, 
-                            {headers: this.agregarAuthorizationHeader()}).pipe(
+  return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
  
    
     map((response: any) => {
@@ -67,14 +66,14 @@ import { AuthService } from "../usuarios/auth.service";
 /*********GET SETORES*********/
 
 getUfs(): Observable<Setor[]>{
-  return this.http.get<Setor[]>(`${this.URL_BASE}`, {headers: this.agregarAuthorizationHeader()});
+  return this.http.get<Setor[]>(`${this.URL_BASE}`);
 }
 
 /*********GET UM SETOR*********/
 
 getSetor(id): Observable<Setor>{
 
-  return this.http.get<Setor>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+  return this.http.get<Setor>(`${this.URL_BASE}/${id}`).pipe(
     catchError( e => {
       this.router.navigate(['/setores/list']);
       console.error(e.error.mensage);
@@ -88,7 +87,7 @@ getSetor(id): Observable<Setor>{
 /*********POST SETOR*********/
 
 create(setor: Setor) : Observable<any>{
-  return this.http.post<any>(this.URL_BASE, setor, {headers: this.agregarAuthorizationHeader()}).pipe(
+  return this.http.post<any>(this.URL_BASE, setor).pipe(
      catchError(e => {
       Swal.fire("Erro ao cadastrar o Setor: ", e.error.errors.toString(), 'error');
       return throwError(e);
@@ -100,7 +99,7 @@ create(setor: Setor) : Observable<any>{
 /*********UPDATE SETOR*********/
 
 update(setor: Setor): Observable<any>{
-  return this.http.put<any>(`${this.URL_BASE}/${setor.id}`, setor, {headers: this.agregarAuthorizationHeader()}).pipe(
+  return this.http.put<any>(`${this.URL_BASE}/${setor.id}`, setor).pipe(
     catchError(e => {
      Swal.fire("Erro ao atualizar o Setor: ", e.errors.toString(), 'error');
      return throwError(e);
@@ -111,6 +110,6 @@ update(setor: Setor): Observable<any>{
 /*********DELETE SETOR*********/
 
 delete(id: number): Observable<any>{
- return this.http.delete<any>(`${this.URL_BASE}/${id}`, {headers: this.agregarAuthorizationHeader()});
+ return this.http.delete<any>(`${this.URL_BASE}/${id}`);
 }
 }

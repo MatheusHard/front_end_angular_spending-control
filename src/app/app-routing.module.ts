@@ -6,14 +6,16 @@ import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionari
 import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
 import { SetoresComponent } from './modulos/setores/setores.component';
+import { AuthGuard } from './modulos/usuarios/guards/auth.guard';
+import { RoleGuard } from './modulos/usuarios/guards/role.guard';
 import { LoginComponent } from './modulos/usuarios/login.component';
 
 const routes: Routes = [
   
   {path:'cidades/list', component: CidadesComponent  },
   {path:'cidades/page/:page', component: CidadesComponent  },
-  {path:'cidades/form', component: CidadeFormComponent  },
-  {path:'cidades/form/:id', component: CidadeFormComponent  },
+  {path:'cidades/form',     component: CidadeFormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN'} },
+  {path:'cidades/form/:id', component: CidadeFormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN'} },
 
   {path:'setores/list', component: SetoresComponent  },
   {path:'setores/page/:page', component: SetoresComponent  },

@@ -3,25 +3,25 @@
     <div class="card-body text-primary">
       <h5 class="card-title">Lista dos Setores</h5>
 <div class="ny-2 text-left">
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/setores/form']">Cadastrar Setor</button>
+    <button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/setores/form']">Cadastrar Setor</button>
 </div>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>CODIGO</th>
             <th>SETOR</th>
-            <th>EDITAR</th>
-            <th>DELETAR</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">EDITAR</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">DELETAR</th>
        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let setor of setores">
             <td>{{setor.id}}</td>
             <td>{{setor.descricao_setor | uppercase}}</td>
-            <td> 
+            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
                 <button type="button" name="editar" [routerLink]="['/setores/form', setor.id]" class="btn btn-primary">editar</button>
             </td>
-            <td> 
+            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
                 <button type="button" name="deletar" (click)="delete(setor)" class="btn btn-danger">deletar</button>
             </td>
         </tr>

@@ -3,7 +3,7 @@
     <div class="card-body text-primary">
       <h5 class="card-title">Lista das Cidades</h5>
 <div class="ny-2 text-left">
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
+    <button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
 </div>
 <table class="table table-bordered table-striped">
     <thead>
@@ -12,8 +12,8 @@
             <th>CIDADE</th>
             <th>UF</th>
             <th>CADASTRADA</th>
-            <th>EDITAR</th>
-            <th>DELETAR</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">EDITAR</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">DELETAR</th>
        </tr>
     </thead>
     <tbody>
@@ -22,10 +22,10 @@
             <td>{{cidade.descricao_cidade | uppercase}}</td>
             <td>{{cidade.uf.sigla_uf}}</td>
             <td>{{cidade.createAt | date: "dd/MM/yyyy"}}</td>
-            <td> 
+            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
                 <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
             </td>
-            <td> 
+            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
                 <button type="button" name="deletar" (click)="delete(cidade)" class="btn btn-danger">deletar</button>
             </td>
         </tr>

@@ -4,6 +4,7 @@ import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
 import { tap } from 'rxjs/operators';
 import {  ActivatedRoute } from '@angular/router';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -11,9 +12,17 @@ import {  ActivatedRoute } from '@angular/router';
   templateUrl: './cidades.component.html',
 })
 
+
+
 export class CidadesComponent implements OnInit {
 
-  constructor(private cidadeService: CidadeService, private activateRoute: ActivatedRoute) { }
+
+  authService: AuthService;
+
+  constructor(private cidadeService: CidadeService, private activateRoute: ActivatedRoute, authService: AuthService)
+               {
+                this.authService = authService;
+               }
 
   cidades: Cidade[];
 

@@ -97,4 +97,11 @@ export class AuthService {
     sessionStorage.removeItem('usuario');
   }
 
+  hasHole(role: string):boolean{
+    if(this.usuario.roles.includes(role)){
+      return true;
+    }
+    return false;
+  }
+
 }
