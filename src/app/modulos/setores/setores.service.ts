@@ -18,47 +18,20 @@ import { AuthService } from "../usuarios/auth.service";
     
     authService: AuthService;
 
-    constructor(private http: HttpClient, private router: Router, authService: AuthService) {
-      this.authService = authService;
-     }
+    constructor(private http: HttpClient, private router: Router) {}
 
-     private isNaoAutorizado(e):boolean{
-
-      if(e.status == 401){
-        
-        if(this.authService.isAuthenticated()){
-          this.authService.logout();
-        }
-        this.router.navigate(['/setores/list']);
-        return true;
-      }
-      if(e.status == 403){
-        Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
-        this.router.navigate(['/setores/list']);
-        return true;
-      }
-      return false;
-      }
-  
     
-    
-
-
    /*********GET ALL SETORES*********/
 
  getSetores(page: number): Observable<any> {
 
   return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
- 
-   
+    
     map((response: any) => {
-     
-    (response.content as Setor[]).map(setor => {
-      
-      return setor;
-  
-    });
-    return response;
+        (response.content as Setor[]).map(setor => {
+          return setor;
+        });
+      return response;
   })
   );
 }
@@ -75,12 +48,11 @@ getSetor(id): Observable<Setor>{
 
   return this.http.get<Setor>(`${this.URL_BASE}/${id}`).pipe(
     catchError( e => {
-      this.router.navigate(['/setores/list']);
-      console.error(e.error.mensage);
-      Swal.fire("Erro ao Editar", e.error.mensagem.toString(), 'error');
-      return throwError(e)
-      
-    })
+      if(e.status != 401 && e.error.mensagem){
+        this.router.navigate(['/setores/list']);
+         }
+        return throwError(e)
+     })
   );
 }
 
@@ -89,7 +61,9 @@ getSetor(id): Observable<Setor>{
 create(setor: Setor) : Observable<any>{
   return this.http.post<any>(this.URL_BASE, setor).pipe(
      catchError(e => {
-      Swal.fire("Erro ao cadastrar o Setor: ", e.error.errors.toString(), 'error');
+      if(e.status == 400){
+        return throwError(e);
+      }
       return throwError(e);
     })
   );
@@ -101,15 +75,22 @@ create(setor: Setor) : Observable<any>{
 update(setor: Setor): Observable<any>{
   return this.http.put<any>(`${this.URL_BASE}/${setor.id}`, setor).pipe(
     catchError(e => {
-     Swal.fire("Erro ao atualizar o Setor: ", e.errors.toString(), 'error');
-     return throwError(e);
+      if(e.status == 400){
+        return throwError(e);
+      }
+      return throwError(e);
    })
  );
 }
 
-/*********DELETE SETOR*********/
+  /*********DELETE SETOR*********/
 
-delete(id: number): Observable<any>{
- return this.http.delete<any>(`${this.URL_BASE}/${id}`);
-}
-}
+  delete(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.URL_BASE}/${id}`).pipe(
+      catchError(e => {
+      console.log(e)
+          return throwError(e);
+        })
+      );
+    }
+  }

@@ -8,7 +8,8 @@ import { AuthService } from "../auth.service";
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  /********Classe que intercepta o httpToken e envia pra autoriza POST, GET, PUT, DELETE*************/ 
+  //Classe que intercepta o httpToken e envia o TOKEN no 
+  //HEader pra autorizar POST, GET, PUT, DELETE no Backend 
     
   constructor(private authService: AuthService){}
 
