@@ -22,47 +22,18 @@ import { Funcionario } from "./funcionario";
     private URL_PAGE: string = '/page/'
     
    
-    constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
-    
-    /**********NÃO AUTORIZADO**********/
-    
-    private isNaoAutorizado(e):boolean{
-
-      if(e.status == 401){
-        
-        if(this.authService.isAuthenticated()){
-          this.authService.logout();
-        }
-        this.router.navigate(['/funcionarios/list']);
-        return true;
-      }
-      if(e.status == 403){
-        Swal.fire('Acesso negado!!!', `Ola ${this.authService.usuario.username} não tem permissão!!!`, 'warning');
-        this.router.navigate(['/cidades/list']);
-        return true;
-      }
-      return false;
-      }
-            
-    
-
+    constructor(private http: HttpClient, private router: Router) { }
+   
   /*********GET ALL FUNCIONARIOS*********/
 
  getFuncionarios(page: number): Observable<any> {
 
     return this.http.get<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}${this.URL_PAGE}${page}`).pipe(
-
-      catchError(e => {
-          this.isNaoAutorizado(e);
-          return throwError(e);
-        }),
+      
       map((response: any) => {
-       
-      (response.content as Funcionario[]).map(funcionario => {
-        
-        return funcionario;
-    
-      });
+         (response.content as Funcionario[]).map(funcionario => {
+          return funcionario;
+         });
       return response;
     })
     );
@@ -79,9 +50,10 @@ import { Funcionario } from "./funcionario";
   getFuncionario(id): Observable<Funcionario>{
     return this.http.get<Funcionario>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`).pipe(
       catchError( e => {
+        if(e.status != 401 && e.error.mensagem){
         this.router.navigate(['/funcionarios/list']);
-        console.error(e.error.mensage);
-        Swal.fire("Erro ao Editar", e.error.mensagem.toString(), 'error');
+        console.error(e.error.mensagem);
+        }
         return throwError(e)
         
       })
@@ -93,7 +65,9 @@ import { Funcionario } from "./funcionario";
   create(funcionario: Funcionario) : Observable<any>{
     return this.http.post<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}`, funcionario).pipe(
        catchError(e => {
-        Swal.fire("Erro ao cadastrar o Funcionario(a): ", e.error.errors.toString(), 'error');
+        if(e.status == 400){
+          return throwError(e);
+        }
         return throwError(e);
       })
     );
@@ -104,8 +78,10 @@ import { Funcionario } from "./funcionario";
   update(funcionario: Funcionario): Observable<any>{
     return this.http.put<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${funcionario.id}`, funcionario).pipe(
       catchError(e => {
-       Swal.fire("Erro ao atualizar o Funcionario(a): ", e.errors.toString(), 'error');
-       return throwError(e);
+        if(e.status == 400){
+          return throwError(e);
+        }
+        return throwError(e);
      })
    );
  }
@@ -113,7 +89,11 @@ import { Funcionario } from "./funcionario";
 /*********DELETE FUNCIONARIO*********/
 
  delete(id: number): Observable<any>{
-   return this.http.delete<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`);
- }
-
+   return this.http.delete<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}/${id}`).pipe(
+     catchError(e=>{
+       console.log(e)
+       return throwError(e);
+     })
+   );
+  }
 }

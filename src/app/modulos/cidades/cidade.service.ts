@@ -20,11 +20,11 @@ private URL_PAGE: string = '/page/'
 
 //private httpHeaders = Utils.getHttpHeaders();
 
-constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+constructor(private http: HttpClient, private router: Router) { }
 
 
 
-private isNaoAutorizado(e):boolean{
+/*private isNaoAutorizado(e):boolean{
 
 if(e.status == 401){
   
@@ -40,7 +40,7 @@ if(e.status == 403){
   return true;
 }
 return false;
-}
+}*/
 
 
 /*private agregarAuthorizationHeader(){
@@ -58,10 +58,6 @@ return false;
  getCidades(page: number): Observable<any> {
 
     return this.http.get<any>(`${this.URL_BASE}${this.URL_PAGE}${page}`).pipe(
-        catchError(e => {
-          this.isNaoAutorizado(e);
-          return throwError(e);
-        }),
       /*tap((response: any)=>{
         console.log("Cidade: tap 1");
         (response.content as Cidade[]).forEach(cidade =>{
@@ -91,17 +87,13 @@ return false;
   getCidade(id): Observable<Cidade>{
     return this.http.get<Cidade>(`${this.URL_BASE}/${id}`).pipe(
       catchError( e => {
-
-        if(this.isNaoAutorizado(e)){
-          return throwError(e);
+        if(e.status != 401 && e.error.mensagem){
+          this.router.navigate(['/cidades/list']);
         }
-        this.router.navigate(['/cidades/list']);
-        console.error(e.error.mensage);
-        Swal.fire("Erro ao Editar", e.error.mensagem.toString(), 'error');
         return throwError(e)
         
       })
-    )
+    );
   }
 
   /*********POST CIDADE*********/
@@ -110,10 +102,10 @@ return false;
     return this.http.post<any>(this.URL_BASE, cidade).pipe(
        catchError(e => {
         
-        if(this.isNaoAutorizado(e)){
+        if(e.status == 400){
           return throwError(e);
         }
-        Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
+        //Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
         return throwError(e);
       })
     );
@@ -125,10 +117,9 @@ return false;
   update(cidade: Cidade): Observable<any>{
     return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade).pipe(
       catchError(e => {
-        if(this.isNaoAutorizado(e)){
+        if(e.status == 400){
           return throwError(e);
         }
-       Swal.fire("Erro ao atualizar a Cidade: ", e.errors.toString(), 'error');
        return throwError(e);
      })
    );
@@ -138,9 +129,7 @@ return false;
    return this.http.delete<any>(`${this.URL_BASE}/${id}`).pipe(
      catchError(e => {
       console.log(e)
-      if(this.isNaoAutorizado(e)){
-        return throwError(e);
-      }
+     
        return throwError(e);
        
      })
