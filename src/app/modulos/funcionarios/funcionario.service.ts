@@ -32,6 +32,7 @@ import { Funcionario } from "./funcionario";
       
       map((response: any) => {
          (response.content as Funcionario[]).map(funcionario => {
+          // console.log(funcionario);
           return funcionario;
          });
       return response;

@@ -4,6 +4,7 @@ import { Funcionario } from './funcionario';
 import { FuncionarioService } from './funcionario.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../usuarios/auth.service';
+import { ModalViajemService } from './viagens/modal_viajem.service';
 
 
 @Component({
@@ -15,11 +16,14 @@ export class FuncionariosComponent implements OnInit {
 
   authService: AuthService;
 
-  constructor(private funcionarioService: FuncionarioService, private activateRoute: ActivatedRoute, authService: AuthService) {
+  constructor(private funcionarioService: FuncionarioService, private activateRoute: ActivatedRoute, 
+              authService: AuthService, private modalViajemService: ModalViajemService,
+              ) {
     this.authService = authService;
    }
 
   funcionarios: Funcionario[];
+  funcionarioSeleccionado: Funcionario;
 
   paginador: any;
 
@@ -37,11 +41,11 @@ export class FuncionariosComponent implements OnInit {
     ).subscribe( response => {
        this.funcionarios = response.content as Funcionario[];
        this.paginador = response;
-       console.log(this.paginador);
+      // console.log(this.paginador);
 
       });
 
-    console.log(this.funcionarios)
+   // console.log(this.funcionarios)
    });
   }
 
@@ -74,6 +78,12 @@ export class FuncionariosComponent implements OnInit {
      }
    })
    }
+   abrirModalViagens(funcionario: Funcionario) {
+     console.log(funcionario);
+    this.funcionarioSeleccionado = funcionario;
+    this.modalViajemService.abrirModal();
+  }
+   
 
 }
 

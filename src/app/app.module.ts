@@ -25,6 +25,7 @@ import { LoginComponent } from './modulos/usuarios/login.component';
 import { AuthService } from './modulos/usuarios/auth.service';
 import { TokenInterceptor } from './modulos/usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './modulos/usuarios/interceptors/auth.interceptor';
+import { ViagensComponent } from './modulos/funcionarios/viagens/viagens.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -43,7 +44,8 @@ registerLocaleData(localeBR, 'br');
     SetoresFormComponent,
     FormFuncionarioComponent,
     PaginatorFuncionarioComponent,
-    LoginComponent
+    LoginComponent,
+    ViagensComponent
      
   ],
   imports: [

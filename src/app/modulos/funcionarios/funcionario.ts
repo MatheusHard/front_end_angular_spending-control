@@ -1,4 +1,5 @@
 import { Setor } from "../setores/setores";
+import { Viajem } from "./viagens/viajem";
 
 export class Funcionario {
     
@@ -9,5 +10,6 @@ export class Funcionario {
     telefone: string;
     setor: Setor;
     createAt: string;
+    viagens: Viajem[]= [];
 
 }
