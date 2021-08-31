@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Funcionario } from '../funcionario';
 import { ModalViajemService } from './modal_viajem.service';
 
@@ -21,9 +22,9 @@ export class ViagensComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   encerrarModal() {
+    console.log(this.funcionario);
     this.modalViajemService.cerrarModal();
     }
-
+    
 }

@@ -27,6 +27,15 @@ import { TokenInterceptor } from './modulos/usuarios/interceptors/token.intercep
 import { AuthInterceptor } from './modulos/usuarios/interceptors/auth.interceptor';
 import { ViagensComponent } from './modulos/funcionarios/viagens/viagens.component';
 
+//Imports Meterisal Angular:
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+
+
+
+
+
 registerLocaleData(localeBR, 'br');
 
 @NgModule({
@@ -46,6 +55,7 @@ registerLocaleData(localeBR, 'br');
     PaginatorFuncionarioComponent,
     LoginComponent,
     ViagensComponent
+    
      
   ],
   imports: [
@@ -53,7 +63,13 @@ registerLocaleData(localeBR, 'br');
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule
+    
+    
+    
     
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService,
