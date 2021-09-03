@@ -4,7 +4,7 @@ import { Funcionario } from './funcionario';
 import { FuncionarioService } from './funcionario.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../usuarios/auth.service';
-import { ModalViajemService } from './viagens/modal_viajem.service';
+import { ModalViajemService } from '../viagens/modal_viajem.service';
 
 
 @Component({

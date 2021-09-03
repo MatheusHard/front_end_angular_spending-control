@@ -1,0 +1,49 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="modalViajemService.modalForm">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ titulo }}</h5>
+            <div class="example-button-container">
+              <button (click)="encerrarModal()" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <!--<button (click)="encerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+            <div class="container">
+         
+              <div class="row">
+
+
+                <div class="col-sm">
+                  <ul *ngIf="funcionario" class="list-group text-dark mb-3">
+                    <li class="list-group-item active">{{funcionario.nome}}</li>
+                    <li class="list-group-item">{{funcionario.cpf}}</li>
+                  </ul>
+                </div>
+               </div>
+            
+               <div class="example-button-container">
+                <button  (click)="abrirModalCadastroViagens(funcionario)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              
+              <div class="row">
+                 
+                  <!--TABLE NOVO-->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+           <!-- <button (click)="encerrarModal()"  mat-stroked-button color="warn">Close</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    

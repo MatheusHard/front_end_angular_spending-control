@@ -3,6 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Funcionario } from '../funcionarios/funcionario';
 import { Viajem } from './viajem';
 
 @Injectable({
@@ -11,6 +12,8 @@ import { Viajem } from './viajem';
 export class ModalViajemService {
 
   modal: boolean = false;
+  modalForm: boolean = false;
+
 
   private _notificarUpload = new EventEmitter<any>();
   private URL_BASE: string = 'http://localhost:8080/api/viagens';
@@ -32,6 +35,14 @@ export class ModalViajemService {
     this.modal = false;
   }
 
+  abrirModalViagens() {
+    this.modalForm = true;
+    
+  }
+  encerrarModalViagens() {
+    this.modalForm = false;
+    
+  }
 
 /*********GET ALL VIAGENS*********/
 

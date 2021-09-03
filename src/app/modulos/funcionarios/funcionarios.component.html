@@ -26,9 +26,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let f of funcionarios">
-            <td > <img  (click)="abrirModalViagens(f)" src="assets/images/airplane.png" alt="Sin foto" class="img-thumbnail rounded"
+         <td > <img    [routerLink]="['/viagens/list', f.id]" src="assets/images/airplane.png" alt="Sin foto" class="img-thumbnail rounded"
                 style="width:45px; orientation: center; cursor: pointer;">
+           
             </td>
+           <!--    (click)="abrirModalViagens(f)"<td><a class="dropdown-item" href="#" [routerLink]= "['/funcionarios/list']">Funcionarios</a></td>
+-->
             <td>{{f.nome | uppercase}}</td>
             <td>{{f.cpf | uppercase}}</td>
             <td>{{f.email | uppercase}}</td>

@@ -25,7 +25,9 @@ import { LoginComponent } from './modulos/usuarios/login.component';
 import { AuthService } from './modulos/usuarios/auth.service';
 import { TokenInterceptor } from './modulos/usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './modulos/usuarios/interceptors/auth.interceptor';
-import { ViagensComponent } from './modulos/funcionarios/viagens/viagens.component';
+import { ViagensComponent } from './modulos/viagens/viagens.component';
+import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
+
 
 //Imports Meterisal Angular:
 import {MatButtonModule} from '@angular/material/button';
@@ -54,7 +56,8 @@ registerLocaleData(localeBR, 'br');
     FormFuncionarioComponent,
     PaginatorFuncionarioComponent,
     LoginComponent,
-    ViagensComponent
+    ViagensComponent,
+    FormViajemComponent
     
      
   ],

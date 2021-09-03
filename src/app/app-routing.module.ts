@@ -4,6 +4,7 @@ import { CidadesComponent } from './modulos/cidades/cidades.component';
 import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
 import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
 import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
+import { ViagensComponent } from './modulos/viagens/viagens.component';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
 import { SetoresComponent } from './modulos/setores/setores.component';
 import { AuthGuard } from './modulos/usuarios/guards/auth.guard';
@@ -26,6 +27,11 @@ const routes: Routes = [
   {path:'funcionarios/page/:page', component: FuncionariosComponent },
   {path:'funcionarios/form', component:  FormFuncionarioComponent },
   {path:'funcionarios/form/:id', component: FormFuncionarioComponent  },
+
+  {path:'viagens/list/:id', component: ViagensComponent  },
+  {path:'viagens/page/:page', component: ViagensComponent },
+  {path:'viagens/form', component:  ViagensComponent },
+  {path:'viagens/form/:id', component: ViagensComponent  },
 
   {path:'login', component: LoginComponent  },
 

@@ -1,5 +1,5 @@
 import { Setor } from "../setores/setores";
-import { Viajem } from "./viagens/viajem";
+import { Viajem } from "../viagens/viajem";
 
 export class Funcionario {
     

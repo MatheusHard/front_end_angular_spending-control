@@ -1,5 +1,5 @@
-import { Cidade } from "../../cidades/cidade";
-import { Funcionario } from "../funcionario";
+import { Cidade } from "../cidades/cidade";
+import { Funcionario } from "../funcionarios/funcionario";
 
 export class Viajem {
 
