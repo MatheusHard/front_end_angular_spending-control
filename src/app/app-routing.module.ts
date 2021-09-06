@@ -10,6 +10,7 @@ import { SetoresComponent } from './modulos/setores/setores.component';
 import { AuthGuard } from './modulos/usuarios/guards/auth.guard';
 import { RoleGuard } from './modulos/usuarios/guards/role.guard';
 import { LoginComponent } from './modulos/usuarios/login.component';
+import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
 
 const routes: Routes = [
   
@@ -30,8 +31,8 @@ const routes: Routes = [
 
   {path:'viagens/list/:id', component: ViagensComponent  },
   {path:'viagens/page/:page', component: ViagensComponent },
-  {path:'viagens/form', component:  ViagensComponent },
-  {path:'viagens/form/:id', component: ViagensComponent  },
+  {path:'viagens/form/:id', component:  FormViajemComponent },
+  {path:'viagens/form/:id/:id_v', component: FormViajemComponent },
 
   {path:'login', component: LoginComponent  },
 

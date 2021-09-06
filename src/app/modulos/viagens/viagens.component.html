@@ -1,12 +1,19 @@
 <div class="card border-primary mb-3">
-  <div class="card-header">Funcionario -> {{funcionario.nome}}</div>
+  <div class="card-header center">Funcionario [{{funcionario.nome}}]</div>
   <div class="card-body text-primary">
     <h5 class="card-title">Lista das Viagens </h5>
 <div class="ny-2 text-left">
-  <!--<button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
+  <!--<button (click)="abrirModalCadastroViagens(funcionario)" *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
   -->
-  </div>
-<p></p>
+  <div class="example-button-container">
+    <button  *ngIf="authService.hasHole('ROLE_ADMIN')" [routerLink]="['/viagens/form', funcionario.id]" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>  
+</div>
+<div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
+    Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
+</div>
 <table *ngIf="funcionario.viagens.length != 0" class="table table-bordered table-striped my-4">
   <thead class="texto-centro"> 
       <tr>
@@ -30,7 +37,7 @@
             <button  class="espaco" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
               <mat-icon>edit</mat-icon>
             </button>
-            <button   mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+            <button (click)="delete(viajem)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
               <mat-icon>delete</mat-icon>
             </button>
             <button  class="espaco" mat-mini-fab aria-label="Example icon button with a filter list icon">

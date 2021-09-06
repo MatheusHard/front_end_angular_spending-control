@@ -1,49 +1,53 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalViajemService.modalForm">
-    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{ titulo }}</h5>
-            <div class="example-button-container">
-              <button (click)="encerrarModal()" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-                <mat-icon>close</mat-icon>
-              </button>
-            </div>
-            <!--<button (click)="encerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-            </button>-->
-          </div>
-          <div class="modal-body">
-            <div class="container">
-         
-              <div class="row">
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+  <form>
 
+   
+      <!--dataInicial value= {{idFuncionario}}-->
+      <div class="form-group row">
+          <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial"> 
 
-                <div class="col-sm">
-                  <ul *ngIf="funcionario" class="list-group text-dark mb-3">
-                    <li class="list-group-item active">{{funcionario.nome}}</li>
-                    <li class="list-group-item">{{funcionario.cpf}}</li>
-                  </ul>
-                </div>
-               </div>
-            
-               <div class="example-button-container">
-                <button  (click)="abrirModalCadastroViagens(funcionario)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-              
-              <div class="row">
-                 
-                  <!--TABLE NOVO-->
-              </div>
-            </div>
           </div>
-          <div class="modal-footer">
-           <!-- <button (click)="encerrarModal()"  mat-stroked-button color="warn">Close</button>-->
-          </div>
-        </div>
       </div>
-    </div>
-    </div>
-    
+      <!--dataFinal-->
+      <div class="form-group row">
+          <label for="dataFinal" class="col-form-label col-sm-2">Data Final</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal" min="11" max="11"> 
+          </div>
+      </div>
+        <!--saldo-->
+        <div class="form-group row">
+          <label for="saldo" class="col-form-label col-sm-2">Saldo</label>
+          <div class="col-sm-6">
+              <input type="number" class="form-control" [(ngModel)]="viajem.saldo" name="saldo"> 
+          </div>
+      </div>
+
+         
+      
+      <div class="form-group row">
+          <label for="cidade" class="col-form-label col-sm-2">Cidade</label>
+          <div class="col-sm-6">
+          <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade" style="width: 200px;">
+              <option [ngValue]="undefined">SELECIONE A CIDADE</option>
+              <option *ngFor="let cidade of cidades" [ngValue]="cidade.id">{{cidade.descricao_cidade | uppercase}}</option>
+          </select>    
+          </div>
+      </div>
+  <!--*ngIf="!viajem.id else elseBlock-->
+      <div class="form-group row">
+          <div class="col-sm-6">
+              <button class="btn btn-primary" role="button" (click)="create(viajem)">Cadastrar</button> 
+              <ng-template #elseBlock>
+                  <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
+              </ng-template>
+          </div>
+      </div>
+  </form>
+  
+  </div>
+  </div>
