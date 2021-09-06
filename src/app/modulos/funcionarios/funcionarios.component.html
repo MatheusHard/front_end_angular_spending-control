@@ -1,3 +1,6 @@
+<app-viagens *ngIf="funcionarioSeleccionado" [funcionario] ="funcionarioSeleccionado"></app-viagens>
+
+
 <div class="card border-primary mb-3">
     <div class="card-header">Funcionários</div>
     <div class="card-body text-primary">
@@ -5,10 +8,11 @@
 <div class="ny-2 text-left">
     <button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/funcionarios/form']">Cadastrar Funcionário(a)</button>
 </div>
+<p></p>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>CODIGO</th>
+            <th>VIAGENS</th>
             <th>NOME</th>
             <th>CPF</th>
             <th>E-MAIL</th>
@@ -17,11 +21,17 @@
             <th>CADASTRADA</th>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">EDITAR</th>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">DELETAR</th>
+
        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let f of funcionarios">
-            <td>{{f.id}}</td>
+         <td > <img    [routerLink]="['/viagens/list', f.id]" src="assets/images/airplane.png" alt="Sin foto" class="img-thumbnail rounded"
+                style="width:45px; orientation: center; cursor: pointer;">
+           
+            </td>
+           <!--    (click)="abrirModalViagens(f)"<td><a class="dropdown-item" href="#" [routerLink]= "['/funcionarios/list']">Funcionarios</a></td>
+-->
             <td>{{f.nome | uppercase}}</td>
             <td>{{f.cpf | uppercase}}</td>
             <td>{{f.email | uppercase}}</td>

@@ -1,0 +1,53 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+  <form>
+
+   
+      <!--dataInicial value= {{idFuncionario}}-->
+      <div class="form-group row">
+          <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial"> 
+
+          </div>
+      </div>
+      <!--dataFinal-->
+      <div class="form-group row">
+          <label for="dataFinal" class="col-form-label col-sm-2">Data Final</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal" min="11" max="11"> 
+          </div>
+      </div>
+        <!--saldo-->
+        <div class="form-group row">
+          <label for="saldo" class="col-form-label col-sm-2">Saldo</label>
+          <div class="col-sm-6">
+              <input type="number" class="form-control" [(ngModel)]="viajem.saldo" name="saldo"> 
+          </div>
+      </div>
+
+         
+      
+      <div class="form-group row">
+          <label for="cidade" class="col-form-label col-sm-2">Cidade</label>
+          <div class="col-sm-6">
+          <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade" style="width: 200px;">
+              <option [ngValue]="undefined">SELECIONE A CIDADE</option>
+              <option *ngFor="let cidade of cidades" [ngValue]="cidade.id">{{cidade.descricao_cidade | uppercase}}</option>
+          </select>    
+          </div>
+      </div>
+  <!--*ngIf="!viajem.id else elseBlock-->
+      <div class="form-group row">
+          <div class="col-sm-6">
+              <button class="btn btn-primary" role="button" (click)="create(viajem)">Cadastrar</button> 
+              <ng-template #elseBlock>
+                  <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
+              </ng-template>
+          </div>
+      </div>
+  </form>
+  
+  </div>
+  </div>

@@ -4,11 +4,13 @@ import { CidadesComponent } from './modulos/cidades/cidades.component';
 import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
 import { FormFuncionarioComponent } from './modulos/funcionarios/form-funcionario.component';
 import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
+import { ViagensComponent } from './modulos/viagens/viagens.component';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
 import { SetoresComponent } from './modulos/setores/setores.component';
 import { AuthGuard } from './modulos/usuarios/guards/auth.guard';
 import { RoleGuard } from './modulos/usuarios/guards/role.guard';
 import { LoginComponent } from './modulos/usuarios/login.component';
+import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
 
 const routes: Routes = [
   
@@ -26,6 +28,11 @@ const routes: Routes = [
   {path:'funcionarios/page/:page', component: FuncionariosComponent },
   {path:'funcionarios/form', component:  FormFuncionarioComponent },
   {path:'funcionarios/form/:id', component: FormFuncionarioComponent  },
+
+  {path:'viagens/list/:id', component: ViagensComponent  },
+  {path:'viagens/page/:page', component: ViagensComponent },
+  {path:'viagens/form/:id', component:  FormViajemComponent },
+  {path:'viagens/form/:id/:id_v', component: FormViajemComponent },
 
   {path:'login', component: LoginComponent  },
 

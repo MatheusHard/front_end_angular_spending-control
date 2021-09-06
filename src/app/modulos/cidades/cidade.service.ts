@@ -76,6 +76,13 @@ return false;
     );
   }
 
+   /*********GET ALL CIDADES*********/
+
+ getAllCidades(): Observable<any> {
+
+  return this.http.get<any>(`${this.URL_BASE}`);
+}
+
   /*********GET UFS*********/
 
   getUfs(): Observable<Uf[]>{

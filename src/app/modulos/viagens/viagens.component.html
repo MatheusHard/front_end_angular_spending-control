@@ -1,0 +1,155 @@
+<div class="card border-primary mb-3">
+  <div class="card-header center">Funcionario [{{funcionario.nome}}]</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Lista das Viagens </h5>
+<div class="ny-2 text-left">
+  <!--<button (click)="abrirModalCadastroViagens(funcionario)" *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
+  -->
+  <div class="example-button-container">
+    <button  *ngIf="authService.hasHole('ROLE_ADMIN')" [routerLink]="['/viagens/form', funcionario.id]" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>  
+</div>
+<div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
+    Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
+</div>
+<table *ngIf="funcionario.viagens.length != 0" class="table table-bordered table-striped my-4">
+  <thead class="texto-centro"> 
+      <tr>
+          <th>Data Inicial</th>
+          <th>Data Final</th>
+          <th>Saldo</th>
+          <th>Gastos Totais</th>
+          <th>Cidade/UF</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr style="text-align: center;" *ngFor="let viajem of funcionario.viagens">
+        <td>{{viajem.dataInicial | date: "dd/MM/yyyy"}}</td>
+        <td>{{viajem.dataFinal | date: "dd/MM/yyyy"}}</td>
+        <td>R$ {{viajem.saldo}}</td>
+        <td>R$ {{viajem.gastoTotal}}</td>
+        <td>{{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</td>
+        <td>
+          <div class="centro-buttons texto-centro example-button-container">
+            <button  class="espaco" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="delete(viajem)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button  class="espaco" mat-mini-fab aria-label="Example icon button with a filter list icon">
+              <mat-icon>attach_money</mat-icon>
+            </button>
+          </div>
+        </td> 
+      </tr>
+  </tbody>
+</table>
+
+
+    <!--  <tr *ngFor="let cidade of cidades">
+          <td>{{cidade.id}}</td>
+          <td>{{cidade.descricao_cidade | uppercase}}</td>
+          <td>{{cidade.uf.sigla_uf}}</td>
+          <td>{{cidade.createAt | date: "dd/MM/yyyy"}}</td>
+          <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
+              <button type="button" name="editar" [routerLink]="['/cidades/form', cidade.id]" class="btn btn-primary">editar</button>
+          </td>
+          <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
+              <button type="button" name="deletar" (click)="delete(cidade)" class="btn btn-danger">deletar</button>
+          </td>
+      </tr>-->
+  
+<!--<paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>-->
+  </div>
+</div>
+<!--<app-form-viajem *ngIf="funcionarioSeleccionado" [funcionario] ="funcionarioSeleccionado"></app-form-viajem>
+
+
+<div class="abrir-modal animacion fadeIn" *ngIf="modalViajemService.modal">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ titulo }}</h5>
+            <div class="example-button-container">
+              <button (click)="encerrarModal()" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <button (click)="encerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+         
+              <div class="row">
+
+
+                <div class="col-sm">
+                  <ul *ngIf="funcionario" class="list-group text-dark mb-3">
+                    <li class="list-group-item active">{{funcionario.nome}}</li>
+                    <li class="list-group-item">{{funcionario.cpf}}</li>
+                  </ul>
+                </div>
+               </div>
+            
+               <div class="example-button-container">
+                <button  (click)="abrirModalCadastroViagens(funcionario)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              
+              <div class="row">
+                  <div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
+                      Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
+                  </div>
+                  <table *ngIf="!funcionario.viagens.length == 0" class="table table-bordered table-striped my-4">
+                      <thead class="texto-centro"> 
+                          <tr>
+                              <th>Data Inicial</th>
+                              <th>Data Final</th>
+                              <th>Saldo</th>
+                              <th>Gastos Totais</th>
+                              <th>Cidade/UF</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr style="text-align: center;" *ngFor="let viajem of funcionario.viagens">
+                            <td>{{viajem.dataInicial | date: "dd/MM/yyyy"}}</td>
+                            <td>{{viajem.dataFinal | date: "dd/MM/yyyy"}}</td>
+                            <td>R$ {{viajem.saldo}}</td>
+                            <td>R$ {{viajem.gastoTotal}}</td>
+                            <td>{{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</td>
+                            <td>
+                              <div class="centro-buttons texto-centro example-button-container">
+                                <button  class="espaco" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+                                  <mat-icon>edit</mat-icon>
+                                </button>
+                                <button   mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                                <button  class="espaco" mat-mini-fab aria-label="Example icon button with a filter list icon">
+                                  <mat-icon>attach_money</mat-icon>
+                                </button>
+                              </div>
+                            </td> 
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button (click)="encerrarModal()"  mat-stroked-button color="warn">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>-->
+    
