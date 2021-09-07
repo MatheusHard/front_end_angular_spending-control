@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ExcelViagensService } from 'src/app/excel-services/excel-viagens.service';
 import Swal from 'sweetalert2';
 import { Funcionario } from '../funcionarios/funcionario';
 import { FuncionarioService } from '../funcionarios/funcionario.service';
@@ -17,6 +18,10 @@ import { Viajem } from './viajem';
 })
 export class ViagensComponent implements OnInit {
 
+  columns: any[];
+  footerData: any[][] = [];
+  totalViagens = 0;
+
   funcionarioSeleccionado: Funcionario;
   authService: AuthService;
   //@Input() funcionario: Funcionario;
@@ -30,6 +35,7 @@ export class ViagensComponent implements OnInit {
               private router: Router,
               private activateRoute: ActivatedRoute,
               private viajemService: ModalViajemService,
+              private excelViajemService: ExcelViagensService,
               authService: AuthService) 
               {
               this.modalViajemService = modalViajemService;
@@ -38,6 +44,7 @@ export class ViagensComponent implements OnInit {
 
               
   ngOnInit(): void {
+    this.columns = ['Data Inicial', 'Data Final', 'Data Inicial','Saldo', 'Gastos Totais', 'Cidade/UF' ];
     this.carregarViagens_Funcionario();
    
   }
@@ -67,7 +74,7 @@ export class ViagensComponent implements OnInit {
  
     Swal.fire({
      title: 'Tem Certeza?',
-     text: `Realmente deseja excluir a Cidade: ${viajem.cidade}?`,
+     text: `Realmente deseja excluir a Viajem: ${viajem.cidade.descricao_cidade}?`,
      icon: 'warning',
      showCancelButton: true,
      confirmButtonColor: '#3085d6',
@@ -82,7 +89,7 @@ export class ViagensComponent implements OnInit {
            this.funcionario.viagens = this.funcionario.viagens.filter(c => c !== viajem),
            Swal.fire(
              'Deletado!',
-             `A Cidade ${viajem.cidade.descricao_cidade} foi deletada `,
+             `A Viajem ${viajem.cidade.descricao_cidade} foi deletada `,
              'success'
            )
    
@@ -91,7 +98,21 @@ export class ViagensComponent implements OnInit {
        
      }
    })
+
+
+   
+
+   this.totalViagens = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
+   this.footerData.push(['Total', '', '', this.totalViagens]);
+
    }
+   
+   exportExcelViagens(){
+
+    this.excelViajemService.exportASExcelFile('Viagens', '', this.columns, 
+                                              this.funcionario.viagens, this.footerData, 'viagens-lista',
+                                                'Sheet1');
+  }
 
   /*
   encerrarModal() {
@@ -106,4 +127,5 @@ export class ViagensComponent implements OnInit {
   console.log("DENTRO MODAL")      
     }
       */
-}
+
+    }

@@ -5,6 +5,9 @@ import { Cidade } from '../cidades/cidade';
 import { CidadeService } from '../cidades/cidade.service';
 import { ModalViajemService } from './modal_viajem.service';
 import { Viajem } from './viajem';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 
 @Component({
@@ -13,12 +16,16 @@ import { Viajem } from './viajem';
   styleUrls: ['./viagens.component.css']
 })
 export class FormViajemComponent implements OnInit {
-
   
+  
+    cidades: Cidade[]; //data
+   
+
+
+
   viajem: Viajem = new Viajem();
   viajemAny: any;
   
-   cidades: Cidade[]; 
    idFuncionario: number;
 
    titulo:string = "Cadastrar Viajem";
@@ -30,7 +37,11 @@ export class FormViajemComponent implements OnInit {
                }
 
   ngOnInit(): void {
+
+
     this.carregarViajem();
+  
+    
   }
 
   carregarViajem(): void {
@@ -112,6 +123,10 @@ compararCidade(cidade_1: Cidade, cidade_2: Cidade): boolean{
   return cidade_1 === null || cidade_2 === null || cidade_1 === undefined || cidade_2 === undefined ? false: cidade_1.id === cidade_2.id;
  }
 
+
+ /***************MAT AUTOCOMPLETE***************/
+
+  
 
 }
 

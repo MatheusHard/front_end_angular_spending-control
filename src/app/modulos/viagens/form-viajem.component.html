@@ -34,16 +34,19 @@
           <div class="col-sm-6">
           <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade" style="width: 200px;">
               <option [ngValue]="undefined">SELECIONE A CIDADE</option>
-              <option *ngFor="let cidade of cidades" [ngValue]="cidade.id">{{cidade.descricao_cidade | uppercase}}</option>
+              <option *ngFor="let cidade of cidades" [ngValue]="cidade.id">{{cidade.descricao_cidade+"/"+cidade.uf.sigla_uf | uppercase}}</option>
           </select>    
           </div>
       </div>
+
+     
+
   <!--*ngIf="!viajem.id else elseBlock-->
       <div class="form-group row">
           <div class="col-sm-6">
               <button class="btn btn-primary" role="button" (click)="create(viajem)">Cadastrar</button> 
               <ng-template #elseBlock>
-                  <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
+                  <button class="btn btn-primary" role="button" (click)="update(viajem)">Editar</button> 
               </ng-template>
           </div>
       </div>
