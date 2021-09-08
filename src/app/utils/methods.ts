@@ -4,7 +4,7 @@ import  localeBR  from '@angular/common/locales/pt';
 
 export class Utils {
 
-static getDataCadastro(data: string){
+static changeDateFormat(data: string){
     
     
     //private URL_PAGE: string = '/page/'

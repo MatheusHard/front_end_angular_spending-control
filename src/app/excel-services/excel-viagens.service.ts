@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import {Workbook} from 'exceljs';
 import * as fs from 'file-saver'; 
+import { Viajem } from "../modulos/viagens/viajem";
+import { Utils } from "../utils/methods";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -9,6 +11,7 @@ const EXCEL_EXTENSION = '.xlsx';
     providedIn: 'root'
 })
 export class ExcelViagensService{
+
 
     constructor(){}
 
@@ -22,27 +25,10 @@ export class ExcelViagensService{
         sheetName: string
        
     ){
-
         
         const header = headersArray;
-        
-        //console.log('NO EXCEL:');
-        //console.log(json);
        
-
-        let data = json.map((response: any) => {
-
-            response.dataInicial = response.dataInicial.toUpperCase();
-            response.dataFinal = response.dataFinal.toUpperCase();
-            response.cidade.descricao_cidade = response.cidade.descricao_cidade.toUpperCase(); 
-          
-        
-        return response;
-      });
-
-
-      console.log(data);
-        //const data = json;
+        const data = this.getValoresExcel(json);
 
         const workBook = new Workbook();
         workBook.creator = 'Lista das Viagens';
@@ -89,9 +75,9 @@ export class ExcelViagensService{
         });
 
         let columnsArray: any[];
-        for(const key in json){
-            if(json.hasOwnProperty(key)){
-                columnsArray = Object.keys(json[key]);
+        for(const key in data){
+            if(data.hasOwnProperty(key)){
+                columnsArray = Object.keys(data[key]);
             }
         }
 
@@ -146,6 +132,23 @@ export class ExcelViagensService{
 
         return alpha;
 
+
+    }
+
+
+    private getValoresExcel(data: any) {
+               
+        const array =  data.map(function(item){
+            return {
+                        dataInicial : Utils.changeDateFormat(item.dataInicial),
+                        dataFinal : Utils.changeDateFormat(item.dataFinal),
+                        saldo: item.saldo,
+                        gastoTotal: item.gastoTotal,
+                        cidade_uf: `${item.cidade.descricao_cidade.toUpperCase()}/${item.cidade.uf.sigla_uf.toUpperCase()}`
+                    }
+         });
+
+         return array;
 
     }
 }

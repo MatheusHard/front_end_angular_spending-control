@@ -22,7 +22,7 @@
           <th>Saldo</th>
           <th>Gastos Totais</th>
           <th>Cidade/UF</th>
-          <th>Actions</th>
+          <th *ngIf="authService.hasHole('ROLE_ADMIN')">Actions</th>
       </tr>
   </thead>
   <tbody>
@@ -33,7 +33,7 @@
         <td>R$ {{viajem.gastoTotal}}</td>
         <td>{{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</td>
         <td>
-          <div class="centro-buttons texto-centro example-button-container">
+          <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
             <button  class="espaco" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
               <mat-icon>edit</mat-icon>
             </button>

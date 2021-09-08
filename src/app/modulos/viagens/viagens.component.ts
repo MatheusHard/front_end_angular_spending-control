@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { pipe } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 import { ExcelViagensService } from 'src/app/excel-services/excel-viagens.service';
 import Swal from 'sweetalert2';
 import { Funcionario } from '../funcionarios/funcionario';
@@ -44,7 +45,7 @@ export class ViagensComponent implements OnInit {
 
               
   ngOnInit(): void {
-    this.columns = ['Data Inicial', 'Data Final', 'Data Inicial','Saldo', 'Gastos Totais', 'Cidade/UF' ];
+    this.columns = ['Data Inicial', 'Data Final', 'Saldo', 'Gastos Totais', 'Cidade/UF' ];
     this.carregarViagens_Funcionario();
    
   }
@@ -108,7 +109,7 @@ export class ViagensComponent implements OnInit {
    }
    
    exportExcelViagens(){
-
+  
     this.excelViajemService.exportASExcelFile('Viagens', '', this.columns, 
                                               this.funcionario.viagens, this.footerData, 'viagens-lista',
                                                 'Sheet1');
