@@ -12,7 +12,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>VIAGENS</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">VIAGENS</th>
             <th>NOME</th>
             <th>CPF</th>
             <th>E-MAIL</th>
@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let f of funcionarios">
-         <td > <img    [routerLink]="['/viagens/list', f.id]" src="assets/images/airplane.png" alt="Sin foto" class="img-thumbnail rounded"
+         <td *ngIf="authService.hasHole('ROLE_ADMIN')"> <img [routerLink]="['/viagens/list', f.id]" src="assets/images/airplane.png" alt="Sin foto" class="img-thumbnail rounded"
                 style="width:45px; orientation: center; cursor: pointer;">
            
             </td>

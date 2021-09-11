@@ -1,20 +1,23 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+import { LoaderService } from "../loader/loader.service";
 import { AuthService } from "../modulos/usuarios/auth.service";
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html'  
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']  
  })
 export class HeaderComponent {
     
     title: string = "App Gastos";
 
     authService: AuthService;
-    
-    constructor(authService: AuthService, private router: Router) { 
+    loaderService: LoaderService;
 
+    constructor(authService: AuthService, private router: Router, loaderService: LoaderService) { 
+        this.loaderService = loaderService;
         this.authService = authService;
     }
 

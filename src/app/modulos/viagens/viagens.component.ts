@@ -21,7 +21,7 @@ export class ViagensComponent implements OnInit {
 
   columns: any[];
   footerData: any[][] = [];
-  totalViagens = 0;
+  totalSaldo = 0;
 
   funcionarioSeleccionado: Funcionario;
   authService: AuthService;
@@ -47,13 +47,14 @@ export class ViagensComponent implements OnInit {
   ngOnInit(): void {
     this.columns = ['Data Inicial', 'Data Final', 'Saldo', 'Gastos Totais', 'Cidade/UF' ];
     this.carregarViagens_Funcionario();
+
    
   }
 
    /*********GET UM FUNCIONARIO*********/
 
    carregarViagens_Funcionario(): void {
-
+    
     this.activateRoute.params.subscribe( params => {
       let id = params['id'];
       
@@ -63,11 +64,16 @@ export class ViagensComponent implements OnInit {
           console.log(funcionario);
 
               this.funcionario = funcionario;
+              this.totalSaldo = 0;
+              this.totalSaldo = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
+
             });
         
       }
       
     });
+
+
   }
  
   
@@ -88,6 +94,9 @@ export class ViagensComponent implements OnInit {
        this.viajemService.delete(viajem.id).subscribe(
          response => {
            this.funcionario.viagens = this.funcionario.viagens.filter(c => c !== viajem),
+           this.totalSaldo = 0;
+           this.totalSaldo = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
+
            Swal.fire(
              'Deletado!',
              `A Viajem ${viajem.cidade.descricao_cidade} foi deletada `,
@@ -100,15 +109,13 @@ export class ViagensComponent implements OnInit {
      }
    })
 
-
-   
-
-   this.totalViagens = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
-   this.footerData.push(['Total', '', '', this.totalViagens]);
-
    }
    
    exportExcelViagens(){
+
+    console.log(this.totalSaldo);
+    this.footerData.push(['Total', '', this.totalSaldo]);
+    
   
     this.excelViajemService.exportASExcelFile('Viagens', '', this.columns, 
                                               this.funcionario.viagens, this.footerData, 'viagens-lista',

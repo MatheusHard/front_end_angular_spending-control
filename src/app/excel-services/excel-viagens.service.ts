@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import {Workbook} from 'exceljs';
 import * as fs from 'file-saver'; 
+import { clearLine } from "readline";
 import { Viajem } from "../modulos/viagens/viajem";
 import { Utils } from "../utils/methods";
 
@@ -69,7 +70,8 @@ export class ExcelViagensService{
             };
             cell.border = {top: {style: 'thin'}, left: {style: 'thin'}, bottom: {style: 'thin'}, right: {style: 'thin'}};
             cell.font = {size: 12, bold: true};
-
+            cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' }};
+            cell.alignment = {horizontal: "center"}     
             workSheet.getColumn(index).width = header[index - 1].length < 20 ? 20 : header[index - 1].length;
         
         });
@@ -85,13 +87,14 @@ export class ExcelViagensService{
             
             const eachRow = [];
             columnsArray.forEach((column)=>{
-                eachRow.push(element[column]);
+               eachRow.push(element[column]);
             });
 
             if(element.isDeleted === 'Y'){
                 const deletedRow = workSheet.addRow(eachRow);
                 deletedRow.eachCell((cell)=>{
                     cell.font = {name: 'Calibri', family: 4, size: 11, bold: false, strike: true};
+                    cell.alignment = {horizontal: 'center'};
                 });
             }else{
                 workSheet.addRow(eachRow);
@@ -100,9 +103,11 @@ export class ExcelViagensService{
 
         workSheet.addRow([]);
 
-
+        // && footerData.length <= 1
         /****FOOTER ADD Row */
         if(footerData != null){
+            
+            console.log(footerData)
 
             footerData.forEach((element: any) => {
                 const eachRow = [];
@@ -111,11 +116,22 @@ export class ExcelViagensService{
                 });
 
                 const footerRow = workSheet.addRow(eachRow);
+                
                 footerRow.eachCell((cell) =>{
-                    cell.font= {bold: true}
-                });
-            });
-        }
+                cell.fill = {
+                
+                    type: 'pattern',
+                    pattern: 'solid',
+                    fgColor: {argb: 'FFFFFF00'},
+                    bgColor: {argb: 'FF0000FF'}
+                };
+                cell.border = {top: {style: 'thin'}, left: {style: 'thin'}, bottom: {style: 'thin'}, right: {style: 'thin'}};
+                cell.font = {size: 12, bold: true};
+                cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' }};
+                cell.alignment = {horizontal: "center"}     
+                        });
+                    });
+                }
 
         workBook.xlsx.writeBuffer().then((data: ArrayBuffer)=>{
             const blob = new Blob([data], {type: EXCEL_TYPE});
@@ -149,6 +165,23 @@ export class ExcelViagensService{
          });
 
          return array;
+
+    }
+
+    private styleCabecalhos(){
+
+        const cell = null;
+        cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: {argb: 'FFFFFF00'},
+            bgColor: {argb: 'FF0000FF'}
+        };
+        cell.border = {top: {style: 'thin'}, left: {style: 'thin'}, bottom: {style: 'thin'}, right: {style: 'thin'}};
+        cell.font = {size: 12, bold: true};
+        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' }};
+
+        return cell;
 
     }
 }

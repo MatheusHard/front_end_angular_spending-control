@@ -26,6 +26,7 @@ import { TokenInterceptor } from './modulos/usuarios/interceptors/token.intercep
 import { AuthInterceptor } from './modulos/usuarios/interceptors/auth.interceptor';
 import { ViagensComponent } from './modulos/viagens/viagens.component';
 import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 //Imports Meterisal Angular:
@@ -35,6 +36,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderInterceptor } from './loader/interceptors/loader.interceptor';
 
 
 
@@ -62,7 +66,9 @@ registerLocaleData(localeBR, 'br');
     PaginatorFuncionarioComponent,
     LoginComponent,
     ViagensComponent,
-    FormViajemComponent
+    FormViajemComponent,
+    LoaderComponent
+    
     
      
   ],
@@ -77,8 +83,9 @@ registerLocaleData(localeBR, 'br');
     MatIconModule,
     MatCardModule,
     MatAutocompleteModule,
-    MatFormFieldModule
-    
+    MatFormFieldModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
     
     
     
@@ -86,7 +93,8 @@ registerLocaleData(localeBR, 'br');
   providers: [CidadeService, FuncionarioService, SetorService, AuthService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

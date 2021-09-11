@@ -74,5 +74,10 @@ align-content: center;
   .example-full-width {
     width: 100%;
   }
-  
+
+  .style-titulo-card {
+    text-align: center;
+     font-weight: bold;
+      background-color: cadetblue;
+  } 
   

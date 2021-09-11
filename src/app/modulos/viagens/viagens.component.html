@@ -1,5 +1,5 @@
 <div class="card border-primary mb-3">
-  <div class="card-header center">Funcionario [{{funcionario.nome}}]</div>
+  <div class="card-header style-titulo-card" >Funcionario {{funcionario.nome}}</div>
   <div class="card-body text-primary">
     <h5 class="card-title">Lista das Viagens </h5>
 <div class="ny-2 text-left">
@@ -14,7 +14,7 @@
 <div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
     Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
 </div>
-<table *ngIf="funcionario.viagens.length != 0" class="table table-bordered table-striped my-4">
+<table  *ngIf="funcionario.viagens.length != 0 && authService.hasHole('ROLE_ADMIN')" class="table table-bordered table-striped my-4">
   <thead class="texto-centro"> 
       <tr>
           <th>Data Inicial</th>
@@ -46,6 +46,12 @@
           </div>
         </td> 
       </tr>
+      <tr>
+        <td colspan="2">Total</td>
+        <td class="text-center">
+          R$ {{totalSaldo | number: '1.2-4'}}
+        </td>
+      </tr>
   </tbody>
 </table>
 
@@ -63,7 +69,7 @@
           </td>
       </tr>-->
       <button (click)="exportExcelViagens()" mat-raised-button color="primary">
-        Excel <i class="fa fa-file-excel-o"></i>
+        Excel<i class="fa fa-file-excel-o"></i>
       </button>
 
 <!--<paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>-->
