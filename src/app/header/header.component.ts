@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { LoaderService } from "../loader/loader.service";
+
 import { AuthService } from "../modulos/usuarios/auth.service";
 
 @Component({
