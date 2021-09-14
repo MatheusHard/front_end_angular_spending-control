@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cidade } from './cidade';
-import { catchError, map, tap} from 'rxjs/operators';
+import { catchError, map, tap, timeout} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -72,7 +72,8 @@ return false;
     
       });
       return response;
-    })
+    }),
+
     );
   }
 
@@ -106,7 +107,10 @@ return false;
   /*********POST CIDADE*********/
 
   create(cidade: Cidade) : Observable<any>{
+
     return this.http.post<any>(this.URL_BASE, cidade).pipe(
+       timeout(5000),
+
        catchError(e => {
         
         if(e.status == 400){

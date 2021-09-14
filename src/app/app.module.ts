@@ -8,12 +8,10 @@ import { CidadesComponent } from './modulos/cidades/cidades.component';
 import { CidadeService } from './modulos/cidades/cidade.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CidadeFormComponent } from './modulos/cidades/form-cidade.component';
-import { FormsModule } from '@angular/forms';
 import {registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt-PT';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
 import { SetoresComponent } from './modulos/setores/setores.component'; 
 import { SetorService } from './modulos/setores/setores.service';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
@@ -27,12 +25,23 @@ import { TokenInterceptor } from './modulos/usuarios/interceptors/token.intercep
 import { AuthInterceptor } from './modulos/usuarios/interceptors/auth.interceptor';
 import { ViagensComponent } from './modulos/viagens/viagens.component';
 import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 //Imports Meterisal Angular:
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderInterceptor } from './loader/interceptors/loader.interceptor';
+import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
+
+
+
 
 
 
@@ -57,7 +66,9 @@ registerLocaleData(localeBR, 'br');
     PaginatorFuncionarioComponent,
     LoginComponent,
     ViagensComponent,
-    FormViajemComponent
+    FormViajemComponent,
+    LoaderComponent
+    
     
      
   ],
@@ -66,11 +77,15 @@ registerLocaleData(localeBR, 'br');
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
-    
+    MatCardModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
     
     
     
@@ -78,7 +93,8 @@ registerLocaleData(localeBR, 'br');
   providers: [CidadeService, FuncionarioService, SetorService, AuthService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

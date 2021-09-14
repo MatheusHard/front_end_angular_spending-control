@@ -4,7 +4,9 @@
   <form>
 
    
-      <!--dataInicial value= {{idFuncionario}}-->
+    <!--<input type="hidden" ngValue="id_funcionario" [(ngModel)]="viajem.funcionario.id">-->
+      
+    <!--dataInicial value= {{idFuncionario}}-->
       <div class="form-group row">
           <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
           <div class="col-sm-6">
@@ -24,8 +26,10 @@
           <label for="saldo" class="col-form-label col-sm-2">Saldo</label>
           <div class="col-sm-6">
               <input type="number" class="form-control" [(ngModel)]="viajem.saldo" name="saldo"> 
+
           </div>
       </div>
+     
 
          
       
@@ -34,14 +38,17 @@
           <div class="col-sm-6">
           <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade" style="width: 200px;">
               <option [ngValue]="undefined">SELECIONE A CIDADE</option>
-              <option *ngFor="let cidade of cidades" [ngValue]="cidade.id">{{cidade.descricao_cidade | uppercase}}</option>
+              <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{cidade.descricao_cidade+"/"+cidade.uf.sigla_uf | uppercase}}</option>
           </select>    
           </div>
       </div>
+
+     
+
   <!--*ngIf="!viajem.id else elseBlock-->
       <div class="form-group row">
           <div class="col-sm-6">
-              <button class="btn btn-primary" role="button" (click)="create(viajem)">Cadastrar</button> 
+              <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!viajem.id else elseBlock">Cadastrar</button> 
               <ng-template #elseBlock>
                   <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
               </ng-template>

@@ -1,3 +1,9 @@
 .texto-centro{
     text-align: center;
    } 
+
+   .style-titulo-card {
+    text-align: center;
+     font-weight: bold;
+      background-color: cadetblue;
+  } 
