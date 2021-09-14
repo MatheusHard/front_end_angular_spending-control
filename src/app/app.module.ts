@@ -12,7 +12,6 @@ import {registerLocaleData } from '@angular/common';
 import localeBR from '@angular/common/locales/pt-PT';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
 import { SetoresComponent } from './modulos/setores/setores.component'; 
 import { SetorService } from './modulos/setores/setores.service';
 import { SetoresFormComponent } from './modulos/setores/form-setor.component';
@@ -39,6 +38,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderInterceptor } from './loader/interceptors/loader.interceptor';
+import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
 
 
 

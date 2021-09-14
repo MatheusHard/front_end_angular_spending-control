@@ -8,7 +8,7 @@ import { ExcelViagensService } from '../excel-services/excel-viagens.service';
 import { Funcionario } from '../funcionarios/funcionario';
 import { FuncionarioService } from '../funcionarios/funcionario.service';
 import { AuthService } from '../usuarios/auth.service';
-import { ModalViajemService } from './modal_viajem.service';
+import { ViajemService } from './viagens.service';
 import { Viajem } from './viajem';
 
 @Component({
@@ -28,18 +28,18 @@ export class ViagensComponent implements OnInit {
   //@Input() funcionario: Funcionario;
   funcionario: Funcionario = new Funcionario();
 
-  modalViajemService: ModalViajemService;
+  viajemService: ViajemService;
   titulo: string = "Viagens do Funcionário";
 
-  constructor(modalViajemService: ModalViajemService, 
+  constructor(viajemService: ViajemService, 
               private funcionarioService: FuncionarioService,
               private router: Router,
               private activateRoute: ActivatedRoute,
-              private viajemService: ModalViajemService,
+              //private viajemService: ModalViajemService,
               private excelViajemService: ExcelViagensService,
               authService: AuthService) 
               {
-              this.modalViajemService = modalViajemService;
+              this.viajemService = viajemService;
               this.authService = authService;
               }
 
@@ -66,7 +66,7 @@ export class ViagensComponent implements OnInit {
               this.funcionario = funcionario;
               this.totalSaldo = 0;
               this.totalSaldo = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
-
+              console.log(this.funcionario.viagens)
             });
         
       }

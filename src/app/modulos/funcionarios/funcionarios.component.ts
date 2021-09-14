@@ -4,7 +4,7 @@ import { Funcionario } from './funcionario';
 import { FuncionarioService } from './funcionario.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../usuarios/auth.service';
-import { ModalViajemService } from '../viagens/modal_viajem.service';
+import { ViajemService } from '../viagens/viagens.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class FuncionariosComponent implements OnInit {
   authService: AuthService;
 
   constructor(private funcionarioService: FuncionarioService, private activateRoute: ActivatedRoute, 
-              authService: AuthService, private modalViajemService: ModalViajemService,
+              authService: AuthService, private viajemService: ViajemService,
               ) {
     this.authService = authService;
    }
@@ -81,7 +81,7 @@ export class FuncionariosComponent implements OnInit {
    abrirModalViagens(funcionario: Funcionario) {
      console.log(funcionario);
     this.funcionarioSeleccionado = funcionario;
-    this.modalViajemService.abrirModal();
+    this.viajemService.abrirModal();
   }
    
 

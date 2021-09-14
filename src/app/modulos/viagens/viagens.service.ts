@@ -9,7 +9,7 @@ import { Viajem } from './viajem';
 @Injectable({
   providedIn: 'root'
 })
-export class ModalViajemService {
+export class ViajemService {
 
   modal: boolean = false;
   modalForm: boolean = false;
@@ -80,6 +80,7 @@ getViajem(id): Observable<Viajem>{
   );
 }
 
+
 /*********POST VIAJEM*********/
 
 create(viajem: Viajem) : Observable<any>{
@@ -97,8 +98,10 @@ create(viajem: Viajem) : Observable<any>{
 
 /*********UPDATE VIAJEM*********/
 
-update(cidade: Viajem): Observable<any>{
-  return this.http.put<any>(`${this.URL_BASE}/${cidade.id}`, cidade).pipe(
+update(viajem: Viajem): Observable<any>{
+  console.log("VIAJEM SERVICE");
+  console.log(viajem);
+  return this.http.put<any>(`${this.URL_BASE}/${viajem.id}`, viajem).pipe(
     catchError(e => {
       if(e.status == 400){
         return throwError(e);

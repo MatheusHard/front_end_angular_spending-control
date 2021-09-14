@@ -34,7 +34,7 @@
         <td>{{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</td>
         <td>
           <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
-            <button  class="espaco" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+            <button  [routerLink]="['/viagens/form', funcionario.id, viajem.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
               <mat-icon>edit</mat-icon>
             </button>
             <button (click)="delete(viajem)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
