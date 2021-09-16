@@ -119,7 +119,7 @@ update(): void {
 private getObjectViagem(v: Viajem, id_Funcionario: number): void {
 
    this.viajemAny = 
-    {
+     {
       dataInicial: v.dataInicial,
       dataFinal: v.dataFinal,
       saldo: v.saldo,
@@ -131,7 +131,6 @@ private getObjectViagem(v: Viajem, id_Funcionario: number): void {
         id: v.cidade.id
        
         }
-        
     }
 }
 
@@ -142,12 +141,7 @@ compararCidade(cidade_1: Cidade, cidade_2: Cidade): boolean{
   }
   return cidade_1 === null || cidade_2 === null || cidade_1 === undefined || cidade_2 === undefined ? false: cidade_1.id === cidade_2.id;
  }
-
-
- /***************MAT AUTOCOMPLETE***************/
-
-  
-
+ 
 }
 
 

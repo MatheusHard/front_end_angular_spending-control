@@ -5,22 +5,43 @@
 
    
     <!--<input type="hidden" ngValue="id_funcionario" [(ngModel)]="viajem.funcionario.id">-->
-      
-    <!--dataInicial value= {{idFuncionario}}-->
+    
+    <!--Data Inicial-->
+    <div class="form-group row">
+        <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
+            <div class="col-sm-6">
+             <input style="display: inline; width: 300px;" [matDatepicker]="dataInicial" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial">
+                 <mat-datepicker-toggle [for]="dataInicial"></mat-datepicker-toggle>
+             <mat-datepicker #dataInicial></mat-datepicker>
+            </div>
+    </div>
+<!--Data Final-->
+<div class="form-group row">
+
+    <label for="dataFinal" class="col-form-label col-sm-2">Data Final</label>
+    <div class="col-sm-6">
+    <input style="display: inline; width: 300px;" [matDatepicker]="dataFinal" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataInicial">
+    <mat-datepicker-toggle [for]="dataFinal"></mat-datepicker-toggle>
+    <mat-datepicker #dataFinal></mat-datepicker>
+</div>
+</div>
+
+
+          <!--dataInicial value= {{idFuncionario}}
       <div class="form-group row">
           <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
           <div class="col-sm-6">
-              <input type="date" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial"> 
+              <input type="date" ng-model-options="{timezone: timezone}" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial"> 
 
           </div>
-      </div>
-      <!--dataFinal-->
+      </div>-->
+      <!--dataFinal
       <div class="form-group row">
-          <label for="dataFinal" class="col-form-label col-sm-2">Data Final</label>
+          <label for="dataFinal" ng-model-options="{timezone: timezone}" class="col-form-label col-sm-2">Data Final</label>
           <div class="col-sm-6">
               <input type="date" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal" min="11" max="11"> 
           </div>
-      </div>
+      </div>-->
         <!--saldo-->
         <div class="form-group row">
           <label for="saldo" class="col-form-label col-sm-2">Saldo</label>

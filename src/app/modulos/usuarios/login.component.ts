@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import  swal  from 'sweetalert2';
 import { AuthService } from './auth.service';
@@ -6,16 +7,25 @@ import { Usuario } from './usuario';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  titulo: string = "Por favor Sign In!";
   usuario: Usuario;
 
-  constructor(private authService: AuthService, private router: Router) {
+  form: FormGroup;
+  public loginInvalid = false;
+  hide = true;
+
+  
+
+  constructor(private authService: AuthService, private router: Router, form: FormBuilder) {
     this.usuario = new Usuario();
+    this.form = form.group({username: ['', Validators.required], password: ['', Validators.required]
+    });
    }
+   
 
   ngOnInit(): void {
 
