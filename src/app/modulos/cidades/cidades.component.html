@@ -1,4 +1,7 @@
-<div class="card border-primary mb-3">
+<div class="alert alert-warning center" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!!
+</div>
+<div class="card border-primary mb-3" *ngIf="authService.isAuthenticated()">
     <div class="card-header">Cidades</div>
     <div class="card-body text-primary">
       <h5 class="card-title">Lista das Cidades</h5>

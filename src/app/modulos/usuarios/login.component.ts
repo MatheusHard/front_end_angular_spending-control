@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   public loginInvalid = false;
   hide = true;
+  title: string = "Acesso";
 
   
 

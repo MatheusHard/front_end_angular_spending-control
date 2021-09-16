@@ -1,12 +1,14 @@
 <mat-card>
+  <mat-card-header>
+    <mat-card-title>{{title}}</mat-card-title>
+   </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="form">
-        <h2>Login</h2>
+      <form style="padding-top: 30px;" [formGroup]="form">
         <mat-error *ngIf="loginInvalid">
           The username and password were not recognized
         </mat-error>
         <mat-form-field class="full-width-input">
-          <input  formControlName="username" [(ngModel)] ="usuario.username" matInput placeholder="Usuario" required>
+          <input formControlName="username" [(ngModel)] ="usuario.username" matInput placeholder="Usuario" required>
           <mat-error>
             Usuario Obrigatorio
           </mat-error>
