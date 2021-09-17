@@ -1,4 +1,10 @@
-<div class="card border-primary mb-3">
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button color="primary"><mat-icon>login</mat-icon></button>
+</div>
+
+<div class="card border-primary mb-3" *ngIf="authService.isAuthenticated()">
     <div class="card-header">Setores</div>
     <div class="card-body text-primary">
       <h5 class="card-title">Lista dos Setores</h5>

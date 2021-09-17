@@ -1,8 +1,8 @@
-<mat-card>
+<mat-card style="padding: 0;">
   <mat-card-header>
     <mat-card-title>{{title}}</mat-card-title>
    </mat-card-header>
-    <mat-card-content>
+    <mat-card-content style="padding: 10px;">
       <form style="padding-top: 30px;" [formGroup]="form">
         <mat-error *ngIf="loginInvalid">
           The username and password were not recognized
@@ -13,7 +13,7 @@
             Usuario Obrigatorio
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="full-width-input" >
+        <mat-form-field style="padding-bottom: 10px" class="full-width-input" >
           <input formControlName="password" [(ngModel)] ="usuario.password" matInput [type]="hide ? 'password' : 'text'" type="password" required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -22,7 +22,7 @@
             Senha invalida
           </mat-error>
         </mat-form-field>
-        <button (click)="login()" mat-raised-button color="primary">Login</button>
+        <button (click)="login()" mat-raised-button color="primary">Login  <mat-icon class="align-middle">login</mat-icon></button>
       </form>
     </mat-card-content>
   </mat-card>
