@@ -1,0 +1,29 @@
+
+ .style-titulo-card {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: slategray;
+}  
+ 
+ .example-card-cidades {
+  margin: 2em auto;
+  max-width: 800px;
+   align-content: center;
+ }
+ .example-form {
+   min-width: 150px;
+   max-width: 500px;
+   width: 100%;
+ }
+ 
+ .example-full-width {
+   width: 100%;
+ }
+
+ .style-titulo-card {
+   text-align: center;
+    font-weight: bold;
+     background-color: cadetblue;
+ } 
+ 

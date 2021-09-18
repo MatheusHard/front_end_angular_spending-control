@@ -14,7 +14,7 @@
     <button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/funcionarios/form']">Cadastrar Funcionário(a)</button>
 </div>
 <p></p>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped texto-centro">
     <thead>
         <tr>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">VIAGENS</th>

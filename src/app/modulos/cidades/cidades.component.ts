@@ -10,6 +10,7 @@ import { AuthService } from '../usuarios/auth.service';
 @Component({
   selector: 'app-cidades',
   templateUrl: './cidades.component.html',
+  styleUrls: ['./cidade.component.css', '../../app.component.css']
 })
 
 
@@ -25,7 +26,7 @@ export class CidadesComponent implements OnInit {
                }
 
   cidades: Cidade[];
-
+  title: string = 'Cidades';
   paginador: any;
 
   ngOnInit(): void {

@@ -29,12 +29,11 @@
         <!--NAVBAR À DIREITA-->
               
         <ul class="navbar navbar-right">
-       
-          <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Sign In <mat-icon class="align-middle">login</mat-icon></a></li>
+         <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Sign In <mat-icon class="align-middle">login</mat-icon></a></li>
           <div *ngIf="authService.isAuthenticated()" class="btn-group">
-          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            {{authService.usuario.username}}
-          </button>
+           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              {{authService.usuario.username}}
+           </button>
           <ul class="dropdown-menu">
             <li><a (click)="logout()" class="dropdown-item btn btn-outline-danger" href="#">Sign Out <mat-icon class="align-middle">logout</mat-icon></a></li>
           </ul>

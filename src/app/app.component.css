@@ -1,9 +1,22 @@
 .texto-centro{
     text-align: center;
+    margin: auto;
    } 
 
    .style-titulo-card {
-    text-align: center;
+     text-align: center;
      font-weight: bold;
-      background-color: cadetblue;
+     background-color: rgb(64, 50, 143);
   } 
+  .espaco {
+    margin: 0 7px;
+  }
+  .margin-paginator{
+    padding: 10px;
+  }
+  
+  .color-add {
+    background-color: springgreen;
+    color: springgreen;
+  }
+
