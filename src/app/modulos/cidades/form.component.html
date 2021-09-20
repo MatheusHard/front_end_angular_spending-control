@@ -1,14 +1,57 @@
-<div class="card bg-dark text-white">
-<div class="card-header">{{titulo}}</div>
+
+<mat-card style="padding: 0;">
+    <mat-card-header>
+      <mat-card-title >{{title}}</mat-card-title>
+     </mat-card-header>
+      <mat-card-content style="padding: 10px;">
+        <form>
+
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Cidade</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="cidade.descricao_cidade" name="descricao_cidade"> 
+                </div>
+            </div>
+        
+            <div class="form-group row margin-form">
+                <label for="uf" class="col-form-label col-sm-2">Estado</label>
+                <div class="col-sm-6">
+                <select [compareWith]="compararUf" class="form-select form-select-sm" [(ngModel)]="cidade.uf" name="uf" style="width: 200px;">
+                    <option [ngValue]="undefined">selecione o Estado</option>
+                    <option *ngFor="let uf of ufs" [ngValue]="uf">{{uf.descricao_uf}}</option>
+                </select>    
+                </div>
+            </div>
+        
+            <div class="form-group row margin-form">
+                <div class="col-sm-6">
+                   <button class="espaco button-add"  mat-raised-button  (click)="create()" *ngIf="!cidade.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
+                   
+                    <ng-template #elseBlock>
+                        <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar <mat-icon>edit</mat-icon></button> 
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+
+
+
+<!--<div class="card text-white example-card-cidades-form">
+<div class="card-header style-titulo-card">{{titulo}}</div>
 <div class="card-body">
 <form>
-    <div class="form-group row">
+
+    <div class="form-group row margin-form">
         <label for="descricao_cidade" class="col-form-label col-sm-2">Cidade</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" [(ngModel)]="cidade.descricao_cidade" name="descricao_cidade"> 
         </div>
     </div>
-    <div class="form-group row">
+
+    <div class="form-group row margin-form">
         <label for="uf" class="col-form-label col-sm-2">Estado</label>
         <div class="col-sm-6">
         <select [compareWith]="compararUf" class="form-select form-select-sm" [(ngModel)]="cidade.uf" name="uf" style="width: 200px;">
@@ -18,17 +61,17 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row margin-form">
         <div class="col-sm-6">
-            <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!cidade.id else elseBlock">Cadastrar</button> 
+           <button class="espaco button-add"  mat-raised-button  (click)="create()" *ngIf="!cidade.id else elseBlock">Cadastrar</button>
            
             <ng-template #elseBlock>
-                <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
+                <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar</button> 
             </ng-template>
         </div>
     </div>
 </form>
 
 </div>
-</div>
+</div>-->
 

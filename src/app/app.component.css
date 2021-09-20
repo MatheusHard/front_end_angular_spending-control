@@ -11,12 +11,29 @@
   .espaco {
     margin: 0 7px;
   }
+
+  .margin-form{
+    padding: 10px;
+    align-content: center;
+    
+  }
   .margin-paginator{
     padding: 10px;
   }
   
   .color-add {
     background-color: springgreen;
-    color: springgreen;
+    color: rgb(57, 58, 57);
   }
+
+  .button-add{
+    background-color: teal;
+    color: white;
+  }
+  
+  .button-edit{
+    background-color: #3f51b5;
+    color: white;
+  }
+  
 
