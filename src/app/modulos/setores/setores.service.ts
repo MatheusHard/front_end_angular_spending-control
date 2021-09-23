@@ -61,9 +61,11 @@ getSetor(id): Observable<Setor>{
 create(setor: Setor) : Observable<any>{
   return this.http.post<any>(this.URL_BASE, setor).pipe(
      catchError(e => {
+      Swal.fire("Erro ao cadastrar o Setor: ", e.error.errors.toString(), 'error');
       if(e.status == 400){
         return throwError(e);
       }
+      Swal.fire("Erro ao cadastrar o Setor: ", e.error.errors.toString(), 'error');
       return throwError(e);
     })
   );

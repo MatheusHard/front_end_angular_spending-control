@@ -7,13 +7,15 @@ import { SetorService } from './setores.service';
 
 @Component({
   selector: 'app-form-setor',
-  templateUrl: './form-setor.component.html'
+  templateUrl: './form-setor.component.html',
+  styleUrls: ['./setores.component.css', '../../app.component.css']
+
 })
 export class SetoresFormComponent implements OnInit {
 
    setor: Setor = new Setor();
 
-   titulo:string = "Cadastrar Setor";
+   title:string = "Cadastrar Setor";
 
   constructor(private setorService: SetorService, private router: Router,
               private activateRoute: ActivatedRoute) { }

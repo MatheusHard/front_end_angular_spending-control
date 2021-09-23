@@ -6,9 +6,26 @@
    .style-titulo-card {
      text-align: center;
      font-weight: bold;
+     color: white;
      background-color: rgb(64, 50, 143);
   } 
-  .espaco {
+
+  .style-titulo-card-setor {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(12, 102, 34);
+ } 
+ 
+ .style-titulo-card-funcionario {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(255,241,89)
+
+} 
+
+   .espaco {
     margin: 0 7px;
   }
 

@@ -1,10 +1,4 @@
-
- .style-titulo-card {
-  text-align: center;
-  font-weight: bold;
-  color: white;
-  background-color: slategray;
-} 
+ 
 
 mat-card {
   max-width: 400px;

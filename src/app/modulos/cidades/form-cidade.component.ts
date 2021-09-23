@@ -47,7 +47,6 @@ export class CidadeFormComponent implements OnInit {
     console.log(this.cidade);
       this.cidadeService.create(this.cidade).subscribe(
         response =>   {        
-                     console.log(this.cidade);
                      this.router.navigate(['/cidades/list'])
                      swal.fire('Nova Cidade', `Cidade ${response.cidade.descricao_cidade} criada com sucesso!!!`, 'info')
                     }

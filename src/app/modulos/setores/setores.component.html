@@ -4,37 +4,42 @@
     <button  [routerLink]="['/login']" mat-stroked-button color="primary"><mat-icon>login</mat-icon></button>
 </div>
 
-<div class="card border-primary mb-3" *ngIf="authService.isAuthenticated()">
-    <div class="card-header">Setores</div>
+<div class="card border-primary mb-3 example-card-setores" *ngIf="authService.isAuthenticated()">
+    <div class="style-titulo-card-setor card-header">{{title}}</div>
     <div class="card-body text-primary">
-      <h5 class="card-title">Lista dos Setores</h5>
 <div class="ny-2 text-left">
-    <button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/setores/form']">Cadastrar Setor</button>
+    <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/setores/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
+       <mat-icon >add</mat-icon>
+    </button>
 </div>
 <p></p>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped texto-centro">
     <thead>
         <tr>
             <th>CODIGO</th>
             <th>SETOR</th>
-            <th *ngIf="authService.hasHole('ROLE_ADMIN')">EDITAR</th>
-            <th *ngIf="authService.hasHole('ROLE_ADMIN')">DELETAR</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let setor of setores">
             <td>{{setor.id}}</td>
             <td>{{setor.descricao_setor | uppercase}}</td>
-            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
-                <button type="button" name="editar" [routerLink]="['/setores/form', setor.id]" class="btn btn-primary">editar</button>
-            </td>
-            <td *ngIf="authService.hasHole('ROLE_ADMIN')"> 
-                <button type="button" name="deletar" (click)="delete(setor)" class="btn btn-danger">deletar</button>
-            </td>
+           
+            <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
+            <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
+                <button  [routerLink]="['/setores/form', setor.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="delete(setor)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                  <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+          </td>
         </tr>
     </tbody>
 </table>
 
-<paginator-nav-setor *ngIf="paginador" [paginador]="paginador"></paginator-nav-setor>
+<paginator-nav-setor class="margin-paginator" *ngIf="paginador" [paginador]="paginador"></paginator-nav-setor>
     </div>
   </div>

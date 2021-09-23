@@ -10,7 +10,7 @@ import { ViajemService } from '../viagens/viagens.service';
 @Component({
   selector: 'app-funcionarios',
   templateUrl: './funcionarios.component.html',
-  styleUrls: ['./funcionarios.component.css']
+  styleUrls: ['./funcionarios.component.css', '../../app.component.css']
 })
 export class FuncionariosComponent implements OnInit {
 
@@ -26,6 +26,7 @@ export class FuncionariosComponent implements OnInit {
   //funcionarioSeleccionado: Funcionario;
 
   paginador: any;
+  title: string = "Funcionários";
 
   ngOnInit(): void {
     
