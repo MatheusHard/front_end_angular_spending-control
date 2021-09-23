@@ -109,14 +109,14 @@ return false;
   create(cidade: Cidade) : Observable<any>{
 
     return this.http.post<any>(this.URL_BASE, cidade).pipe(
-       timeout(5000),
 
        catchError(e => {
-        
+        Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
+
         if(e.status == 400){
           return throwError(e);
         }
-        //Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
+        Swal.fire("Erro ao cadastrar a Cidade: ", e.error.errors.toString(), 'error');
         return throwError(e);
       })
     );
@@ -146,5 +146,25 @@ return false;
      })
    );
  }
+
+ private getErrors(data: any) {
+   
+  return data.toString().split(",").toString();
+     
+  /**letra = texto.split(" ");
+letra.sort();
+texto = letra.join("\n"); */
+ /* return data.errors.map(error => {
+     error.split(",");
+     error.sort();
+     erro = error.join("\n");
+     return erro;
+    
+   }).toString();
+   */
+
+  
+}
+
 
 }

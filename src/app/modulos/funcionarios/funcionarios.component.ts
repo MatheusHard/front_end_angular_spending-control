@@ -10,7 +10,7 @@ import { ViajemService } from '../viagens/viagens.service';
 @Component({
   selector: 'app-funcionarios',
   templateUrl: './funcionarios.component.html',
-  styleUrls: ['./funcionarios.component.css']
+  styleUrls: ['./funcionarios.component.css', '../../app.component.css']
 })
 export class FuncionariosComponent implements OnInit {
 
@@ -23,9 +23,10 @@ export class FuncionariosComponent implements OnInit {
    }
 
   funcionarios: Funcionario[];
-  funcionarioSeleccionado: Funcionario;
+  //funcionarioSeleccionado: Funcionario;
 
   paginador: any;
+  title: string = "Funcionários";
 
   ngOnInit(): void {
     
@@ -78,11 +79,11 @@ export class FuncionariosComponent implements OnInit {
      }
    })
    }
-   abrirModalViagens(funcionario: Funcionario) {
+  /* abrirModalViagens(funcionario: Funcionario) {
      console.log(funcionario);
     this.funcionarioSeleccionado = funcionario;
     this.viajemService.abrirModal();
-  }
+  }*/
    
 
 }

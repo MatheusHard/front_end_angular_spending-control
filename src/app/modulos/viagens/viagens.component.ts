@@ -14,7 +14,7 @@ import { Viajem } from './viajem';
 @Component({
   selector: 'app-viagens',
   templateUrl: './viagens.component.html',
-  styleUrls: ['./viagens.component.css']
+  styleUrls: ['./viagens.component.css', '../../app.component.css']
 
 })
 export class ViagensComponent implements OnInit {

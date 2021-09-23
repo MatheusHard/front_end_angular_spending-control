@@ -14,8 +14,8 @@
 <div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
     Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
 </div>
-<table  *ngIf="funcionario.viagens.length != 0 && authService.hasHole('ROLE_ADMIN')" class="table table-bordered table-striped my-4">
-  <thead class="texto-centro"> 
+<table  *ngIf="funcionario.viagens.length != 0 && authService.hasHole('ROLE_ADMIN')" class="table table-bordered table-striped my-4 texto-centro">
+  <thead> 
       <tr>
           <th>Data Inicial</th>
           <th>Data Final</th>
@@ -26,7 +26,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr style="text-align: center;" *ngFor="let viajem of funcionario.viagens">
+      <tr *ngFor="let viajem of funcionario.viagens">
         <td>{{viajem.dataInicial | date: "dd/MM/yyyy"}}</td>
         <td>{{viajem.dataFinal | date: "dd/MM/yyyy"}}</td>
         <td>R$ {{viajem.saldo | number: '1.2-4'}}</td>

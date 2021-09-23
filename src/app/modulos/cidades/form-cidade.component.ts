@@ -4,21 +4,29 @@ import { Cidade } from './cidade';
 import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
 import { Uf } from '../ufs/uf';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html'
+  templateUrl: './form.component.html',
+  styleUrls: ['./cidade.component.css', '../../app.component.css']
+
 })
 export class CidadeFormComponent implements OnInit {
 
    cidade: Cidade = new Cidade();
    ufs: Uf[]; 
+   form_cidade: FormGroup;
 
-   titulo:string = "Cadastrar Cidade";
+
+   title: string = "Cadastrar Cidade";
 
   constructor(private cidadeService: CidadeService, private router: Router,
-              private activateRoute: ActivatedRoute) { }
+              private activateRoute: ActivatedRoute, form: FormBuilder) { 
+               this.form_cidade = form.group({descricao_cidade: ['', Validators.required], estados: ['', Validators.required]});
+
+              }
 
   ngOnInit(): void {
     this.carregarCidade();
@@ -39,7 +47,6 @@ export class CidadeFormComponent implements OnInit {
     console.log(this.cidade);
       this.cidadeService.create(this.cidade).subscribe(
         response =>   {        
-                     console.log(this.cidade);
                      this.router.navigate(['/cidades/list'])
                      swal.fire('Nova Cidade', `Cidade ${response.cidade.descricao_cidade} criada com sucesso!!!`, 'info')
                     }

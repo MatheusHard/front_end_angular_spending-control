@@ -1,3 +1,34 @@
+
+<mat-card style="padding: 0;">
+    <mat-card-header>
+      <mat-card-title >{{title}}</mat-card-title>
+     </mat-card-header>
+      <mat-card-content style="padding: 10px;">
+        <form>
+
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Setor</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="setor.descricao_setor" name="descricao_setor"> 
+                </div>
+            </div>
+        
+          
+        
+            <div class="form-group row margin-form">
+                <div class="col-sm-6">
+                   <button class="espaco button-add"  mat-raised-button  (click)="create()" *ngIf="!setor.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
+                   
+                    <ng-template #elseBlock>
+                        <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar <mat-icon>edit</mat-icon></button> 
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+<!--
 <div class="card bg-dark text-white">
 <div class="card-header">{{titulo}}</div>
 <div class="card-body">
@@ -22,4 +53,4 @@
 
 </div>
 </div>
-
+-->

@@ -3,6 +3,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 @Component({
   selector: 'paginator-nav',
   templateUrl: './paginator.component.html',
+  styleUrls: ['../app.component.css']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
 

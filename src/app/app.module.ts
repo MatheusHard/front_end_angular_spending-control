@@ -39,6 +39,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderInterceptor } from './loader/interceptors/loader.interceptor';
 import { FuncionariosComponent } from './modulos/funcionarios/funcionarios.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 
@@ -85,7 +89,10 @@ registerLocaleData(localeBR, 'br');
     MatAutocompleteModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
     
     
     

@@ -8,10 +8,7 @@
     z-index: 1000;
   }
 
-   .texto-centro{
-     text-align: center;
-    } 
-  
+   
   .animacion{
     animation-duration: 2s;
     animation-fill-mode: both;
@@ -80,4 +77,7 @@ align-content: center;
      font-weight: bold;
       background-color: cadetblue;
   } 
+
+ 
+ 
   

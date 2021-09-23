@@ -9,10 +9,13 @@ import { AuthService } from '../usuarios/auth.service';
 @Component({
   selector: 'app-setores',
   templateUrl: './setores.component.html',
+  styleUrls: ['./setores.component.css', '../../app.component.css']
+
 })
 export class SetoresComponent implements OnInit {
   
   authService: AuthService;
+  title: string = "Setores";
   
   constructor(private setorService: SetorService, private activateRoute: ActivatedRoute, authService: AuthService) {
     this.authService = authService;

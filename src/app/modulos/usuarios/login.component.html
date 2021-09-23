@@ -1,4 +1,36 @@
-<div class="card border-primary text-center">
+<mat-card style="padding: 0;">
+  <mat-card-header>
+    <mat-card-title>{{title}}</mat-card-title>
+   </mat-card-header>
+    <mat-card-content style="padding: 10px;">
+      <form style="padding-top: 30px;" [formGroup]="form">
+        <mat-error *ngIf="loginInvalid">
+          The username and password were not recognized
+        </mat-error>
+        <mat-form-field class="full-width-input">
+          <input formControlName="username" [(ngModel)] ="usuario.username" matInput placeholder="Usuario" required>
+          <mat-error>
+            Usuario Obrigatorio
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="padding-bottom: 10px" class="full-width-input" >
+          <input formControlName="password" [(ngModel)] ="usuario.password" matInput [type]="hide ? 'password' : 'text'" type="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error>
+            Senha invalida
+          </mat-error>
+        </mat-form-field>
+        <button (click)="login()" mat-raised-button color="primary">Login  <mat-icon class="align-middle">login</mat-icon></button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+  
+
+<!--<div style="display: flex; justify-content: center; width: 500px;" class="card border-primary text-center">
 <div class="card-header">{{titulo}}</div>
     <div class="card-body">
 
@@ -14,6 +46,8 @@
             <div class="form-group col-sm-6">
                 <input (click)="login()" type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
             </div>
+          
+          
         </form>
     </div>
-</div>
+</div>-->
