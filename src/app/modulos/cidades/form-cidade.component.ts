@@ -4,7 +4,7 @@ import { Cidade } from './cidade';
 import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
 import { Uf } from '../ufs/uf';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,19 +17,22 @@ export class CidadeFormComponent implements OnInit {
 
    cidade: Cidade = new Cidade();
    ufs: Uf[]; 
-   form_cidade: FormGroup;
-
+   meuFormGroup: FormGroup;
 
    title: string = "Cadastrar Cidade";
 
   constructor(private cidadeService: CidadeService, private router: Router,
-              private activateRoute: ActivatedRoute, form: FormBuilder) { 
-               this.form_cidade = form.group({descricao_cidade: ['', Validators.required], estados: ['', Validators.required]});
-
+              private activateRoute: ActivatedRoute, private formBuilder: FormBuilder) {
+                
+                this.meuFormGroup = this.formBuilder.group({
+                       descricao_cidade: ['', Validators.required],
+                       uf: ['', Validators.required]
+                   });
               }
 
   ngOnInit(): void {
     this.carregarCidade();
+
   }
 
   carregarCidade(): void {
@@ -44,6 +47,8 @@ export class CidadeFormComponent implements OnInit {
   }
 
   create(): void {
+
+
     console.log(this.cidade);
       this.cidadeService.create(this.cidade).subscribe(
         response =>   {        
@@ -78,6 +83,14 @@ compararUf(uf_1: Uf, uf_2: Uf): boolean{
 }
 
 
+validarDados() {
 
+
+if (!this.meuFormGroup.valid) {
+      console.log("Formulário inválido");
+      return;
+    }
+    console.log("Formulário válido", this.meuFormGroup.value);
+  }
 
 }

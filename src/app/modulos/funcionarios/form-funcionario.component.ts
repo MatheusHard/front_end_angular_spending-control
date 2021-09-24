@@ -8,13 +8,15 @@ import { FuncionarioService } from './funcionario.service';
 @Component({
   selector: 'app-form-funcionario',
   templateUrl: './form-funcionario.component.html',
+  styleUrls: ['./funcionarios.component.css', '../../app.component.css']
+
 })
 export class FormFuncionarioComponent implements OnInit {
 
   funcionario: Funcionario = new Funcionario();
   setores: Setor[]; 
 
-  titulo:string = "Cadastrar Funcionario";
+  title: string = "Cadastrar Funcionario";
 
  constructor(private funcionarioService: FuncionarioService, private router: Router,
              private activateRoute: ActivatedRoute) { }
