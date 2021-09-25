@@ -3,6 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 import { Funcionario } from '../funcionarios/funcionario';
 import { Viajem } from './viajem';
 
@@ -88,8 +89,10 @@ create(viajem: Viajem) : Observable<any>{
      catchError(e => {
       
       if(e.status == 400){
+        Swal.fire("Erro ao cadastrar a Viajem: ", e.error.errors.toString(), 'error');
         return throwError(e);
       }
+      Swal.fire("Erro ao cadastrar a Viajem: ", e.error.errors.toString(), 'error');
       return throwError(e);
     })
   );

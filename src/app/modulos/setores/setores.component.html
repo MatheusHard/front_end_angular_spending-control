@@ -8,9 +8,11 @@
     <div class="style-titulo-card-setor card-header">{{title}}</div>
     <div class="card-body text-primary">
 <div class="ny-2 text-left">
-    <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/setores/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
-       <mat-icon >add</mat-icon>
-    </button>
+    <abbr title="Cadastrar">
+        <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/setores/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
+            <mat-icon >add</mat-icon>
+        </button>
+    </abbr>
 </div>
 <p></p>
 <table class="table table-bordered table-striped texto-centro">
@@ -28,12 +30,16 @@
            
             <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
             <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
-                <button  [routerLink]="['/setores/form', setor.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="delete(setor)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-                  <mat-icon>delete</mat-icon>
-                </button>
+                <abbr title="Editar">
+                    <button  [routerLink]="['/setores/form', setor.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </abbr>
+                <abbr title="Excluir">
+                    <button (click)="delete(setor)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </abbr>
             </div>
           </td>
         </tr>

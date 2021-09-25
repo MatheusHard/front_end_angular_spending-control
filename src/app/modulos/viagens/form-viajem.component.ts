@@ -13,7 +13,7 @@ import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-form-viajem',
   templateUrl: './form-viajem.component.html',
-  styleUrls: ['./viagens.component.css']
+  styleUrls: ['./viagens.component.css', '../../app.component.css']
 })
 export class FormViajemComponent implements OnInit {
   
@@ -29,7 +29,7 @@ export class FormViajemComponent implements OnInit {
    id_Funcionario: number;
    id_Viajem: number;
 
-   titulo:string = "Cadastrar Viajem";
+   title: string = "Cadastrar Viajem";
    viajemService: ViajemService;
 
   constructor(viajemService: ViajemService, private router: Router,

@@ -49,8 +49,7 @@
            
             <div class="form-group row margin-form">
                 <div class="col-sm-6">
-                   <button class="espaco button-add"   mat-raised-button  (click)="create()" *ngIf="!funcionario.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
-                   
+                        <button class="espaco button-add"   mat-raised-button  (click)="create()" *ngIf="!funcionario.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
                     <ng-template #elseBlock>
                         <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar <mat-icon>edit</mat-icon></button> 
                     </ng-template>

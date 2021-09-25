@@ -1,81 +1,58 @@
-<div class="card bg-dark text-white">
-  <div class="card-header">{{titulo}}</div>
-  <div class="card-body">
-  <form>
-
-   
-    <!--<input type="hidden" ngValue="id_funcionario" [(ngModel)]="viajem.funcionario.id">-->
-    
-    <!--Data Inicial-->
-    <div class="form-group row">
-        <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
-            <div class="col-sm-6">
-             <input style="display: inline; width: 300px;" [matDatepicker]="dataInicial" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial">
-                 <mat-datepicker-toggle [for]="dataInicial"></mat-datepicker-toggle>
-             <mat-datepicker #dataInicial></mat-datepicker>
+<mat-card >
+    <mat-card-header>
+      <mat-card-title >{{title}}</mat-card-title>
+     </mat-card-header>
+      <mat-card-content>
+        <form class="form-top">
+            
+            <!--Data Inicial-->
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Data Inicial</label>
+                <div class="col-sm-6 width-datas">
+                    <input  [matDatepicker]="dataInicial" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial">
+                    <mat-datepicker-toggle [for]="dataInicial"></mat-datepicker-toggle>
+                    <mat-datepicker #dataInicial></mat-datepicker>          
+                </div>
             </div>
-    </div>
-<!--Data Final-->
-<div class="form-group row">
 
-    <label for="dataFinal" class="col-form-label col-sm-2">Data Final</label>
-    <div class="col-sm-6">
-    <input style="display: inline; width: 300px;" [matDatepicker]="dataFinal" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataInicial">
-    <mat-datepicker-toggle [for]="dataFinal"></mat-datepicker-toggle>
-    <mat-datepicker #dataFinal></mat-datepicker>
-</div>
-</div>
+            <!--Data Final-->
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Data Final</label>
+                <div class="col-sm-6 width-datas">
+                <input [matDatepicker]="dataFinal" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal">
+                    <mat-datepicker-toggle [for]="dataFinal"></mat-datepicker-toggle>
+                    <mat-datepicker #dataFinal></mat-datepicker>
+                </div>
+            </div>
 
+            <!--Saldo-->
+            <div class="form-group row margin-form">
+                <label for="saldo" class="col-form-label col-sm-2">Saldo</label>
+                <div class="col-sm-6"style="width: 243px;">
+                    <input type="number" class="form-control" [(ngModel)]="viajem.saldo" name="saldo"> 
+                </div>
+            </div>
 
-          <!--dataInicial value= {{idFuncionario}}
-      <div class="form-group row">
-          <label for="dataInicial" class="col-form-label col-sm-2">Data Inicial</label>
-          <div class="col-sm-6">
-              <input type="date" ng-model-options="{timezone: timezone}" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial"> 
+            <!--Cidade-->
+            <div class="form-group row margin-form">
+                <label for="cidade_uf" class="col-form-label col-sm-2">Cidade/UF</label>
+                    <div class="col-sm-6">
+                        <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade_uf" style="width: 220px;">
+                            <option [ngValue]="undefined">SELECIONE A CIDADE</option>
+                            <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{cidade.descricao_cidade+"/"+cidade.uf.sigla_uf | uppercase}}</option>
+                        </select>  
+                    </div>
+            </div>
+          
+             <div class="form-group row margin-form">
+                <div class="col-sm-6">
+                        <button class="espaco button-add"  mat-raised-button  (click)="create()" *ngIf="!viajem.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
+                    <ng-template #elseBlock>
+                        <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar <mat-icon>edit</mat-icon></button> 
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
 
-          </div>
-      </div>-->
-      <!--dataFinal
-      <div class="form-group row">
-          <label for="dataFinal" ng-model-options="{timezone: timezone}" class="col-form-label col-sm-2">Data Final</label>
-          <div class="col-sm-6">
-              <input type="date" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal" min="11" max="11"> 
-          </div>
-      </div>-->
-        <!--saldo-->
-        <div class="form-group row">
-          <label for="saldo" class="col-form-label col-sm-2">Saldo</label>
-          <div class="col-sm-6">
-              <input type="number" class="form-control" [(ngModel)]="viajem.saldo" name="saldo"> 
-
-          </div>
-      </div>
-     
-
-         
-      
-      <div class="form-group row">
-          <label for="cidade" class="col-form-label col-sm-2">Cidade</label>
-          <div class="col-sm-6">
-          <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade" style="width: 200px;">
-              <option [ngValue]="undefined">SELECIONE A CIDADE</option>
-              <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{cidade.descricao_cidade+"/"+cidade.uf.sigla_uf | uppercase}}</option>
-          </select>    
-          </div>
-      </div>
-
-     
-
-  <!--*ngIf="!viajem.id else elseBlock-->
-      <div class="form-group row">
-          <div class="col-sm-6">
-              <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!viajem.id else elseBlock">Cadastrar</button> 
-              <ng-template #elseBlock>
-                  <button class="btn btn-primary" role="button" (click)="update()">Editar</button> 
-              </ng-template>
-          </div>
-      </div>
-  </form>
-  
-  </div>
-  </div>
