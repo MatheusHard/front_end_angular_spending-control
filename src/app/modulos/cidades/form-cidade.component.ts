@@ -5,6 +5,7 @@ import { CidadeService } from './cidade.service';
 import swal from 'sweetalert2';
 import { Uf } from '../ufs/uf';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -18,12 +19,14 @@ export class CidadeFormComponent implements OnInit {
    cidade: Cidade = new Cidade();
    ufs: Uf[]; 
    meuFormGroup: FormGroup;
+   authService: AuthService;
 
    title: string = "Cadastrar Cidade";
 
-  constructor(private cidadeService: CidadeService, private router: Router,
+  constructor(private cidadeService: CidadeService, private router: Router, authService: AuthService,
               private activateRoute: ActivatedRoute, private formBuilder: FormBuilder) {
                 
+                this.authService = authService;
                 this.meuFormGroup = this.formBuilder.group({
                        descricao_cidade: ['', Validators.required],
                        uf: ['', Validators.required]

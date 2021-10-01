@@ -8,6 +8,7 @@ import { Viajem } from './viajem';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -31,10 +32,13 @@ export class FormViajemComponent implements OnInit {
 
    title: string = "Cadastrar Viajem";
    viajemService: ViajemService;
+   authService: AuthService;
 
   constructor(viajemService: ViajemService, private router: Router,
-              private activateRoute: ActivatedRoute, private cidadeService: CidadeService) {
+              private activateRoute: ActivatedRoute, private cidadeService: CidadeService,
+              authService: AuthService) {
                 this.viajemService = viajemService;
+                this.authService = authService;
                }
 
   ngOnInit(): void {

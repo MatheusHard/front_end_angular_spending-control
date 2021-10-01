@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
 import { Setor } from './setores';
 import { SetorService } from './setores.service';
 
@@ -14,11 +15,13 @@ import { SetorService } from './setores.service';
 export class SetoresFormComponent implements OnInit {
 
    setor: Setor = new Setor();
-
    title:string = "Cadastrar Setor";
+   authService: AuthService;
 
   constructor(private setorService: SetorService, private router: Router,
-              private activateRoute: ActivatedRoute) { }
+              private activateRoute: ActivatedRoute, authService: AuthService) {
+                this.authService = authService;
+               }
 
   ngOnInit(): void {
     this.carregarSetor();

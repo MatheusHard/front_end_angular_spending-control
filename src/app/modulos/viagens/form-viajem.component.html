@@ -1,6 +1,16 @@
-<mat-card >
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
+<!--Alert quando não tem permissão-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.hasHole('ROLE_ADMIN')">
+    Seu perfil de acesso não tem permissão!!! 
+</div>
+
+<mat-card *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN')">
     <mat-card-header>
-      <mat-card-title >{{title}}</mat-card-title>
+      <mat-card-title>{{title}}</mat-card-title>
      </mat-card-header>
       <mat-card-content>
         <form class="form-top">

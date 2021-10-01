@@ -1,5 +1,11 @@
-<div class="card border-primary mb-3">
-  <div class="card-header style-titulo-card-viajem" >Funcionario {{funcionario.nome}}</div>
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+  Obrigatória Autenticação!!! 
+  <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
+
+<div class="card border-primary mb-3" *ngIf="authService.isAuthenticated()">
+  <div class="card-header style-titulo-card-viajem">Viagens do(a) {{funcionario.nome}}</div>
   <div class="card-body text-primary">
 <div class="ny-2 text-left">
   <!--<button (click)="abrirModalCadastroViagens(funcionario)" *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>
@@ -15,7 +21,7 @@
 <div class= "texto-centro alert alert-warning my-4" *ngIf="funcionario.viagens.length == 0">
     Sr(a). {{funcionario.nome}} não tem viagens cadastradas!!!
 </div>
-<table  *ngIf="funcionario.viagens.length != 0 && authService.hasHole('ROLE_ADMIN')" class="table table-bordered table-striped my-4 texto-centro">
+<table  *ngIf="funcionario.viagens.length != 0" class="table table-bordered table-striped my-4 texto-centro">
   <thead> 
       <tr>
           <th>Data Inicial</th>
@@ -33,8 +39,8 @@
         <td>R$ {{viajem.saldo | number: '1.2-4'}}</td>
         <td>R$ {{viajem.gastoTotal}}</td>
         <td>{{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</td>
-        <td>
-          <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
+        <td *ngIf="authService.hasHole('ROLE_ADMIN')">
+          <div class="centro-buttons texto-centro example-button-container">
             <abbr title="Editar">
               <button  [routerLink]="['/viagens/form', funcionario.id, viajem.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
                 <mat-icon>edit</mat-icon>

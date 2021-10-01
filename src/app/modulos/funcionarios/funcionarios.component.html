@@ -20,7 +20,7 @@
 <table class="table table-bordered table-striped texto-centro">
     <thead>
         <tr>
-            <th *ngIf="authService.hasHole('ROLE_ADMIN')">VIAGENS</th>
+            <th>VIAGENS</th>
             <th>NOME</th>
             <th>CPF</th>
             <th>E-MAIL</th>
@@ -32,7 +32,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let f of funcionarios">
-         <td *ngIf="authService.hasHole('ROLE_ADMIN')"><abbr title="Suas Viagens"><img [routerLink]="['/viagens/list', f.id]" src="assets/images/mala_viajem.png" alt="Sin foto" class="img-thumbnail rounded"
+         <td><abbr title="Suas Viagens"><img [routerLink]="['/viagens/list', f.id]" src="assets/images/mala_viajem.png" alt="Sin foto" class="img-thumbnail rounded"
                 style="width:45px; orientation: center; cursor: pointer;"></abbr>
            
          </td>

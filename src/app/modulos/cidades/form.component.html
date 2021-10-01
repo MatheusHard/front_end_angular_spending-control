@@ -1,5 +1,10 @@
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
 
-<mat-card >
+<mat-card *ngIf="authService.isAuthenticated()">
     <mat-card-header>
       <mat-card-title >{{title}}</mat-card-title>
      </mat-card-header>
