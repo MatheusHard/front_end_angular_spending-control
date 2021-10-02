@@ -4,20 +4,26 @@ import { Setor } from '../setores/setores';
 import { Funcionario } from './funcionario';
 import swal from 'sweetalert2';
 import { FuncionarioService } from './funcionario.service';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-form-funcionario',
   templateUrl: './form-funcionario.component.html',
+  styleUrls: ['./funcionarios.component.css', '../../app.component.css']
+
 })
 export class FormFuncionarioComponent implements OnInit {
 
   funcionario: Funcionario = new Funcionario();
   setores: Setor[]; 
+  authService: AuthService;
 
-  titulo:string = "Cadastrar Funcionario";
+  title: string = "Cadastrar Funcionario";
 
  constructor(private funcionarioService: FuncionarioService, private router: Router,
-             private activateRoute: ActivatedRoute) { }
+             private activateRoute: ActivatedRoute, authService: AuthService) {
+               this.authService = authService;
+              }
 
  ngOnInit(): void {
    this.carregarFuncionario();

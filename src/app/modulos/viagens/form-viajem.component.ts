@@ -8,12 +8,13 @@ import { Viajem } from './viajem';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
   selector: 'app-form-viajem',
   templateUrl: './form-viajem.component.html',
-  styleUrls: ['./viagens.component.css']
+  styleUrls: ['./viagens.component.css', '../../app.component.css']
 })
 export class FormViajemComponent implements OnInit {
   
@@ -29,12 +30,15 @@ export class FormViajemComponent implements OnInit {
    id_Funcionario: number;
    id_Viajem: number;
 
-   titulo:string = "Cadastrar Viajem";
+   title: string = "Cadastrar Viajem";
    viajemService: ViajemService;
+   authService: AuthService;
 
   constructor(viajemService: ViajemService, private router: Router,
-              private activateRoute: ActivatedRoute, private cidadeService: CidadeService) {
+              private activateRoute: ActivatedRoute, private cidadeService: CidadeService,
+              authService: AuthService) {
                 this.viajemService = viajemService;
+                this.authService = authService;
                }
 
   ngOnInit(): void {

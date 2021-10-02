@@ -1,11 +1,15 @@
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
 
-<mat-card style="padding: 0;">
+<mat-card *ngIf="authService.isAuthenticated()">
     <mat-card-header>
       <mat-card-title >{{title}}</mat-card-title>
      </mat-card-header>
-      <mat-card-content style="padding: 10px;">
-        <form>
-
+      <mat-card-content style="display: flexbox; justify-content: center;">
+        <form >
             <div class="form-group row margin-form">
                 <label for="descricao_cidade" class="col-form-label col-sm-2">Cidade</label>
                 <div class="col-sm-6">
@@ -22,10 +26,9 @@
                 </select>    
                 </div>
             </div>
-        
-            <div class="form-group row margin-form">
+             <div class="form-group row margin-form">
                 <div class="col-sm-6">
-                   <button class="espaco button-add"  mat-raised-button  (click)="create()" *ngIf="!cidade.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
+                   <button class="espaco button-add"   mat-raised-button  (click)="create()" *ngIf="!cidade.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
                    
                     <ng-template #elseBlock>
                         <button class="espaco button-edit"  mat-raised-button (click)="update()">Editar <mat-icon>edit</mat-icon></button> 

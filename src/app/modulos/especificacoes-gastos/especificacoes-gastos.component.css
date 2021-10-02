@@ -1,8 +1,6 @@
 mat-card {
     max-width: 400px;
     margin: 2em auto;
-    padding: 0;
-
   }
   mat-card-title{
     text-align: center;
@@ -14,7 +12,7 @@ mat-card {
   mat-card-header{
   
     padding: 5px;
-    background-color: #a80505;
+    background-color: rgb(14, 19, 15);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px ;
     height: 40px;
@@ -22,12 +20,13 @@ mat-card {
     display: block;
   }
   
-   .example-card-funcionarios {
+
+.example-card-especificacao-gasto {
     margin: 2em auto;
-    max-width: 2000;
+    max-width: 600px;
     padding: 0; 
   }
-   .example-card-funcionarios-form {
+   .example-card-especificacao-gasto-form {
     margin: 2em auto;
     max-width: 600px;
      align-content: center;
@@ -37,10 +36,3 @@ mat-card {
      max-width: 500px;
      width: 100%;
    }
-   
-   .example-full-width {
-     width: 100%;
-   }
-  
-  
- 

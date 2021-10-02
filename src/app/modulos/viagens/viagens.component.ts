@@ -29,7 +29,7 @@ export class ViagensComponent implements OnInit {
   funcionario: Funcionario = new Funcionario();
 
   viajemService: ViajemService;
-  titulo: string = "Viagens do Funcionário";
+  title: string = "Viagens do Funcionário";
 
   constructor(viajemService: ViajemService, 
               private funcionarioService: FuncionarioService,

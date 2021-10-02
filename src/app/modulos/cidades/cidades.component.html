@@ -10,10 +10,11 @@
     <div class="card-body text-primary">
 <div class="ny-2 text-left">
     <!--<button *ngIf="authService.hasHole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]= "['/cidades/form']">Cadastrar Cidade</button>-->
-    <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/cidades/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
-        <mat-icon >add</mat-icon>
-      </button>
-
+    <abbr title="Cadastrar">
+        <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/cidades/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
+            <mat-icon >add</mat-icon>
+        </button>
+    </abbr>
 
 </div>
 <p></p>
@@ -36,12 +37,16 @@
             <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
                
                 <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
-                    <button  [routerLink]="['/cidades/form', cidade.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                    <button (click)="delete(cidade)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-                      <mat-icon>delete</mat-icon>
-                    </button>
+                    <abbr title="Editar">
+                        <button  [routerLink]="['/cidades/form', cidade.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </abbr>
+                    <abbr title="Excluir">
+                        <button (click)="delete(cidade)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </abbr>
                 </div>
                 <!--<button class="espaco"  mat-raised-button color="primary" [routerLink]="['/cidades/form', cidade.id]" >Editar</button>
                 <button (click)="delete(cidade)" mat-raised-button color="primary">Excluir</button>-->

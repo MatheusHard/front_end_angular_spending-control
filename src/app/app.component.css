@@ -10,6 +10,14 @@
      background-color: rgb(64, 50, 143);
   } 
 
+  
+  .style-titulo-card-viajem {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(255,98,1);
+ } 
+
   .style-titulo-card-setor {
     color: white;
     text-align: center;
@@ -21,7 +29,15 @@
   color: white;
   text-align: center;
   font-weight: bold;
-  background-color: rgb(255,241,89)
+  background-color: #a80505;
+
+} 
+
+.style-titulo-card-especificacao-gasto {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(14, 19, 15);;
 
 } 
 

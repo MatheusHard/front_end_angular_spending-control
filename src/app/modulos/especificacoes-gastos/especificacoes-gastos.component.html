@@ -4,12 +4,12 @@
     <button  [routerLink]="['/login']" mat-stroked-button color="primary"><mat-icon>login</mat-icon></button>
 </div>
 
-<div class="card border-primary mb-3 example-card-setores" *ngIf="authService.isAuthenticated()">
-    <div class="style-titulo-card-setor card-header">{{title}}</div>
+<div class="card border-primary mb-3 example-card-especificacao-gasto" *ngIf="authService.isAuthenticated()">
+    <div class="style-titulo-card-especificacao-gasto card-header">{{title}}</div>
     <div class="card-body text-primary">
 <div class="ny-2 text-left">
     <abbr title="Cadastrar">
-        <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/setores/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
+        <button *ngIf="authService.hasHole('ROLE_ADMIN')"  [routerLink]="['/especificacao_gastos/form']" mat-fab style="background-color: teal;" alt="Cadastro" aria-label="Example icon button with a delete icon">
             <mat-icon >add</mat-icon>
         </button>
     </abbr>
@@ -19,24 +19,24 @@
     <thead>
         <tr>
             <th>CODIGO</th>
-            <th>SETOR</th>
+            <th>ESPECIFICACAO DO GASTO</th>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
        </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let setor of setores">
-            <td>{{setor.id}}</td>
-            <td>{{setor.descricao_setor | uppercase}}</td>
+        <tr *ngFor="let especificacao of especificacoesGastos">
+            <td>{{especificacao.id}}</td>
+            <td>{{especificacao.descricao_especificacao_gasto | uppercase}}</td>
            
             <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
             <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
                 <abbr title="Editar">
-                    <button  [routerLink]="['/setores/form', setor.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                    <button  [routerLink]="['/especificacao_gastos/form', especificacao.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </abbr>
                 <abbr title="Excluir">
-                    <button (click)="delete(setor)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                    <button (click)="delete(especificacao)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </abbr>

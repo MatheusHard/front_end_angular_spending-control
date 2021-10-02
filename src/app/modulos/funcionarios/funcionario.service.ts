@@ -67,8 +67,10 @@ import { Funcionario } from "./funcionario";
     return this.http.post<any>(`${this.URL_BASE}${this.URL_FUNCIONARIO}`, funcionario).pipe(
        catchError(e => {
         if(e.status == 400){
+          Swal.fire("Erro ao cadastrar o Funcionário: ", e.error.errors.toString(), 'error');
           return throwError(e);
         }
+        Swal.fire("Erro ao cadastrar o Funcionário: ", e.error.errors.toString(), 'error');
         return throwError(e);
       })
     );

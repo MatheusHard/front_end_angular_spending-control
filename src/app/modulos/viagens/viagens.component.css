@@ -8,6 +8,44 @@
     z-index: 1000;
   }
 
+  .form-top{
+    padding-top: 30px;
+  }
+  mat-card-title{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  
+  }
+  mat-card {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+
+
+  }
+  mat-card-content{
+    padding: 10px;
+    display: flexbox; 
+    justify-content: center;
+  }
+  mat-card-header{
+
+    padding: 5px;
+    background-color: rgb(255,98,1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px ;
+    height: 40px;
+    width: 100%;
+    display: block;
+    justify-content: center;
+  }
+  .width-datas{
+    width: 250px;
+    display: flex;
+  }
    
   .animacion{
     animation-duration: 2s;
