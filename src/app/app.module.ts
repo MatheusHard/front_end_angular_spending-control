@@ -44,15 +44,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component';
-
-
-
-
-
-
-
-
-
+import { EspecificacoesGastosService } from './modulos/especificacoes-gastos/especificacoes-gastos.service';
+import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -75,8 +68,8 @@ registerLocaleData(localeBR, 'br');
     ViagensComponent,
     FormViajemComponent,
     LoaderComponent,
-    EspecificacaoGastoComponent
-    
+    EspecificacaoGastoComponent,
+    EspecificacoesGastosFormComponent
     
      
   ],
@@ -102,7 +95,7 @@ registerLocaleData(localeBR, 'br');
     
     
   ],
-  providers: [CidadeService, FuncionarioService, SetorService, AuthService,
+  providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

@@ -33,6 +33,14 @@
 
 } 
 
+.style-titulo-card-especificacao-gasto {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(14, 19, 15);;
+
+} 
+
    .espaco {
     margin: 0 7px;
   }
