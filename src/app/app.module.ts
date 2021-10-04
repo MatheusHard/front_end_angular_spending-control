@@ -46,6 +46,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component';
 import { EspecificacoesGastosService } from './modulos/especificacoes-gastos/especificacoes-gastos.service';
 import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component';
+import { GastosComponent } from './modulos/gastos/gastos.component';
+import { GastoService } from './modulos/gastos/gasto.service';
+import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/sub-especificacoes-gastos.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -69,7 +72,9 @@ registerLocaleData(localeBR, 'br');
     FormViajemComponent,
     LoaderComponent,
     EspecificacaoGastoComponent,
-    EspecificacoesGastosFormComponent
+    EspecificacoesGastosFormComponent,
+    GastosComponent,
+    SubEspecificacoesGastosComponent
     
      
   ],
@@ -96,6 +101,7 @@ registerLocaleData(localeBR, 'br');
     
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
+              GastoService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

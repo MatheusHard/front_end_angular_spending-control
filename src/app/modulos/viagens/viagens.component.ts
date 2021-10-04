@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { ExcelViagensService } from '../excel-services/excel-viagens.service';
 import { Funcionario } from '../funcionarios/funcionario';
 import { FuncionarioService } from '../funcionarios/funcionario.service';
+import { GastoService } from '../gastos/gasto.service';
 import { AuthService } from '../usuarios/auth.service';
 import { ViajemService } from './viagens.service';
 import { Viajem } from './viajem';
@@ -22,6 +23,8 @@ export class ViagensComponent implements OnInit {
   columns: any[];
   footerData: any[][] = [];
   totalSaldo = 0;
+  viajemSelecionada: Viajem;
+
 
   funcionarioSeleccionado: Funcionario;
   authService: AuthService;
@@ -35,7 +38,7 @@ export class ViagensComponent implements OnInit {
               private funcionarioService: FuncionarioService,
               private router: Router,
               private activateRoute: ActivatedRoute,
-              //private viajemService: ModalViajemService,
+              private gastoService: GastoService,
               private excelViajemService: ExcelViagensService,
               authService: AuthService) 
               {
@@ -135,5 +138,12 @@ export class ViagensComponent implements OnInit {
   console.log("DENTRO MODAL")      
     }
       */
+
+    abrirModal(viajem: Viajem) {
+      this.viajemSelecionada = viajem;
+      console.log("VIAJEM NO COMPONENT V");
+      console.log(viajem);
+      this.gastoService.abrirModal();
+    }
 
     }

@@ -11,8 +11,8 @@ import { AuthGuard } from './modulos/usuarios/guards/auth.guard';
 import { RoleGuard } from './modulos/usuarios/guards/role.guard';
 import { LoginComponent } from './modulos/usuarios/login.component';
 import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
-import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component';
-import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component';
+import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component'; 
+import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component'; 
 
 const routes: Routes = [
   

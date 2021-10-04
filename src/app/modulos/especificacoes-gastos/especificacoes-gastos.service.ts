@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import Swal from "sweetalert2";
-import { AuthService } from "../usuarios/auth.service";
+import { AuthService } from "../usuarios/auth.service"; 
 import { EspecificacaoGasto } from "./especificacao_gasto";
 
 @Injectable({
