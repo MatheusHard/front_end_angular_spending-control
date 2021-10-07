@@ -1,13 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pipe } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Utils } from 'src/app/utils/methods';
 import Swal from 'sweetalert2';
 import { ExcelViagensService } from '../excel-services/excel-viagens.service';
 import { Funcionario } from '../funcionarios/funcionario';
 import { FuncionarioService } from '../funcionarios/funcionario.service';
 import { GastoService } from '../gastos/gasto.service';
+import { GastosComponent } from '../gastos/gastos.component';
 import { AuthService } from '../usuarios/auth.service';
 import { ViajemService } from './viagens.service';
 import { Viajem } from './viajem';
@@ -23,6 +26,7 @@ export class ViagensComponent implements OnInit {
   columns: any[];
   footerData: any[][] = [];
   totalSaldo = 0;
+  gastosTotais = 0;
   viajemSelecionada: Viajem;
 
 
@@ -40,7 +44,8 @@ export class ViagensComponent implements OnInit {
               private activateRoute: ActivatedRoute,
               private gastoService: GastoService,
               private excelViajemService: ExcelViagensService,
-              authService: AuthService) 
+              authService: AuthService,
+              public dialog: MatDialog) 
               {
               this.viajemService = viajemService;
               this.authService = authService;
@@ -48,7 +53,7 @@ export class ViagensComponent implements OnInit {
 
               
   ngOnInit(): void {
-    this.columns = ['Data Inicial', 'Data Final', 'Saldo', 'Gastos Totais', 'Cidade/UF' ];
+    this.columns = ['Data Inicial', 'Data Final', 'Saldo', 'Gastos Totais', '  Cidade/UF  ' ];
     this.carregarViagens_Funcionario();
 
    
@@ -69,7 +74,11 @@ export class ViagensComponent implements OnInit {
               this.funcionario = funcionario;
               this.totalSaldo = 0;
               this.totalSaldo = this.funcionario.viagens.reduce((sum, item) => sum + item.saldo, 0);
-              console.log(this.funcionario.viagens)
+              this.gastosTotais = 0;
+              this.gastosTotais = this.funcionario.viagens.reduce((sum, item) => sum + item.gastoTotal, 0);
+              
+              console.log("REAL")
+              console.log();
             });
         
       }
@@ -115,9 +124,8 @@ export class ViagensComponent implements OnInit {
    }
    
    exportExcelViagens(){
-
-    console.log(this.totalSaldo);
-    this.footerData.push(['Total', '', this.totalSaldo]);
+   
+    this.footerData.push(['Total', '',  Utils.getFormattedReal(this.totalSaldo), Utils.getFormattedReal(this.gastosTotais)]);
     
   
     this.excelViajemService.exportASExcelFile('Viagens', '', this.columns, 

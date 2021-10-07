@@ -18,6 +18,15 @@
     background-color: rgb(255,98,1);
  } 
 
+ .style-titulo-card-gasto {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(64, 1, 60);
+  justify-content: center;
+
+} 
+
   .style-titulo-card-setor {
     color: white;
     text-align: center;

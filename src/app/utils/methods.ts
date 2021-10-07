@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import  localeBR  from '@angular/common/locales/pt';
@@ -15,6 +16,8 @@ static changeDateFormat(data: string){
 
     return data;
 }
+
+
 
 static getHttpHeaders(){
     
@@ -38,6 +41,9 @@ static getUrlPage(){
 }
 
     
+static getFormattedReal(price: number) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+}
 
 
 }

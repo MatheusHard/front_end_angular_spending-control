@@ -43,6 +43,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component';
 import { EspecificacoesGastosService } from './modulos/especificacoes-gastos/especificacoes-gastos.service';
 import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component';
@@ -95,9 +96,9 @@ registerLocaleData(localeBR, 'br');
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule
-    
-    
+    MatSelectModule,
+    MatDialogModule
+       
     
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
