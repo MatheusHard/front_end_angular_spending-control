@@ -42,7 +42,8 @@ import { EspecificacaoGasto } from "./especificacao_gasto";
 
 getEspecificacoesGastos(): Observable<any> {
 
-return this.http.get<any>(`${this.URL_BASE}`);
+  return this.http.get<any>(`${this.URL_BASE}`);
+
 }
 
 /*********GET UMA EspecificacaoGasto*********/

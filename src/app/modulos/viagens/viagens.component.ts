@@ -6,6 +6,8 @@ import { pipe } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Utils } from 'src/app/utils/methods';
 import Swal from 'sweetalert2';
+import { EspecificacaoGasto } from '../especificacoes-gastos/especificacao_gasto';
+import { EspecificacoesGastosService } from '../especificacoes-gastos/especificacoes-gastos.service';
 import { ExcelViagensService } from '../excel-services/excel-viagens.service';
 import { Funcionario } from '../funcionarios/funcionario';
 import { FuncionarioService } from '../funcionarios/funcionario.service';
@@ -35,6 +37,9 @@ export class ViagensComponent implements OnInit {
   //@Input() funcionario: Funcionario;
   funcionario: Funcionario = new Funcionario();
 
+  especificacoesGastos: EspecificacaoGasto[];
+  
+
   viajemService: ViajemService;
   title: string = "Viagens do Funcionário";
 
@@ -45,7 +50,8 @@ export class ViagensComponent implements OnInit {
               private gastoService: GastoService,
               private excelViajemService: ExcelViagensService,
               authService: AuthService,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              private especificacoesGastosService: EspecificacoesGastosService) 
               {
               this.viajemService = viajemService;
               this.authService = authService;
@@ -53,8 +59,10 @@ export class ViagensComponent implements OnInit {
 
               
   ngOnInit(): void {
+    
     this.columns = ['Data Inicial', 'Data Final', 'Saldo', 'Gastos Totais', '  Cidade/UF  ' ];
     this.carregarViagens_Funcionario();
+   
 
    
   }
@@ -77,8 +85,7 @@ export class ViagensComponent implements OnInit {
               this.gastosTotais = 0;
               this.gastosTotais = this.funcionario.viagens.reduce((sum, item) => sum + item.gastoTotal, 0);
               
-              console.log("REAL")
-              console.log();
+              
             });
         
       }
@@ -133,19 +140,10 @@ export class ViagensComponent implements OnInit {
                                                 'Sheet1');
   }
 
-  /*
-  encerrarModal() {
-    console.log(this.funcionario);
-    this.modalViajemService.cerrarModal();
-    }
 
-    abrirModalCadastroViagens(funcionario: Funcionario){
-      this.funcionarioSeleccionado = funcionario;
+ 
 
-      this.modalViajemService.abrirModalViagens();
-  console.log("DENTRO MODAL")      
-    }
-      */
+
 
     abrirModal(viajem: Viajem) {
       this.viajemSelecionada = viajem;

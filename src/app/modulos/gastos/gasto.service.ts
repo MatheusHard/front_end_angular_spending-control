@@ -13,6 +13,8 @@ export class GastoService {
 
   modal: boolean = false;
   private URL_BASE: string = 'http://localhost:8080/api/gastos';
+  private URL_BASE_ESPEC: string = 'http://localhost:8080/api/especificacao_gastos';
+
   private URL_PAGE: string = '/page/'
 
 
@@ -65,6 +67,12 @@ getGasto(id): Observable<Gasto>{
   );
 }
 
+/*********GET ALL EspecificacoesGastos*********/
+
+getEspecificacoesGastos(): Observable<any> {
+
+  return this.http.get<any>(`${this.URL_BASE_ESPEC}`);
+  }
 
 /*********POST GASTO*********/
 

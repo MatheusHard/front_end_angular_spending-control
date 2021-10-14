@@ -18,9 +18,13 @@
                    Não tem gastos cadastrados!!!
                   </div>
                   
-                  <!--TABLE-->
+                                   <!--TABLE-->
                   <table *ngIf="viajem.gastos.length != 0" class="table table-bordered table-striped my-4 texto-centro">
-                  <thead> 
+
+                   
+
+                  <!--*********DADOS DO BD*********-->
+                    <thead> 
                     <tr>
                       <th>Data</th>
                       <th>Fornecedor</th>
@@ -29,12 +33,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let gasto of viajem.gastos">
-                      <td>{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
-                      <td>{{gasto.fornecedor}}</td>
-                      <td>R$ {{gasto.valor | number: '1.2-4'}}</td>
-                    </tr>
-                    <tr>
+
+                             
+                  
+                    
+                
+
+                 <tr>
+                
+
+                  <tr *ngFor="let especificacaoGasto of especificacoesGastos">
+                    <td colspan="3" style="background-color: blue; text-align: center; color: white;">
+                       {{especificacaoGasto.descricao_especificacao_gasto | uppercase}}
+                    <tr *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos" >
+                      <td colspan="6" style="background-color: yellowgreen; text-align: center; color: white;" >
+                      {{sub.descricao_sub_especificacao_gasto | uppercase}}
+                    </td> 
+                    </tr> 
+                    </td>
+                   </tr> 
+                
+
+                  <tr *ngFor="let gasto of viajem.gastos">
+                    <td>{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
+                    <td>{{gasto.fornecedor}}</td>
+                    <td>R$ {{gasto.valor | number: '1.2-4'}}</td>
+                  </tr>
+                  <tr>
                       <td colspan="2" class="gasto" >Gastos na Viajem</td>
                       <td class="text-center gasto-valor">
                         R$ {{viajem.gastoTotal | number: '1.2-4'}}
@@ -45,6 +70,7 @@
                         <td class="text-center adiantamento-valor">
                           R$ {{viajem.saldo | number: '1.2-4'}}
                         </td>
+                        
                       </tr>
                       <tr>
                         <!--<span ng-if="((x.time2 < x.time1) ||  (x.time2 < x.time3))" ng-style="color:red" {{x.val}}></span>
@@ -57,6 +83,12 @@
                       </tr>
                     </tbody>
                   </table> 
+                  <abbr *ngIf="viajem.gastos.length > 0" title="Relatorio Excel">
+                    <!--(click)="exportExcelViagens()" -->
+                    <button mat-raised-button style="color: white; background-color:rgb(64, 1, 60);">
+                      Excel  <img style="width: 25px;" src="../../../assets/images/ms_excel.png"/>
+                    </button>
+                  </abbr>
                 </ul>
                 </div>
             
