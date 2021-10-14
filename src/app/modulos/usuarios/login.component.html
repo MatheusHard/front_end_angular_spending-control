@@ -16,7 +16,7 @@
         <mat-form-field style="padding-bottom: 10px" class="full-width-input" >
           <input formControlName="password" [(ngModel)] ="usuario.password" matInput [type]="hide ? 'password' : 'text'" type="password" required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           </button>
           <mat-error>
             Senha invalida

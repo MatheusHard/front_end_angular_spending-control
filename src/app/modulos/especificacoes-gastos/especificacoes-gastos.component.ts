@@ -20,33 +20,42 @@ export class EspecificacaoGastoComponent implements OnInit {
                }
 
   especificacoesGastos: EspecificacaoGasto[];
+  especificacoesGastos2: EspecificacaoGasto[];
+
+
   title: string = 'Especificações dos Gastos';
   paginador: any;
 
   ngOnInit(): void {
+    this.getEspecificacoesGastosPaginator();
+
+     
+  }
+
+
+  getEspecificacoesGastosPaginator(){
 
     this.activateRoute.paramMap.subscribe(params =>{
 
       let page: number = +params.get('page');
-
       if(!page){
         page = 0;
       }
-    
     this.especificacoesGastosService.getAllEspecificacoesGastos(page).pipe(
     ).subscribe( response => {
        this.especificacoesGastos = response.content as EspecificacaoGasto[];
        this.paginador = response;
-       console.log(this.paginador);
-
       });
 
-    console.log(this.especificacoesGastos)
+     
    });
+
+  
   }
 
   delete(especificacaoGasto: EspecificacaoGasto){
- 
+    console.log(this.especificacoesGastos);
+
     Swal.fire({
      title: 'Tem Certeza?',
      text: `Realmente deseja excluir a Especificação do Gasto: ${especificacaoGasto.descricao_especificacao_gasto}?`,
@@ -74,6 +83,14 @@ export class EspecificacaoGastoComponent implements OnInit {
      }
    })
    }
+
+
+
+   
+        
+     
+
+  
 
 }
 

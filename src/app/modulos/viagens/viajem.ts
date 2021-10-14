@@ -1,5 +1,6 @@
 import { Cidade } from "../cidades/cidade";
 import { Funcionario } from "../funcionarios/funcionario";
+import { Gasto } from "../gastos/gasto";
 
 export class Viajem {
 
@@ -11,6 +12,7 @@ export class Viajem {
     gastoTotal: number;
     cidade: Cidade;
     createAt: string;
+    gastos: Gasto[];
 
 }
 

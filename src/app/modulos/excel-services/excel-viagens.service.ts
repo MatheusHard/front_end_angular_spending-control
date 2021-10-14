@@ -96,7 +96,15 @@ export class ExcelViagensService{
                     cell.alignment = {horizontal: 'center'};
                 });
             }else{
-                workSheet.addRow(eachRow);
+
+               /*****EDITAR DADOS BRUTOS*****/
+
+               const dadosRow = workSheet.addRow(eachRow);
+               dadosRow.eachCell((cell) =>{
+                cell.font = {name: 'Calibri', family: 4, size: 11, bold: false};
+                cell.alignment = {horizontal: 'center'};
+                });
+
             }
         });
 
@@ -157,8 +165,8 @@ export class ExcelViagensService{
             return {
                         dataInicial : Utils.changeDateFormat(item.dataInicial),
                         dataFinal : Utils.changeDateFormat(item.dataFinal),
-                        saldo: item.saldo,
-                        gastoTotal: item.gastoTotal,
+                        saldo:  Utils.getFormattedReal(item.saldo),
+                        gastoTotal:  Utils.getFormattedReal(item.gastoTotal),
                         cidade_uf: `${item.cidade.descricao_cidade.toUpperCase()}/${item.cidade.uf.sigla_uf.toUpperCase()}`
                     }
          });

@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import Swal from "sweetalert2";
-import { AuthService } from "../usuarios/auth.service";
+import { AuthService } from "../usuarios/auth.service"; 
 import { EspecificacaoGasto } from "./especificacao_gasto";
 
 @Injectable({
@@ -42,7 +42,8 @@ import { EspecificacaoGasto } from "./especificacao_gasto";
 
 getEspecificacoesGastos(): Observable<any> {
 
-return this.http.get<any>(`${this.URL_BASE}`);
+  return this.http.get<any>(`${this.URL_BASE}`);
+
 }
 
 /*********GET UMA EspecificacaoGasto*********/

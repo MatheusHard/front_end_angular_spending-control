@@ -110,13 +110,43 @@ align-content: center;
     width: 100%;
   }
 
-  .style-titulo-card {
-    text-align: center;
-     font-weight: bold;
-      background-color: cadetblue;
-  } 
+  .total {
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    background-color: #94bdf2;
+  }
+
+  .total-valor {
+    font-weight: bold;
+    background-color: #94bdf2;
+  }
+  .gasto{
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    background-color: #f7866f;
+  }
+  .gasto-valor {
+    font-weight: bold;
+    background-color: #f7866f;
+    color: white;
+
+  }
+
+  
+  .adiantamento{
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    background-color: #75fa78;
+  }
+  .adiantamento-valor {
+    font-weight: bold;
+    background-color: #75fa78;
+    color: white;
+
+  }
   
 
  
- 
-  
