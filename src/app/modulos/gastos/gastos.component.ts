@@ -28,13 +28,22 @@ export class GastosComponent implements OnInit {
    this.getEspecificacoesGastos();
     }
 
- 
+
+  getDevolverReceber(){
+    if(this.getValueTotal() > 0){
+      return "Total da Devolução"
+    }else{
+      return "Total do Recebimento"
+    }
+  }
   getValueTotal(){
     return this.viajem.saldo - this.viajem.gastoTotal;
   }
   getSomaTotal(){
     return Utils.getFormattedReal(this.viajem.saldo - this.viajem.gastoTotal); 
   }
+
+
 
   /*abrirModal(){
     this.gastoService.abrirModal();
