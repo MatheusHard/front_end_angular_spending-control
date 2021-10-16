@@ -20,7 +20,7 @@
                   </div>
                   
                   <!--Table Dos Gastos-->
-                  <table *ngIf="viajem.gastos.length != 0" class="table table-bordered table-striped my-4 texto-centro">
+                  <table *ngIf="viajem.gastos.length != 0" class="table table-bordered table-striped my-4 texto-centro" style="width: 100%;">
 
                    
 
@@ -32,34 +32,72 @@
                       <th>Valor</th>-->
                         <!--<th *ngIf="authService.hasHole('ROLE_ADMIN')">Actions</th>
                     </tr>
-                </thead>-->
+                </thead>
+                <ul style=" background-color: blueviolet; text-align: center; align-items: center;" class="list-group text-dark mb-3" *ngFor="let especificacaoGasto of especificacoesGastos">
+                 
+                  <li class="li-edit" *ngIf="especificacaoGasto.sub_especificacoes_gastos.length > 0">
+                    {{especificacaoGasto.descricao_especificacao_gasto | uppercase}}
+                    <ul  *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos">
+                      <li class="li-edit">
+                        {{sub.descricao_sub_especificacao_gasto | uppercase}}
+                        <table class="table table-bordered table-striped my-4 texto-centro">
+                          <tbody>
+
+                          <tr  *ngFor="let gasto of viajem.gastos">
+                          <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
+                          <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.fornecedor}}</td>
+                          <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">R$ {{gasto.valor | number: '1.2-4'}}</td>
+                        </tr>
+                      </tbody>
+
+                      </table>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>-->
+
+                
                 <tbody>
 
                         <!--Especificações-->
-                        <tr *ngFor="let especificacaoGasto of especificacoesGastos">
-                         <td colspan="3" style="background-color: blue; text-align: center; color: white;">
+                        <tr style="align-items: center;" *ngFor="let especificacaoGasto of especificacoesGastos">
+                          <td colspan="3" style="background-color: rgb(64, 1, 60); text-align: center; font: bold; color: white;">
                             {{especificacaoGasto.descricao_especificacao_gasto | uppercase}}
 
-                             <!--Sub Especificações-->
-                             <tr *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos" >
-                              <td colspan="6" style="background-color: yellowgreen; text-align: center; color: white;" >
+                            <table style="width: 100%;">
+                              <tbody>
+                                <!--Sub Especificações-->
+                             <tr style="padding-right: 30px; align-items: center; align-items: center;" *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos" >
+                              <td *ngIf="sub != null" colspan="6" style="background-color: rgb(150, 5, 140); text-align: center; color: white;" >
                                   {{sub.descricao_sub_especificacao_gasto | uppercase}}
+                                  <table class="table table-bordered table-striped my-4 texto-centro">
+                                    <tbody>
+                                   <tr *ngFor="let gasto of viajem.gastos">
+                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
+                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.fornecedor}}</td>
+                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">R$ {{gasto.valor | number: '1.2-4'}}</td>
+                                  </tr>
+                                </tbody>
+          
+                                </table>
                               </td> 
-                          </tr> 
+                            </tr> 
+                              </tbody>
+                            </table>
+                            
                          </td>
                         </tr>
-
+                       
+                       <!-- <tr *ngFor="let gasto of viajem.gastos">
+                          <td>{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
+                          <td>{{gasto.fornecedor}}</td>
+                          <td>R$ {{gasto.valor | number: '1.2-4'}}</td>
+                        </tr>
+                      -->
                            
                        <!--</td> 
                       </tr> -->
-                    
-                      <!--Gastos-->
-                      <tr *ngFor="let gasto of viajem.gastos">
-                        <td>{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
-                        <td>{{gasto.fornecedor}}</td>
-                        <td>R$ {{gasto.valor | number: '1.2-4'}}</td>
-                      </tr>
-                      
+                                          
                       <!--Gastos da Viajem-->
                       <tr>
                         <td colspan="2" class="gasto" >Gastos na Viajem</td>
