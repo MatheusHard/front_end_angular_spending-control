@@ -9,7 +9,7 @@ export class Gasto {
     longitude: string;
     imagem: string;
     cpf_devedor: string;
-    subEspecificacaoGasto: SubEspecificacaoGasto;
+    subespecificacao_id: number;
     viajem: Viajem;
 
 }

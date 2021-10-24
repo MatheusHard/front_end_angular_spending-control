@@ -73,9 +73,9 @@
                                   <table class="table table-bordered table-striped my-4 texto-centro">
                                     <tbody>
                                    <tr *ngFor="let gasto of viajem.gastos">
-                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
-                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">{{gasto.fornecedor}}</td>
-                                    <td *ngIf="gasto.subEspecificacaoGasto.id == sub.id">R$ {{gasto.valor | number: '1.2-4'}}</td>
+                                    <td *ngIf="gasto.subespecificacao_id == sub.id">{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
+                                    <td *ngIf="gasto.subespecificacao_id == sub.id">{{gasto.fornecedor}}</td>
+                                    <td *ngIf="gasto.subespecificacao_id == sub.id">R$ {{gasto.valor | number: '1.2-4'}}</td>
                                   </tr>
                                 </tbody>
           
