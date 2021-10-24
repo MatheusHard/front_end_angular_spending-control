@@ -51,6 +51,11 @@ import { GastosComponent } from './modulos/gastos/gastos.component';
 import { GastoService } from './modulos/gastos/gasto.service';
 import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/sub-especificacoes-gastos.component';
 
+//PrimeG
+
+import {AccordionModule} from 'primeng/accordion';     
+import {MenuItem} from 'primeng/api'; 
+
 registerLocaleData(localeBR, 'br');
 
 @NgModule({
@@ -97,7 +102,9 @@ registerLocaleData(localeBR, 'br');
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    AccordionModule,
+    
        
     
   ],
