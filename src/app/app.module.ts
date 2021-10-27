@@ -51,10 +51,10 @@ import { GastosComponent } from './modulos/gastos/gastos.component';
 import { GastoService } from './modulos/gastos/gasto.service';
 import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/sub-especificacoes-gastos.component';
 
-//PrimeG
+/********CHARTS*********/
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ChartsComponent } from './charts/charts.component';
 
-import {AccordionModule} from 'primeng/accordion';     
-import {MenuItem} from 'primeng/api'; 
 
 registerLocaleData(localeBR, 'br');
 
@@ -80,7 +80,8 @@ registerLocaleData(localeBR, 'br');
     EspecificacaoGastoComponent,
     EspecificacoesGastosFormComponent,
     GastosComponent,
-    SubEspecificacoesGastosComponent
+    SubEspecificacoesGastosComponent,
+    ChartsComponent
     
      
   ],
@@ -103,8 +104,7 @@ registerLocaleData(localeBR, 'br');
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
-    AccordionModule,
-    
+    GoogleChartsModule
        
     
   ],
