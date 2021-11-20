@@ -51,6 +51,11 @@ import { GastosComponent } from './modulos/gastos/gastos.component';
 import { GastoService } from './modulos/gastos/gasto.service';
 import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/sub-especificacoes-gastos.component';
 
+/********CHARTS*********/
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ChartsComponent } from './charts/charts.component';
+
+
 registerLocaleData(localeBR, 'br');
 
 @NgModule({
@@ -75,7 +80,8 @@ registerLocaleData(localeBR, 'br');
     EspecificacaoGastoComponent,
     EspecificacoesGastosFormComponent,
     GastosComponent,
-    SubEspecificacoesGastosComponent
+    SubEspecificacoesGastosComponent,
+    ChartsComponent
     
      
   ],
@@ -97,7 +103,8 @@ registerLocaleData(localeBR, 'br');
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    GoogleChartsModule
        
     
   ],

@@ -61,18 +61,30 @@
 
                         <!--Especificações-->
                         <tr style="align-items: center;" *ngFor="let especificacaoGasto of especificacoesGastos">
-                          <td colspan="3" style="background-color: rgb(64, 1, 60); text-align: center; font: bold; color: white;">
+                          <td colspan="3" style="background-color: rgb(64, 1, 60); font-size: 20px; text-align: center; font: bold; color: white;">
                             {{especificacaoGasto.descricao_especificacao_gasto | uppercase}}
 
                             <table style="width: 100%;">
                               <tbody>
                                 <!--Sub Especificações-->
                              <tr style="padding-right: 30px; align-items: center; align-items: center;" *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos" >
+<<<<<<< HEAD
                               <td *ngIf="sub != null" colspan="6" style="background-color: rgb(236, 228, 236); text-align: center; color: white;" >
+=======
+                              <td *ngIf="sub != null" colspan="6" style="background-color: rgb(247, 239, 246); font-weight: bold; font-size: 16px; text-align: center; color: black;" >
+>>>>>>> 0be7ec0e406b2adc2dce16152b8517511f89c8bd
                                   {{sub.descricao_sub_especificacao_gasto | uppercase}}
                                   <table class="table table-bordered table-striped my-4 texto-centro">
+                                    <thead> 
+                                      <tr>
+                                        <th>Data</th>
+                                        <th>Fornecedor</th>
+                                        <th>Valor</th>
+                                          <!--<th *ngIf="authService.hasHole('ROLE_ADMIN')">Actions</th>-->
+                                      </tr>
+                                  </thead>
                                     <tbody>
-                                   <tr *ngFor="let gasto of viajem.gastos">
+                                   <tr *ngFor="let gasto of viajem.gastos" style="font-size: 13,5px; font-weight: normal;">
                                     <td *ngIf="gasto.subespecificacao_id == sub.id">{{gasto.data_gasto | date: "dd/MM/yyyy"}}</td>
                                     <td *ngIf="gasto.subespecificacao_id == sub.id">{{gasto.fornecedor}}</td>
                                     <td *ngIf="gasto.subespecificacao_id == sub.id">R$ {{gasto.valor | number: '1.2-4'}}</td>

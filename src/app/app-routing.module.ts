@@ -13,6 +13,7 @@ import { LoginComponent } from './modulos/usuarios/login.component';
 import { FormViajemComponent } from './modulos/viagens/form-viajem.component';
 import { EspecificacaoGastoComponent } from './modulos/especificacoes-gastos/especificacoes-gastos.component'; 
 import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gastos/form-especificacoes-gastos.component'; 
+import { ChartsComponent } from './charts/charts.component';
 
 const routes: Routes = [
   
@@ -40,6 +41,9 @@ const routes: Routes = [
   {path:'especificacao_gastos/page/:page', component: EspecificacaoGastoComponent },
   {path:'especificacao_gastos/form', component: EspecificacoesGastosFormComponent },
   {path:'especificacao_gastos/form/:id', component: EspecificacoesGastosFormComponent  },
+
+  {path:'relatorios/list', component: ChartsComponent },
+
   
   {path:'login', component: LoginComponent  },
 
