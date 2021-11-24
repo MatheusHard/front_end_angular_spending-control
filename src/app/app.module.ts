@@ -54,6 +54,7 @@ import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-g
 /********CHARTS*********/
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ChartsComponent } from './charts/charts.component';
+import { ExcelGastosService } from './modulos/excel-services/excel-gastos.service';
 
 
 registerLocaleData(localeBR, 'br');
@@ -109,7 +110,7 @@ registerLocaleData(localeBR, 'br');
     
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
-              GastoService,
+              GastoService, ExcelGastosService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

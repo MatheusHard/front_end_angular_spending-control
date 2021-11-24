@@ -61,14 +61,14 @@
 
                         <!--Especificações-->
                         <tr style="align-items: center;" *ngFor="let especificacaoGasto of especificacoesGastos">
-                          <td colspan="3" style="background-color: rgb(64, 1, 60); font-size: 20px; text-align: center; font: bold; color: white;">
+                          <td colspan="3" style="background-color: rgb(128, 128, 128); font-size: 20px; text-align: center; font: bold; color: white;">
                             {{especificacaoGasto.descricao_especificacao_gasto | uppercase}}
 
                             <table style="width: 100%;">
                               <tbody>
                                 <!--Sub Especificações-->
                              <tr style="padding-right: 30px; align-items: center; align-items: center;" *ngFor="let sub of especificacaoGasto.sub_especificacoes_gastos" >
-                              <td *ngIf="sub != null" colspan="6" style="background-color: rgb(236, 228, 236); text-align: center; color: white;" >
+                              <td *ngIf="sub != null" colspan="6" style="background-color: rgb(211, 211, 211); text-align: center; color: black;" >
                                   {{sub.descricao_sub_especificacao_gasto | uppercase}}
                                   <table class="table table-bordered table-striped my-4 texto-centro">
                                     <thead> 
@@ -130,7 +130,7 @@
                   </table> 
                   <abbr *ngIf="viajem.gastos.length > 0" title="Relatorio Excel">
                     <!--(click)="exportExcelViagens()" -->
-                    <button mat-raised-button style="color: white; background-color:rgb(64, 1, 60);">
+                    <button (click)="exportExcelGastos(viajem.gastos, especificacoesGastos)" mat-raised-button style="color: white; background-color:rgb(64, 1, 60);">
                       Excel  <img style="width: 25px;" src="../../../assets/images/ms_excel.png"/>
                     </button>
                   </abbr>
