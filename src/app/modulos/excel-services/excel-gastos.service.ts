@@ -18,6 +18,7 @@ export class ExcelGastosService {
     reportSubHeading: string,
     headersArray: any[],
     json: any[],
+    json_espec: any[],
     footerData: any,
     excelFileName: string,
     sheetName: string
@@ -26,7 +27,7 @@ export class ExcelGastosService {
     
     const header = headersArray;
    
-    const data = this.getValoresExcel(json);
+    const data = this.getValoresExcel(json, json_espec);
 
     const workBook = new Workbook();
     workBook.creator = 'Lista das Viagens';
@@ -110,6 +111,8 @@ export class ExcelGastosService {
 
     // && footerData.length <= 1
     /****FOOTER ADD Row */
+
+
     if(footerData != null){
         
         console.log(footerData)
@@ -138,6 +141,8 @@ export class ExcelGastosService {
                 });
             }
 
+            
+
     workBook.xlsx.writeBuffer().then((data: ArrayBuffer)=>{
         const blob = new Blob([data], {type: EXCEL_TYPE});
         fs.saveAs(blob, excelFileName + EXCEL_EXTENSION);
@@ -157,14 +162,17 @@ private numToAlpha(num: number){
 }
 
 
-private getValoresExcel(data: any) {
-           
+private getValoresExcel(data: any, data_especificacoes: any) {
+      
+ 
+
+
     const array =  data.map(function(item){
         return {
                     fornecedor : item.fornecedor.toUpperCase(),
                     data_gasto : Utils.changeDateFormat(item.data_gasto),
-                    f : item.fornecedor.toUpperCase(),
-                    g : item.fornecedor.toUpperCase(),
+                    latitude : item.latitude,
+                    longitude : item.longitude,
                     valor : Utils.getFormattedReal(item.valor),
 
                     //gastoTotal:  Utils.getFormattedReal(item.gastoTotal),
@@ -174,7 +182,19 @@ private getValoresExcel(data: any) {
                   }
      });
 
+
+     /*const array =  data_especificacoes.map(function(item){
+        return {
+            especs : item.descricao_especificacao_gasto.toUpperCase(),
+            subs:    item.sub_especificacoes_gastos.map(function(sub){
+                        return {
+                            sub: sub.descricao_sub_especificacao_gasto
+                                }
+                             })       
+                         }
+                    });*/
      return array;
+  
 
 }
 

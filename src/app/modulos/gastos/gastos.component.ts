@@ -31,7 +31,7 @@ export class GastosComponent implements OnInit {
   
 
   ngOnInit(): void {
-   this.columns = ['        Fornecedor        ',  'Data do Gasto', '  Latitude  ', '  Longitude  ', '  Valor  ', ];
+   this.columns = ['        Fornecedor        ',  'Data do Gasto', '   Latitude   ', '   Longitude   ', '  Valor  ', ];
   
    this.getEspecificacoesGastos();
     }
@@ -88,9 +88,15 @@ export class GastosComponent implements OnInit {
   console.log(especificacoes);
   
     this.excelGastosService.exportASExcelFile('Gastos', '', this.columns, 
-                                              gastos, this.footerData, 'gastos-lista',
+                                              gastos, especificacoes, this.footerData, 'gastos-lista',
                                                 'Sheet1');
+
+
+    this.footerData = [];
+
   }
+
+
 
   }
 
