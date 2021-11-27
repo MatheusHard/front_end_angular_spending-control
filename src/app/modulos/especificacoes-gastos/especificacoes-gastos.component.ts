@@ -12,6 +12,7 @@ import { EspecificacoesGastosService } from './especificacoes-gastos.service';
 })
 export class EspecificacaoGastoComponent implements OnInit {
 
+  panelOpenState = false;
   authService: AuthService;
 
   constructor(private especificacoesGastosService: EspecificacoesGastosService, private activateRoute: ActivatedRoute, authService: AuthService)

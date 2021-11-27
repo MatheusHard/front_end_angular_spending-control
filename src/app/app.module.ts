@@ -56,6 +56,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { ChartsComponent } from './charts/charts.component';
 import { ExcelGastosService } from './modulos/excel-services/excel-gastos.service';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 registerLocaleData(localeBR, 'br');
 
@@ -84,6 +87,7 @@ registerLocaleData(localeBR, 'br');
     SubEspecificacoesGastosComponent,
     ChartsComponent
     
+    
      
   ],
   imports: [
@@ -105,7 +109,8 @@ registerLocaleData(localeBR, 'br');
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatExpansionModule
        
     
   ],

@@ -15,34 +15,6 @@
     </abbr>
 </div>
 
-<!--TESTES
-<mat-accordion class="example-headers-align">
-<mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Day of the trip
-      </mat-panel-title>
-      <mat-panel-description>
-        Inform the date you wish to travel
-        <mat-icon>date_range</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
-    </mat-form-field>
-    <mat-datepicker #picker></mat-datepicker>
-
-    <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">End</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-
-</mat-accordion>-->
-<!--FIM-->
-
 
 <p></p>
 <table class="table table-bordered table-striped texto-centro">
@@ -51,17 +23,22 @@
 
             <th>CODIGO</th>
             <th>ESPECIFICACAO DO GASTO</th>
-           
-
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
+            <th>SUB ESPECIFICAÇÕES DOS GASTOS</th>
+           
        </tr>
     </thead>
     <tbody>
        
         <tr *ngFor="let especificacao of especificacoesGastos">
+          
             <td>{{especificacao.id}}</td>
             <td>{{especificacao.descricao_especificacao_gasto | uppercase}}</td>
-           
+          
+          
+          
+
+
             <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
             <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
                 <abbr title="Editar">
@@ -77,6 +54,33 @@
 
             </div>
           </td>
+
+          <table style="width: 100%;">
+            <tbody>
+              <tr>
+                <td> <!--ffffffffffffffffffffffff-->
+                 <mat-accordion>
+                   <!-- (opened)="panelOpenState = true"
+                                        (closed)="panelOpenState = false">-->
+                   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"  class="{{panelOpenState ?  'expanded_true':'expanded_false'}}">
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Vizualizar
+                       </mat-panel-title>
+                      <!-- <mat-panel-description>
+                         Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                       </mat-panel-description>
+                     -->
+                      </mat-expansion-panel-header>
+                      <app-sub-especificacoes-gastos></app-sub-especificacoes-gastos>
+                    </mat-expansion-panel>
+                 </mat-accordion>
+                 
+                 <!--ffffffffffffffff--></td>
+              </tr>
+            </tbody>
+          </table>
+         
         </tr>
     </tbody>
 </table>

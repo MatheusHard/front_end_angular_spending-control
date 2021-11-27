@@ -8,6 +8,8 @@ mat-card {
     font-weight: bold;
   
   }
+
+
   
   mat-card-header{
   
@@ -20,10 +22,16 @@ mat-card {
     display: block;
   }
   
+.expanded_false{
+  width: 50px;
+}
+.expanded_true{
+  width: 100%;
+}
 
 .example-card-especificacao-gasto {
     margin: 2em auto;
-    max-width: 600px;
+    max-width: 1000px;
     padding: 0; 
   }
    .example-card-especificacao-gasto-form {

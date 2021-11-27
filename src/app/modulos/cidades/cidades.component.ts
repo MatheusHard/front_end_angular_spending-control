@@ -20,6 +20,7 @@ export class CidadesComponent implements OnInit {
 
   authService: AuthService;
 
+
   constructor(private cidadeService: CidadeService, private activateRoute: ActivatedRoute, authService: AuthService)
                {
                 this.authService = authService;
