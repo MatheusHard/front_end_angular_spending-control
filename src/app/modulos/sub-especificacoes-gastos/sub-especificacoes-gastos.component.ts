@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../usuarios/auth.service';
+import { SubEspecificacoesService } from './sub-especificacoes.service';
+import { SubEspecificacaoGasto } from './sub_especificacao_gasto';
 
 @Component({
   selector: 'app-sub-especificacoes-gastos',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubEspecificacoesGastosComponent implements OnInit {
 
-  constructor() { }
+  authService: AuthService;
+
+  constructor(private especificacoesGastosService: SubEspecificacoesService, private activateRoute: ActivatedRoute, authService: AuthService)
+               {
+                this.authService = authService;
+               }
+
+  @Input() sub_especificacoes : SubEspecificacaoGasto[];
+
 
   ngOnInit(): void {
+
+    console.log(this.sub_especificacoes);
   }
 
 }

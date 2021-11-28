@@ -1,1 +1,34 @@
-<p>sub-especificacoes-gastos works!</p>
+ 
+                       <table class="table table-bordered table-striped texto-centro">
+                        <thead>
+                            <tr>
+                                <th>CODIGO</th>
+                                <th>ESPECIFICACAO DO GASTO</th>
+                                <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            <tr *ngFor="let sub of sub_especificacoes">
+                              
+                                <td>{{sub.id}}</td>
+                                <td>{{sub.descricao_sub_especificacao_gasto | uppercase}}</td>
+                                                          
+                                <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
+                                <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
+                                    <abbr title="Editar">
+                                        <button  [routerLink]="['/especificacao_gastos/form', sub.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                    </abbr>
+                                    <abbr title="Excluir">
+                                        <button (click)="delete(sub)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </abbr>
+                    
+                                </div>
+                              </td>
+                              </tr>
+                              </tbody>
+                              </table>

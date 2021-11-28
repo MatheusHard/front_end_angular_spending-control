@@ -45,12 +45,13 @@ export class EspecificacaoGastoComponent implements OnInit {
     this.especificacoesGastosService.getAllEspecificacoesGastos(page).pipe(
     ).subscribe( response => {
        this.especificacoesGastos = response.content as EspecificacaoGasto[];
+       console.log(this.especificacoesGastos);
+
        this.paginador = response;
       });
 
      
    });
-
   
   }
 

@@ -24,7 +24,7 @@
             <th>CODIGO</th>
             <th>ESPECIFICACAO DO GASTO</th>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
-            <th>SUB ESPECIFICAÇÕES DOS GASTOS</th>
+            <th>SUB</th>
            
        </tr>
     </thead>
@@ -54,7 +54,7 @@
 
             </div>
           </td>
-
+        <abbr title="Subespecificação" class="subespecificacao">
           <table style="width: 100%;">
             <tbody>
               <tr>
@@ -72,7 +72,46 @@
                        </mat-panel-description>
                      -->
                       </mat-expansion-panel-header>
-                      <app-sub-especificacoes-gastos></app-sub-especificacoes-gastos>
+
+                       <!--TABLE SUBESPECIFICACAO
+                       
+                       <table class="table table-bordered table-striped texto-centro">
+                        <thead>
+                            <tr>
+                                <th>CODIGO</th>
+                                <th>ESPECIFICACAO DO GASTO</th>
+                                <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            <tr *ngFor="let sub of especificacao.sub_especificacoes_gastos">
+                              
+                                <td>{{sub.id}}</td>
+                                <td>{{sub.descricao_sub_especificacao_gasto | uppercase}}</td>
+                                                          
+                                <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN')"> 
+                                <div *ngIf="authService.hasHole('ROLE_ADMIN')" class="centro-buttons texto-centro example-button-container">
+                                    <abbr title="Editar">
+                                        <button  [routerLink]="['/especificacao_gastos/form', especificacao.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                    </abbr>
+                                    <abbr title="Excluir">
+                                        <button (click)="delete(sub)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </abbr>
+                    
+                                </div>
+                              </td>
+                              </tr>
+                              </tbody>
+                              </table>-->
+
+                       <!--TABLE SUBESPECIFICACAO-->
+                       <app-sub-especificacoes-gastos [sub_especificacoes]="especificacao.sub_especificacoes_gastos"></app-sub-especificacoes-gastos>
+                       
                     </mat-expansion-panel>
                  </mat-accordion>
                  
@@ -80,7 +119,7 @@
               </tr>
             </tbody>
           </table>
-         
+        </abbr>
         </tr>
     </tbody>
 </table>
