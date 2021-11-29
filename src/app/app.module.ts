@@ -58,6 +58,7 @@ import { ExcelGastosService } from './modulos/excel-services/excel-gastos.servic
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SubEspecificacoesService } from './modulos/sub-especificacoes-gastos/sub-especificacoes.service';
+import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/form-subespecificacoes-gastos.component';
 
 
 
@@ -86,7 +87,8 @@ registerLocaleData(localeBR, 'br');
     EspecificacoesGastosFormComponent,
     GastosComponent,
     SubEspecificacoesGastosComponent,
-    ChartsComponent
+    ChartsComponent,
+    FormSubespecificacoesGastosComponent
     
     
      
