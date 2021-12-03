@@ -4,8 +4,8 @@
     <button  [routerLink]="['/login']" mat-stroked-button color="primary"><mat-icon>login</mat-icon></button>
 </div>
 
-<div class="card border-primary mb-3 example-card-setores" *ngIf="authService.isAuthenticated()">
-    <div class="style-titulo-card-setor card-header">{{title}}</div>
+<div class="card border-primary mb-3 example-card-sub" *ngIf="authService.isAuthenticated()">
+    <div class="style-titulo-card-sub card-header">{{title}}</div>
     <div class="card-body text-primary">
 <div class="ny-2 text-left">
     <abbr title="Cadastrar">
@@ -18,7 +18,7 @@
 <thead>
 <tr>
     <!-- <th>CODIGO</th>-->
-    <th>ESPECIFICACAO DO GASTO</th>
+    <th>DESCRIÇÃO</th>
     <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
 </tr>
 </thead>

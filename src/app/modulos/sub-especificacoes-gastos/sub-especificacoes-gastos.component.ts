@@ -7,11 +7,12 @@ import { SubEspecificacaoGasto } from './sub_especificacao_gasto';
 @Component({
   selector: 'app-sub-especificacoes-gastos',
   templateUrl: './sub-especificacoes-gastos.component.html',
-  styleUrls: ['./sub-especificacoes-gastos.component.css']
+  styleUrls: ['./sub-especificacoes-gastos.component.css','../../app.component.css']
 })
 export class SubEspecificacoesGastosComponent implements OnInit {
 
   authService: AuthService;
+  title: string ="SubEspecificações";
 
   constructor(private especificacoesGastosService: SubEspecificacoesService, private activateRoute: ActivatedRoute, authService: AuthService)
                {
@@ -22,7 +23,7 @@ export class SubEspecificacoesGastosComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    console.log("SUB");
     console.log(this.sub_especificacoes);
   }
 

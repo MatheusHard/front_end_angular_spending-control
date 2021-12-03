@@ -45,7 +45,7 @@ export class EspecificacaoGastoComponent implements OnInit {
     this.especificacoesGastosService.getAllEspecificacoesGastos(page).pipe(
     ).subscribe( response => {
        this.especificacoesGastos = response.content as EspecificacaoGasto[];
-       console.log(this.especificacoesGastos);
+      // console.log(this.especificacoesGastos);
 
        this.paginador = response;
       });
@@ -56,7 +56,7 @@ export class EspecificacaoGastoComponent implements OnInit {
   }
 
   delete(especificacaoGasto: EspecificacaoGasto){
-    console.log(this.especificacoesGastos);
+    //console.log(this.especificacoesGastos);
 
     Swal.fire({
      title: 'Tem Certeza?',

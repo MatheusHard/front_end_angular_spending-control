@@ -22,7 +22,7 @@
         <tr>
 
           <!--  <th>CODIGO</th>-->
-            <th>ESPECIFICACAO DO GASTO</th>
+            <th>DESCRIÇÃO</th>
             <th *ngIf="authService.hasHole('ROLE_ADMIN')">AÇÕES</th>
             <th>SUB</th>
            
@@ -61,7 +61,7 @@
                  <mat-accordion>
                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"  class="{{panelOpenState ?  'expanded_true':'expanded_false'}}">
                      <mat-expansion-panel-header>
-                       <mat-panel-title class="texto-centro">SubEspecificações</mat-panel-title>
+                       <!--<mat-panel-title class="texto-centro">SubEspecificações</mat-panel-title>-->
                          </mat-expansion-panel-header>
                         <!--Component SUBESPECIFICACAO-->
                         <app-sub-especificacoes-gastos [sub_especificacoes]="especificacao.sub_especificacoes_gastos"></app-sub-especificacoes-gastos>
