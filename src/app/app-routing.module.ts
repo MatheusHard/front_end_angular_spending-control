@@ -16,6 +16,8 @@ import { EspecificacoesGastosFormComponent } from './modulos/especificacoes-gast
 import { ChartsComponent } from './charts/charts.component';
 import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/sub-especificacoes-gastos.component';
 import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/form-subespecificacoes-gastos.component';
+import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-viajem.component';
+import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
 
 const routes: Routes = [
   
@@ -46,6 +48,12 @@ const routes: Routes = [
 
   {path:'sub_especificacao_gastos/form', component: FormSubespecificacoesGastosComponent },
   {path:'sub_especificacao_gastos/form/:id', component: FormSubespecificacoesGastosComponent  },
+
+
+  {path:'solicitar_viajem/list', component: SolicitarViajemComponent  },
+  {path:'solicitar_viajem/page/:page', component: SolicitarViajemComponent },
+  {path:'solicitar_viajem/form', component: FormSolicitarViajemComponent },
+  {path:'solicitar_viajem/form/:id', component: FormSolicitarViajemComponent  },
 
 
   {path:'relatorios/list', component: ChartsComponent },

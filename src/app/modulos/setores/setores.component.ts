@@ -15,7 +15,7 @@ import { AuthService } from '../usuarios/auth.service';
 export class SetoresComponent implements OnInit {
   
   authService: AuthService;
-  title: string = "Setores";
+  title: string = "Departamentos";
   
   constructor(private setorService: SetorService, private activateRoute: ActivatedRoute, authService: AuthService) {
     this.authService = authService;
@@ -51,7 +51,7 @@ export class SetoresComponent implements OnInit {
  
     swal.fire({
      title: 'Tem Certeza?',
-     text: `Realmente deseja excluir o Setor: ${setor.descricao_setor}?`,
+     text: `Realmente deseja excluir o Departamento: ${setor.descricao_setor}?`,
      icon: 'warning',
      showCancelButton: true,
      confirmButtonColor: '#3085d6',

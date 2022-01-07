@@ -59,6 +59,9 @@ import { ExcelGastosService } from './modulos/excel-services/excel-gastos.servic
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SubEspecificacoesService } from './modulos/sub-especificacoes-gastos/sub-especificacoes.service';
 import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/form-subespecificacoes-gastos.component';
+import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-viajem.component';
+import { SolicitarViajemService } from './modulos/solicitar-viajem/solicitar-viajem.service';
+import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
 
 
 
@@ -88,7 +91,9 @@ registerLocaleData(localeBR, 'br');
     GastosComponent,
     SubEspecificacoesGastosComponent,
     ChartsComponent,
-    FormSubespecificacoesGastosComponent
+    FormSubespecificacoesGastosComponent,
+    SolicitarViajemComponent,
+    FormSolicitarViajemComponent
     
     
      
@@ -118,7 +123,7 @@ registerLocaleData(localeBR, 'br');
     
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
-              GastoService, ExcelGastosService, SubEspecificacoesService,
+              GastoService, ExcelGastosService, SubEspecificacoesService, SolicitarViajemService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
