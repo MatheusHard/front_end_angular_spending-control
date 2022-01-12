@@ -49,7 +49,7 @@ getViagens(page: number): Observable<any> {
 /*********GET UMA VIAJEM*********/
 
 getViajem(id): Observable<Viajem>{
-  return this.http.get<Viajem>(`${this.URL_BASE}/${id}`).pipe(
+  return this.http.get<Viajem>(`${this.URL_BASE}${this.URL_VIAJEM}/${id}`).pipe(
     catchError( e => {
       if(e.status != 401 && e.error.mensagem){
         this.router.navigate(['/funcionarios/list']);
@@ -63,8 +63,8 @@ getViajem(id): Observable<Viajem>{
 
 /*********POST VIAJEM*********/
 
-create(viajem: Viajem) : Observable<any>{
-  return this.http.post<any>(this.URL_BASE, viajem).pipe(
+create(viajem: any) : Observable<any>{
+  return this.http.post<any>(`${this.URL_BASE}${this.URL_VIAJEM}`, viajem).pipe(
      catchError(e => {
       
       if(e.status == 400){
@@ -81,9 +81,10 @@ create(viajem: Viajem) : Observable<any>{
 /*********UPDATE VIAJEM*********/
 
 update(viajem: Viajem): Observable<any>{
+
   console.log("VIAJEM SERVICE");
   console.log(viajem);
-  return this.http.put<any>(`${this.URL_BASE}/${viajem.id}`, viajem).pipe(
+  return this.http.put<any>(`${this.URL_BASE}${this.URL_VIAJEM}/${viajem.id}`, viajem).pipe(
     catchError(e => {
       if(e.status == 400){
         return throwError(e);
@@ -96,7 +97,7 @@ update(viajem: Viajem): Observable<any>{
 /*********DELETE VIAJEM*********/
 
 delete(id: number): Observable<any>{
- return this.http.delete<any>(`${this.URL_BASE}/${id}`).pipe(
+ return this.http.delete<any>(`${this.URL_BASE}${this.URL_VIAJEM}/${id}`).pipe(
    catchError(e => {
     console.log(e)
    

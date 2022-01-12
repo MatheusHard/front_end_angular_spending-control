@@ -1,1 +1,82 @@
-<p>form-solicitar-viajem works!</p>
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
+<!--Alert quando não tem permissão-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.hasHole('ROLE_ADMIN')">
+    Seu perfil de acesso não tem permissão!!! 
+</div>
+
+<mat-card *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN')">
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+     </mat-card-header>
+      <mat-card-content>
+        <form class="form-top">
+            
+            <!--Data Inicial-->
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Data Inicial</label>
+                <div class="col-sm-6 width-datas">
+                    <input  [matDatepicker]="dataInicial" class="form-control" [(ngModel)]="viajem.dataInicial" name="dataInicial">
+                    <mat-datepicker-toggle [for]="dataInicial"></mat-datepicker-toggle>
+                    <mat-datepicker #dataInicial></mat-datepicker>          
+                </div>
+            </div>
+
+             <!--Saldo-->
+             <div class="form-group row margin-form">
+                <div class="col-sm-6"style="width: 243px;">
+                    <input type="number" name="someData" [value]="status_gerente" [(ngModel)]="viajem.status"/>
+                        
+                    <!--<input type="hidden" class="form-control" [(ngValue)]="status_gerente" [(ngModel)]="viajem.status" name="status"> 
+                    -->
+                    </div>
+            </div>
+
+            <!--Data Final-->
+            <div class="form-group row margin-form">
+                <label for="descricao_cidade" class="col-form-label col-sm-2">Data Final</label>
+                <div class="col-sm-6 width-datas">
+                <input [matDatepicker]="dataFinal" class="form-control" [(ngModel)]="viajem.dataFinal" name="dataFinal">
+                    <mat-datepicker-toggle [for]="dataFinal"></mat-datepicker-toggle>
+                    <mat-datepicker #dataFinal></mat-datepicker>
+                </div>
+            </div>
+
+           
+            <!--Cidade-->
+            <div class="form-group row margin-form">
+                <label for="cidade_uf" class="col-form-label col-sm-2">Cidade/UF</label>
+                    <div class="col-sm-6">
+                        <select [compareWith]="compararCidade" class="form-select form-select-sm" [(ngModel)]="viajem.cidade" name="cidade_uf" style="width: 220px;">
+                            <option [ngValue]="undefined">SELECIONE AQUI</option>
+                            <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{cidade.descricao_cidade+"/"+cidade.uf.sigla_uf | uppercase}}</option>
+                        </select>  
+                </div>
+            </div>
+      
+          <!--Funcionario-->
+          <div class="form-group row margin-form">
+            <label for="func" class="col-form-label col-sm-2">Funcionario</label>
+                <div class="col-sm-6">
+                    <select [compareWith]="compararFuncionario" class="form-select form-select-sm" [(ngModel)]="viajem.funcionario" name="func" style="width: 220px;">
+                        <option [ngValue]="undefined">SELECIONE AQUI</option>
+                        <option *ngFor="let f of funcionarios" [ngValue]="f">{{f.nome | uppercase}}</option>
+                    </select>  
+            </div>
+        </div>
+      
+             <div class="form-group row margin-form" *ngIf="!authService.hasHole('ROLE_ADMIN') || !authService.hasHole('ROLE_GERENTE')">
+                <div class="col-sm-6">
+                        <button class="espaco button-add"  mat-raised-button  (click)="create(0)" *ngIf="!viajem.id else elseBlock">Cadastrar <mat-icon>add</mat-icon></button>
+                    <ng-template #elseBlock>
+                        <button class="espaco button-edit"  mat-raised-button (click)="update(0)">Editar <mat-icon>edit</mat-icon></button> 
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+

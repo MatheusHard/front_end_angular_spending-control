@@ -4,6 +4,8 @@ import { AuthService } from '../usuarios/auth.service';
 import { Viajem } from '../viagens/viajem';
 import { SolicitarViajemService } from './solicitar-viajem.service';
 import { SolicitarViajem } from './solicitar_viajem';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-solicitar-viajem',
@@ -51,4 +53,45 @@ export class SolicitarViajemComponent implements OnInit {
     console.log(this.solicitacoes_viagens)
    });
   }
+
+  
+  delete(viajem: Viajem){
+ 
+    Swal.fire({
+     title: 'Tem Certeza?',
+     text: `Realmente deseja excluir a Viajem: 
+     ${viajem.funcionario.nome} =>
+     ${viajem.cidade.descricao_cidade}/
+     ${viajem.cidade.uf.sigla_uf} ?`,
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Sim, excluir!',
+     cancelButtonText: 'Cancelar!',
+   
+   }).then((result) => {
+     if (result.isConfirmed) {
+       this.solicitarViajemService.delete(viajem.id).subscribe(
+         response => {
+           this.solicitacoes_viagens = this.solicitacoes_viagens.filter(c => c !== viajem),
+         
+
+           Swal.fire(
+             'Deletado!',
+             `A Viajem de
+             ${viajem.funcionario.nome} =>
+             ${viajem.cidade.descricao_cidade}/
+             ${viajem.cidade.uf.sigla_uf} foi deletada `,
+             'success'
+           )
+   
+         }
+       );
+       
+     }
+   })
+
+   }
+   
 }

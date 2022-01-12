@@ -129,11 +129,9 @@ private getObjectViagem(v: Viajem, id_Funcionario: number): void {
       saldo: v.saldo,
       funcionario: {
         id: id_Funcionario
-        
       },
       cidade: {
         id: v.cidade.id
-       
         }
     }
 }
