@@ -57,8 +57,6 @@ const routes: Routes = [
 
 
   {path:'relatorios/list', component: ChartsComponent },
-
-  
   {path:'login', component: LoginComponent  },
 
   

@@ -62,6 +62,7 @@ import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificaco
 import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-viajem.component';
 import { SolicitarViajemService } from './modulos/solicitar-viajem/solicitar-viajem.service';
 import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
+import { PaginatorSolicitarViajemComponent } from './paginator/paginator-solicitar_viajem.component';
 
 
 
@@ -93,7 +94,8 @@ registerLocaleData(localeBR, 'br');
     ChartsComponent,
     FormSubespecificacoesGastosComponent,
     SolicitarViajemComponent,
-    FormSolicitarViajemComponent
+    FormSolicitarViajemComponent,
+    PaginatorSolicitarViajemComponent
     
     
      
