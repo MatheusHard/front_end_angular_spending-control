@@ -18,6 +18,8 @@ import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-g
 import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/form-subespecificacoes-gastos.component';
 import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-viajem.component';
 import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
+import { ProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.component';
+import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
 
 const routes: Routes = [
   
@@ -50,10 +52,15 @@ const routes: Routes = [
   {path:'sub_especificacao_gastos/form/:id', component: FormSubespecificacoesGastosComponent  },
 
 
-  {path:'solicitar_viajem/list', component: SolicitarViajemComponent  },
+  {path:'solicitar_viajem/list', component: SolicitarViajemComponent},
   {path:'solicitar_viajem/page/:page', component: SolicitarViajemComponent },
-  {path:'solicitar_viajem/form', component: FormSolicitarViajemComponent },
-  {path:'solicitar_viajem/form/:id', component: FormSolicitarViajemComponent  },
+  {path:'solicitar_viajem/form', component: FormSolicitarViajemComponent},
+  {path:'solicitar_viajem/form/:id', component: FormSolicitarViajemComponent},
+
+  {path:'provisoes_viajem_financeiro/list', component: ProvisoesViajemFinanceiroComponent},
+  {path:'provisoes_viajem_financeiro/page/:page', component: ProvisoesViajemFinanceiroComponent},
+  {path:'provisoes_viajem_financeiro/form', component: FormProvisoesViajemFinanceiroComponent},
+  {path:'provisoes_viajem_financeiro/form/:id', component: FormProvisoesViajemFinanceiroComponent},
 
 
   {path:'relatorios/list', component: ChartsComponent },

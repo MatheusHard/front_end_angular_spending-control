@@ -21,29 +21,24 @@
               <li><a class="dropdown-item" href="#" [routerLink]= "['/funcionarios/list']">Funcionarios</a></li>
               <li><a class="dropdown-item" href="#" [routerLink]= "['/especificacao_gastos/list']">Especificação</a></li>
               <li><a class="dropdown-item" href="#" [routerLink]= "['/relatorios/list']">Relatórios</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">SAIR</a></li>
+              <!--<li><hr class="dropdown-divider"></li>-->              
             </ul>
           </li>
-  <!--DROP SOLICITAÇÕES-->
-      
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Serviços
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li><a class="dropdown-item" href="#" [routerLink]= "['/solicitar_viajem/list']">Solicitar Viajem</a></li>
-      
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">SAIR</a></li>
-    </ul>
-  </li>
 
-         </ul>
+        <!--DROP SOLICITAÇÕES-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Serviços
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#" [routerLink]= "['/solicitar_viajem/list']">Gerencia</a></li>
+            <li><a class="dropdown-item" href="#" [routerLink]= "['/provisoes_viajem_financeiro/list']">Financeiro</a></li>
+            <li><a class="dropdown-item" href="#" [routerLink]= "['/solicitar_viajem/list']">Diretoria</a></li>
+          </ul>
+        </li>
+      </ul>
       
-
         <!--NAVBAR À DIREITA-->
-              
         <ul class="navbar navbar-right">
          <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Sign In <mat-icon class="align-middle">login</mat-icon></a></li>
           <div *ngIf="authService.isAuthenticated()" class="btn-group">

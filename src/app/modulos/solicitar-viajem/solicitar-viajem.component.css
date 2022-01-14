@@ -1,122 +1,53 @@
-.abrir-modal{
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0px;
-    left:0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-  }
-
-  .form-top{
-    padding-top: 30px;
-  }
-  mat-card-title{
-    text-align: center;
-    color: white;
-    font-weight: bold;
-  
-  }
-  mat-card {
-    max-width: 600px;
-    margin: 2em auto;
-    padding: 0;
-    justify-content: center;
-    text-align: center;
-
-
-  }
-  mat-card-content{
-    padding: 10px;
-    display: flexbox; 
-    justify-content: center;
-  }
-  mat-card-header{
-
-    padding: 5px;
-    background-color: rgb(12, 6, 36);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px ;
-    height: 40px;
-    width: 100%;
-    display: block;
-    justify-content: center;
-  }
-  .width-datas{
-    width: 250px;
-    display: flex;
-  }
-   
-  .animacion{
-    animation-duration: 2s;
-    animation-fill-mode: both;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-fill-mode: both;
-  }
-  
-  .fadeIn{
-    animation-name: fadeIn;
-    -webkit-animation-name: fadeIn;
-  }
-  
-  @keyframes fadeIn {0% {opacity:0}to{opacity: 1}}
-  @-webkit-keyframes fadeIn {0% {opacity:0}to{opacity: 1}}
-
-  section {
-    display: table;
-  }
-  
-  .example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;
-  }
-  
-  .example-button-row {
-    display: table-cell;
-    width: 490px;
-  }
  
- 
-  .example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
-  }
-  .espaco {
-    margin: 0 7px;
-  }
-  .centro-buttons{
-align-content: center;
-  }
 
-  .example-card {
-    max-width: 400px;
-  }
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  padding: 0;
+}
+mat-card-title{
+  text-align: center;
+  color: white;
+  font-weight: bold;
 
-  .style-titulo-card {
-    text-align: center;
-     font-weight: bold;
-      background-color: cadetblue;
-  } 
-  
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+mat-card-header{
+
+  padding: 5px;
+  background-color: #3f51b5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px ;
+  height: 40px;
+  width: 100%;
+  display: block;
+  justify-content: center;
+}
+
+ .example-card-cidades {
+  margin: 2em auto;
+  max-width: 800px;
+  padding: 0; 
+
+}
+ .example-card-cidades-form {
+  margin: 2em auto;
+  max-width: 600px;
+   align-content: center;
+ }
 
  
+ .example-form {
+   min-width: 150px;
+   max-width: 500px;
+   width: 100%;
+ }
  
-  
+ .example-full-width {
+   width: 100%;
+ }
+

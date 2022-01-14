@@ -55,7 +55,6 @@ import { SubEspecificacoesGastosComponent } from './modulos/sub-especificacoes-g
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ChartsComponent } from './charts/charts.component';
 import { ExcelGastosService } from './modulos/excel-services/excel-gastos.service';
-
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SubEspecificacoesService } from './modulos/sub-especificacoes-gastos/sub-especificacoes.service';
 import { FormSubespecificacoesGastosComponent } from './modulos/sub-especificacoes-gastos/form-subespecificacoes-gastos.component';
@@ -63,8 +62,10 @@ import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-v
 import { SolicitarViajemService } from './modulos/solicitar-viajem/solicitar-viajem.service';
 import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
 import { PaginatorSolicitarViajemComponent } from './paginator/paginator-solicitar_viajem.component';
-
-
+import { ProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.component';
+import { ProvisoesViajemFinanceiroService } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.service';
+import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
+import { PaginatorProvisoesViajemFinanceiroComponent } from './paginator/paginator-provisoes-viajem-financeiro.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -95,9 +96,11 @@ registerLocaleData(localeBR, 'br');
     FormSubespecificacoesGastosComponent,
     SolicitarViajemComponent,
     FormSolicitarViajemComponent,
-    PaginatorSolicitarViajemComponent
-    
-    
+    PaginatorSolicitarViajemComponent,
+    ProvisoesViajemFinanceiroComponent,
+    FormProvisoesViajemFinanceiroComponent,
+    PaginatorProvisoesViajemFinanceiroComponent
+      
      
   ],
   imports: [
@@ -126,6 +129,7 @@ registerLocaleData(localeBR, 'br');
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
               GastoService, ExcelGastosService, SubEspecificacoesService, SolicitarViajemService,
+              ProvisoesViajemFinanceiroService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

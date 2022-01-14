@@ -14,12 +14,9 @@ import { AuthService } from '../usuarios/auth.service';
 })
 
 
-
 export class CidadesComponent implements OnInit {
 
-
   authService: AuthService;
-
 
   constructor(private cidadeService: CidadeService, private activateRoute: ActivatedRoute, authService: AuthService)
                {
@@ -39,7 +36,6 @@ export class CidadesComponent implements OnInit {
       if(!page){
         page = 0;
       }
-    
     this.cidadeService.getCidades(page).pipe(
     ).subscribe( response => {
        this.cidades = response.content as Cidade[];

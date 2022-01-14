@@ -33,7 +33,6 @@ export class SolicitarViajemComponent implements OnInit {
   
 }
 
-
   getSolicitacoes(){
     
     this.activateRoute.paramMap.subscribe(params =>{

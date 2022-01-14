@@ -72,21 +72,22 @@ export class FormSolicitarViajemComponent implements OnInit {
   /***************CADASTRO***************/
   create(estado_solicitacao: number): void {
 
-            console.log("Create Sol");
-            console.log(this.viajem);
-            console.log("ANY");
-            console.log(this.viajemAny);
+            
+            
 
             this.viajemAny = this.getObjectViagem(this.viajem, estado_solicitacao);
 
               this.solicitarViajemService.create(this.viajemAny).subscribe(
          response =>   { 
 
+          console.log("ANY");
+          console.log(this.viajem);
+
             this.router.navigate(['/solicitar_viajem/list'])
-            swal.fire('Nova Solicitação de Viajem Criada', `Solicitação  
-                    ${response.viajem.funcionario.nome} =>
-                    ${response.viajem.cidade.descricao_cidade}/
-                    ${response.viajem.cidade.uf.sigla_uf} criado com sucesso!!!`, 'info')
+            swal.fire('Nova Solicitação de Viajem Criada', `Solicitação de  
+            ${this.viajem.funcionario.nome} =>
+            ${this.viajem.cidade.descricao_cidade}/
+            ${this.viajem.cidade.uf.sigla_uf} criada com sucesso!!!`,'info')
           }
 );
 }

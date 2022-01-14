@@ -4,11 +4,11 @@
     <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
 </div>
 <!--Alert quando não tem permissão-->
-<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.hasHole('ROLE_ADMIN')">
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.hasHole('ROLE_ADMIN') && !authService.hasHole('ROLE_GERENTE')">
     Seu perfil de acesso não tem permissão!!! 
 </div>
 
-<mat-card *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN')">
+<mat-card *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_GERENTE')">
     <mat-card-header>
       <mat-card-title>{{title}}</mat-card-title>
      </mat-card-header>
@@ -25,15 +25,14 @@
                 </div>
             </div>
 
-             <!--Saldo-->
+             <!--Saldo
              <div class="form-group row margin-form">
                 <div class="col-sm-6"style="width: 243px;">
-                    <input type="number" name="someData" [value]="status_gerente" [(ngModel)]="viajem.status"/>
+                    <input type="hidden" name="someData" [value]="status_gerente" [(ngModel)]="viajem.status"/>
                         
-                    <!--<input type="hidden" class="form-control" [(ngValue)]="status_gerente" [(ngModel)]="viajem.status" name="status"> 
-                    -->
-                    </div>
-            </div>
+                    <input type="hidden" class="form-control" [(ngValue)]="status_gerente" [(ngModel)]="viajem.status" name="status"> 
+                                        </div>
+            </div>-->
 
             <!--Data Final-->
             <div class="form-group row margin-form">
