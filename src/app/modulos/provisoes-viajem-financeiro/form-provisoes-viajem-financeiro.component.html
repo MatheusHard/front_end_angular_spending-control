@@ -1,1 +1,59 @@
-<p>form-provisoes-viajem-financeiro works!</p>
+
+<div class="abrir-modal animacion fadeIn" *ngIf="provisoesViajemFinanceiroService.modal">
+    
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header style-titulo-card-gasto">
+              <h5 class="modal-title text-center">Inserir Previsão de Viagens</h5>
+               </div>
+                 <div class="modal-body">
+
+                    <div class="container blocos_lado_a_lado">
+                        <!--CARD DADOS PESSOAIS-->
+                        <div class="card" style="width: 18rem;">
+                            <img src="../../../assets/images/perfil.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{viajem.funcionario.nome}}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Período: {{viajem.dataInicial | date: "dd/MM/yyyy"}} à {{viajem.dataFinal | date: "dd/MM/yyyy"}}</li>
+                              <li class="list-group-item">Destino: {{viajem.cidade.descricao_cidade}}/{{viajem.cidade.uf.sigla_uf}}</li>
+                              <li class="list-group-item">Setor: {{viajem.funcionario.setor.descricao_setor}}</li>
+                            </ul>
+                            <div class="card-body">
+                              <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a>
+                            </div>
+                          </div>
+                        
+                        <!--*****ADD PROVISÕES*****-->
+                        <div class="espaco_financeiro"> <form>
+
+                            <div class="form-group row margin-form">
+                                <label for="descricao_cidade" class="col-form-label col-sm-2">Setor</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" [(ngModel)]="viajem.especificacao" name="descricao_setor"> 
+                                </div>
+                            </div>
+                             
+                            <div class="form-group row margin-form">
+                                <div class="col-sm-6">
+                                        <button class="espaco button-edit" mat-raised-button (click)="update()">Editar <mat-icon>add</mat-icon></button> 
+                                    
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <!--FIM ADD-->
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button (click)="fecharModal()"  mat-stroked-button color="warn">Close</button>
+                  </div>
+                 </div>
+                </div>
+               </div> 
+             </div>
+
+      

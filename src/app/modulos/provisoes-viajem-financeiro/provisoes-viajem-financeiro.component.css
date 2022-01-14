@@ -8,6 +8,18 @@
     z-index: 1000;
   }
 
+  .blocos_lado_a_lado{
+
+    display: inline-flex;
+    margin: 5%;
+   
+  }
+
+  .espaco_financeiro {
+    margin: 0 15px;
+  }
+
+
   .form-top{
     padding-top: 30px;
   }
