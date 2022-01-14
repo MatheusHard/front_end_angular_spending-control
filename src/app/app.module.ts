@@ -64,8 +64,8 @@ import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-so
 import { PaginatorSolicitarViajemComponent } from './paginator/paginator-solicitar_viajem.component';
 import { ProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.component';
 import { ProvisoesViajemFinanceiroService } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.service';
-import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
 import { PaginatorProvisoesViajemFinanceiroComponent } from './paginator/paginator-provisoes-viajem-financeiro.component';
+import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
 
 registerLocaleData(localeBR, 'br');
 
