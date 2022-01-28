@@ -28,28 +28,73 @@
                           </div>
                         
                         <!--*****ADD PROVISÕES*****-->
-                        <div class="espaco_financeiro"> <form>
-
+                        <div class="espaco_financeiro"> 
+                          <form>
+                           
+                            <!--LISTA [(ngModel)]="viajem.id" -->
+                          
                             <div class="form-group row margin-form">
-                                <label for="descricao_cidade" class="col-form-label col-sm-2">Setor</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" [(ngModel)]="viajem.especificacao" name="descricao_setor"> 
-                                </div>
+                              <label for="descricao_espec" class="col-form-label col-sm-2">Despesa</label>
+                              <div class="col-sm-6">
+                              <select class="form-select form-select-sm" name="descricao_espec" style="width: 150px;" #desc>
+                                  <option [ngValue]="undefined">selecione a Despesa</option>
+                                  <option [ngValue]="e.descricao_especificacao_gasto" *ngFor="let e of especificacoes_spinner">{{e.descricao_especificacao_gasto}}</option>
+                              </select>     
+                              </div>
+                          </div>
+
+                          <!--Valor-->
+                          <div class="form-group row margin-form">
+                            <label for="valor_espec" class="col-form-label col-sm-2">Valor</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" #valor name="valor_espec"> 
                             </div>
+                        </div>
                              
                             <div class="form-group row margin-form">
                                 <div class="col-sm-6">
-                                        <button class="espaco button-edit" mat-raised-button (click)="update()">Editar <mat-icon>add</mat-icon></button> 
+                                        <button class="espaco button-edit" mat-raised-button (click)="add(desc, valor)">Add <mat-icon>add</mat-icon></button> 
                                     
                                 </div>
                             </div>
                         </form>
+                        <table *ngIf="especificacoes.length > 0" class="table table-bordered mt-3">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Especificacao</th>
+                              <th>Valor</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let espec of especificacoes; index as i">
+                              <td>{{espec.descricao_especificacao_gasto}}</td>
+                              <td>{{espec.valor_especificacao}}</td>
+                              
+                              <td>
+                                <abbr title="Excluir">
+                                  <button (click)="delete(especificacao)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                                    <mat-icon>delete</mat-icon>
+                                  </button>
+                                </abbr>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td colspan="1">R$ {{gastosTotais | number: '1.2-4'}}</td>
+                            </tr>
+                        </tfoot>
+                        </table>
                         </div>
+
+
                         <!--FIM ADD-->
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button (click)="fecharModal()"  mat-stroked-button color="warn">Close</button>
+                    <button (click)="fecharModal()" mat-stroked-button color="warn">Close</button>
                   </div>
                  </div>
                 </div>

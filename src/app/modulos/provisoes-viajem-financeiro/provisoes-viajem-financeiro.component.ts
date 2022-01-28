@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EspecificacaoGasto } from '../especificacoes-gastos/especificacao_gasto';
+import { EspecificacoesGastosService } from '../especificacoes-gastos/especificacoes-gastos.service';
 import { AuthService } from '../usuarios/auth.service';
 import { Viajem } from '../viagens/viajem';
 import { ProvisoesViajemFinanceiroService } from './provisoes-viajem-financeiro.service';
@@ -19,8 +21,10 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
   viajemSelecionada: Viajem;
   paginador: any;
 
+
   constructor(private provisoesViajemFinanceiroService: ProvisoesViajemFinanceiroService, 
-              private activateRoute: ActivatedRoute, authService: AuthService)
+              private activateRoute: ActivatedRoute, authService: AuthService,
+              private especificacoesGastosService: EspecificacoesGastosService)
   {
    this.authService = authService;
   }
@@ -45,7 +49,7 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
          this.paginador = response;
        
         });
-  
+       
       console.log(this.solicitacoes_viagens)
      });
     }
