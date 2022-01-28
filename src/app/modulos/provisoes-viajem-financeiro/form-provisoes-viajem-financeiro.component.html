@@ -36,7 +36,7 @@
                             <div class="form-group row margin-form">
                               <label for="descricao_espec" class="col-form-label col-sm-2">Despesa</label>
                               <div class="col-sm-6">
-                              <select class="form-select form-select-sm" name="descricao_espec" style="width: 150px;" #desc>
+                              <select class="form-select form-select-sm" name="descricao_espec" style="width: 150px;" #desc required>
                                   <option [ngValue]="undefined">selecione a Despesa</option>
                                   <option [ngValue]="e.descricao_especificacao_gasto" *ngFor="let e of especificacoes_spinner">{{e.descricao_especificacao_gasto}}</option>
                               </select>     
@@ -47,19 +47,19 @@
                           <div class="form-group row margin-form">
                             <label for="valor_espec" class="col-form-label col-sm-2">Valor</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" #valor name="valor_espec"> 
+                                <input type="text" class="form-control" #valor name="valor_espec" required> 
                             </div>
                         </div>
                              
                             <div class="form-group row margin-form">
                                 <div class="col-sm-6">
-                                        <button class="espaco button-edit" mat-raised-button (click)="add(desc, valor)">Add <mat-icon>add</mat-icon></button> 
+                                        <button class="espaco button-edit" mat-raised-button (click)="addEspecificacaoFinanceiro(desc, valor)">Add <mat-icon>add</mat-icon></button> 
                                     
                                 </div>
                             </div>
                         </form>
                         <table *ngIf="especificacoes.length > 0" class="table table-bordered mt-3">
-                          <thead class="thead-light">
+                          <thead class="thead-black">
                             <tr>
                               <th>Especificacao</th>
                               <th>Valor</th>
@@ -69,11 +69,11 @@
                           <tbody>
                             <tr *ngFor="let espec of especificacoes; index as i">
                               <td>{{espec.descricao_especificacao_gasto}}</td>
-                              <td>{{espec.valor_especificacao}}</td>
+                              <td>R$ {{espec.valor_especificacao | number: '1.2-4'}}</td>
                               
                               <td>
                                 <abbr title="Excluir">
-                                  <button (click)="delete(especificacao)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                                  <button (click)="removeEspecificacaoFinanceiro(i)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
                                     <mat-icon>delete</mat-icon>
                                   </button>
                                 </abbr>
