@@ -41,8 +41,9 @@ import { EspecificacaoGasto } from "./especificacao_gasto";
  /*********GET ALL EspecificacoesGastos*********/
 
 getEspecificacoesGastos(): Observable<any> {
-
-  return this.http.get<any>(`${this.URL_BASE}`);
+var f = this.http.get<any>(`${this.URL_BASE}`);
+console.log(f)
+  return f;
 
 }
 

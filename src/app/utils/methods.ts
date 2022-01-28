@@ -19,6 +19,16 @@ static changeDateFormat(data: string){
 
 
 
+static getEspecificacoes(){
+
+    return [
+        {id: 1, descricao_especificacao_gasto: "TRANSPORTE"},
+        {id: 2, descricao_especificacao_gasto: "HOSPEDAGEM"},
+        {id: 3, descricao_especificacao_gasto: "ALIMENTAÇÃO"}
+   
+    
+    ];
+}
 static getHttpHeaders(){
     
     let httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

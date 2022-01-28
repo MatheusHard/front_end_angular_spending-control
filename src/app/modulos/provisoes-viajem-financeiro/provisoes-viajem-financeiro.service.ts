@@ -16,6 +16,8 @@ export class ProvisoesViajemFinanceiroService {
 
   private URL_PAGE: string = '/page/'
 
+  modal: boolean = false;
+
   constructor(private http: HttpClient, private router: Router) { }
 /*********GET ALL VIAGENS*********/
 
@@ -48,6 +50,15 @@ getViajem(id): Observable<Viajem>{
       
     })
   );
+}
+
+abrirModal() {
+  console.log("ABRIR MODAL")
+  this.modal = true;
+}
+
+cerrarModal() {
+  this.modal = false;
 }
 
 }
