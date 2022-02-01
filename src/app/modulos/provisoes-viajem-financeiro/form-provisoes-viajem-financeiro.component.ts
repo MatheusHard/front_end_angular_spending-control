@@ -91,7 +91,6 @@ this.especificacoes.push({
 this.gastosTotais = 0;
 this.gastosTotais = this.especificacoes.reduce((sum, item) => parseInt(sum) + parseInt(item.valor_especificacao), 0);
 
-
    
 }
 
@@ -109,14 +108,11 @@ update(): void {
 
   this.activateRoute.params.subscribe( params => {
 
-      
-
-
   this.provisoesViajemFinanceiroService.update(this.viajemAny).subscribe(
     response => {
                  console.log(response);
                  //this.router.navigate(['/provisoes_viajem_financeiro/list', id_funcionario])
-                
+              
                  Swal.fire('Atualizar Viajem', 
                            `PRevisão de Viajem à
                           ${response.viajem.cidade.descricao_cidade}
@@ -142,7 +138,8 @@ console.log(this.viajem.status);
 
 if(this.viajem.status.toString() === 'ANALISE_FINANCEIRA'){
   this.status_change = 1;
-}if(this.viajem.status.toString() ==='APROVADA_DIRETORIA'){
+}
+if(this.viajem.status.toString() === 'APROVADA_DIRETORIA'){
   this.status_change = 4;
 }
 
@@ -165,6 +162,14 @@ console.log(this.status_change);
           },
         especificacoes_gastos: this.especificacoes
     }
+}
+
+buttonVisible(status): boolean{
+  
+ 
+  if(status.toString() !== 'ANALISE_FINANCEIRA'){
+    return true;
+  }
 }
 
 }

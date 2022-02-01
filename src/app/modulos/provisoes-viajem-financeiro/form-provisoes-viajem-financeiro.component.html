@@ -112,11 +112,12 @@
                     
                     </div>
 
-                    <!--UPDATE TO DIRETORIA{ isLoggedIn ? { display:'block'} : {display : 'none'} }   -->
+                    <!--viajem.status === 'ANALISE_FINANCEIRA-->
+                    <!--UPDATE TO DIRETORIA [ngStyle]="{'color': (getValueTotal() < 0)  ? '#75fa78' : '#f7866f'}"-->
                       <div class="form-group row margin-form text-center">
                         <div class="col-sm-6">
 
-                                <button [disabled]="flagDiretoria" class="espaco button-edit" mat-raised-button (click)="update()">Encaminhar <mat-icon>trending_up</mat-icon></button> 
+                                <button [disabled]="buttonVisible(viajem.status)" class="espaco button-edit" mat-raised-button (click)="update()">Encaminhar <mat-icon>trending_up</mat-icon></button> 
                         </div>
                     </div>
                       <!--FIM UPDATE TO DIRETORIA-->
