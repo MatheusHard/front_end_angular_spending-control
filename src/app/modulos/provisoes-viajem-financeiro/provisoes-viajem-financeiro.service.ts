@@ -52,6 +52,21 @@ getViajem(id): Observable<Viajem>{
   );
 }
 
+/*********UPDATE VIAJEM*********/
+
+update(viajem: Viajem): Observable<any>{
+  console.log("VIAJEM SERVICE");
+  console.log(viajem);
+  return this.http.put<any>(`${this.URL_BASE}${this.URL_VIAJEM}/${viajem.id}`, viajem).pipe(
+    catchError(e => {
+      if(e.status == 400){
+        return throwError(e);
+      }
+     return throwError(e);
+   })
+ );
+}
+
 abrirModal() {
   console.log("ABRIR MODAL")
   this.modal = true;

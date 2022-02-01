@@ -28,11 +28,10 @@
                           </div>
                         
                         <!--*****ADD PROVISÕES*****-->
-                        <div class="espaco_financeiro"> 
+                        <div class="espaco_financeiro" *ngIf="viajem.status === 'ANALISE_FINANCEIRA'"> 
                           <form>
                            
-                            <!--LISTA [(ngModel)]="viajem.id" -->
-                          
+                         
                             <div class="form-group row margin-form">
                               <label for="descricao_espec" class="col-form-label col-sm-2">Despesa</label>
                               <div class="col-sm-6">
@@ -88,10 +87,39 @@
                         </tfoot>
                         </table>
                         </div>
+                     
 
+                    <!--FIM ADD PROVISÕES-->
+                    
+                    <!--LIST PROVISÕES JA ADDS FINANCEIRO-->
 
-                        <!--FIM ADD-->
+                    <mat-card class="example-card" *ngIf="viajem.status === 'ANALISE_DIRETORIA'">
+                      <mat-card-header>
+                        <mat-card-title>Previsõs de Viajem</mat-card-title>
+                       </mat-card-header>
+                     <mat-card-content>
+                        <mat-list>
+                          <mat-list-item *ngFor="let espec of viajem.especificacoes_gastos">
+                            <mat-divider></mat-divider>
+                            <p matLine>Tipo: {{espec.descricao_especificacao_gasto}} </p>
+                            <p matLine>Valor: R$ {{espec.valor_especificacao | number: '1.2-4'}}</p>
+                            </mat-list-item>
+                        </mat-list>
+                      </mat-card-content>
+                     </mat-card>
+
+                   
+                    
                     </div>
+
+                    <!--UPDATE TO DIRETORIA{ isLoggedIn ? { display:'block'} : {display : 'none'} }   -->
+                      <div class="form-group row margin-form text-center">
+                        <div class="col-sm-6">
+
+                                <button [disabled]="flagDiretoria" class="espaco button-edit" mat-raised-button (click)="update()">Encaminhar <mat-icon>trending_up</mat-icon></button> 
+                        </div>
+                    </div>
+                      <!--FIM UPDATE TO DIRETORIA-->
                   </div>
                   <div class="modal-footer">
                     <button (click)="fecharModal()" mat-stroked-button color="warn">Close</button>
