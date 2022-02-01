@@ -5,6 +5,7 @@ import { Gasto } from "../gastos/gasto";
 export class Viajem {
 
     id: number;
+    status: number;
     dataInicial: string;
     saldo: number;
     dataFinal: string;

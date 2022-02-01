@@ -66,6 +66,7 @@ import { ProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-f
 import { ProvisoesViajemFinanceiroService } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.service';
 import { PaginatorProvisoesViajemFinanceiroComponent } from './paginator/paginator-provisoes-viajem-financeiro.component';
 import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
+import {MatListModule} from '@angular/material/list';
 
 registerLocaleData(localeBR, 'br');
 
@@ -123,7 +124,8 @@ registerLocaleData(localeBR, 'br');
     MatSelectModule,
     MatDialogModule,
     GoogleChartsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatListModule
        
     
   ],

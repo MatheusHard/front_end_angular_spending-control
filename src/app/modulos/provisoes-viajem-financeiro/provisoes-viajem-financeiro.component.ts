@@ -23,8 +23,7 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
 
 
   constructor(private provisoesViajemFinanceiroService: ProvisoesViajemFinanceiroService, 
-              private activateRoute: ActivatedRoute, authService: AuthService,
-              private especificacoesGastosService: EspecificacoesGastosService)
+              private activateRoute: ActivatedRoute, authService: AuthService)
   {
    this.authService = authService;
   }
@@ -50,7 +49,7 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
        
         });
        
-      console.log(this.solicitacoes_viagens)
+      //console.log(this.solicitacoes_viagens)
      });
     }
 
