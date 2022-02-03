@@ -20,6 +20,8 @@ import { SolicitarViajemComponent } from './modulos/solicitar-viajem/solicitar-v
 import { FormSolicitarViajemComponent } from './modulos/solicitar-viajem/form-solicitar-viajem.component';
 import { ProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/provisoes-viajem-financeiro.component';
 import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
+import { DiretoriaComponent } from './modulos/diretoria/diretoria.component';
+import { FormDiretoriaComponent } from './modulos/diretoria/form-diretoria.component';
 
 const routes: Routes = [
   
@@ -61,7 +63,10 @@ const routes: Routes = [
   {path:'provisoes_viajem_financeiro/page/:page', component: ProvisoesViajemFinanceiroComponent},
   {path:'provisoes_viajem_financeiro/form', component: FormProvisoesViajemFinanceiroComponent},
   {path:'provisoes_viajem_financeiro/form/:id', component: FormProvisoesViajemFinanceiroComponent},
-
+  
+  {path:'diretoria/list', component: DiretoriaComponent},
+  {path:'diretoria/form', component: FormDiretoriaComponent},
+  
 
   {path:'relatorios/list', component: ChartsComponent },
   {path:'login', component: LoginComponent  },

@@ -67,6 +67,9 @@ import { ProvisoesViajemFinanceiroService } from './modulos/provisoes-viajem-fin
 import { PaginatorProvisoesViajemFinanceiroComponent } from './paginator/paginator-provisoes-viajem-financeiro.component';
 import { FormProvisoesViajemFinanceiroComponent } from './modulos/provisoes-viajem-financeiro/form-provisoes-viajem-financeiro.component';
 import {MatListModule} from '@angular/material/list';
+import { DiretoriaComponent } from './modulos/diretoria/diretoria.component';
+import { FormDiretoriaComponent } from './modulos/diretoria/form-diretoria.component';
+import { DiretoriaService } from './modulos/diretoria/diretoria.service';
 
 registerLocaleData(localeBR, 'br');
 
@@ -100,7 +103,9 @@ registerLocaleData(localeBR, 'br');
     PaginatorSolicitarViajemComponent,
     ProvisoesViajemFinanceiroComponent,
     FormProvisoesViajemFinanceiroComponent,
-    PaginatorProvisoesViajemFinanceiroComponent
+    PaginatorProvisoesViajemFinanceiroComponent,
+    DiretoriaComponent,
+    FormDiretoriaComponent
       
      
   ],
@@ -131,7 +136,7 @@ registerLocaleData(localeBR, 'br');
   ],
   providers: [CidadeService, FuncionarioService, SetorService, AuthService, EspecificacoesGastosService,
               GastoService, ExcelGastosService, SubEspecificacoesService, SolicitarViajemService,
-              ProvisoesViajemFinanceiroService,
+              ProvisoesViajemFinanceiroService, DiretoriaService,
               {provide: LOCALE_ID, useValue: 'br' },
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
