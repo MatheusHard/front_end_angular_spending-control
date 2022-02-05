@@ -1,1 +1,59 @@
-<p>form-diretoria works!</p>
+
+<div class="abrir-modal animacion fadeIn" *ngIf="diretoriaService.modal">
+    
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header style-titulo-card-gasto">
+              <h5 class="modal-title text-center">{{title}}</h5>
+               </div>
+                 <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header text-center">
+                          <h3>Viajem</h3>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{viajem.funcionario.nome}}</h5>
+                          <p class="card-text">Inicio: {{viajem.dataInicial | date: "dd/MM/yyyy"}}</p>
+                          <p class="card-text">Fim: {{viajem.dataFinal | date: "dd/MM/yyyy"}}</p>
+                          <p class="card-text">Destino: {{viajem.cidade.descricao_cidade | uppercase}}/{{viajem.cidade.uf.sigla_uf}}</p>
+                          
+                          <!--PREVISÕS DO FINACEIRO-->
+                          <table *ngIf="viajem.especificacoes_gastos.length > 0" class="table table-bordered mt-3">
+                            <thead class="thead-black">
+                              <tr>
+                                <th>Especificacao</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let espec of viajem.especificacoes_gastos; index as i">
+                                <td>{{espec.descricao_especificacao_gasto}}</td>
+                                <td>R$ {{espec.valor_especificacao | number: '1.2-4'}}</td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                  <th scope="row">Total</th>
+                                  <td colspan="1">R$ {{gastosTotais | number: '1.2-4'}}</td>
+                              </tr>
+                          </tfoot>
+                          </table>                          <!--FIM PREVISÕS DO FINACEIRO-->
+                          <div class="form-group row margin-form text-center">
+                            <div class="col-sm-6">
+                               <button [disabled]="buttonVisible(viajem.status)" class="espaco button-edit" mat-raised-button (click)="update(2)">Aprovada <mat-icon>done</mat-icon></button> 
+                               <button [disabled]="buttonVisible(viajem.status)" class="espaco button-remove" mat-raised-button (click)="update(3)">Reprovada <mat-icon>highlight_off</mat-icon></button> 
+                           </div>
+                        </div>  
+                    </div>
+                        <div class="card-footer text-muted">
+                          2 days ago
+                        </div>
+                      </div>
+                    </div>
+                   </div>
+                 </div>
+               </div> 
+             </div>
+             
+      

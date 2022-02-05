@@ -1,4 +1,5 @@
 import { Cidade } from "../cidades/cidade";
+import { EspecificacaoGasto } from "../especificacoes-gastos/especificacao_gasto";
 import { Funcionario } from "../funcionarios/funcionario";
 import { Gasto } from "../gastos/gasto";
 
@@ -14,6 +15,7 @@ export class Viajem {
     cidade: Cidade;
     createAt: string;
     gastos: Gasto[];
+    especificacoes_gastos: EspecificacaoGasto[];
 
 }
 

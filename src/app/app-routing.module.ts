@@ -65,6 +65,7 @@ const routes: Routes = [
   {path:'provisoes_viajem_financeiro/form/:id', component: FormProvisoesViajemFinanceiroComponent},
   
   {path:'diretoria/list', component: DiretoriaComponent},
+  {path:'diretoria/page/:page', component: DiretoriaComponent},
   {path:'diretoria/form', component: FormDiretoriaComponent},
   
 

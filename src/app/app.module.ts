@@ -70,6 +70,7 @@ import {MatListModule} from '@angular/material/list';
 import { DiretoriaComponent } from './modulos/diretoria/diretoria.component';
 import { FormDiretoriaComponent } from './modulos/diretoria/form-diretoria.component';
 import { DiretoriaService } from './modulos/diretoria/diretoria.service';
+import { PaginatorDiretoriaComponent } from './paginator/paginator-diretoria.component';
 
 registerLocaleData(localeBR, 'br');
 
@@ -105,7 +106,8 @@ registerLocaleData(localeBR, 'br');
     FormProvisoesViajemFinanceiroComponent,
     PaginatorProvisoesViajemFinanceiroComponent,
     DiretoriaComponent,
-    FormDiretoriaComponent
+    FormDiretoriaComponent,
+    PaginatorDiretoriaComponent
       
      
   ],
