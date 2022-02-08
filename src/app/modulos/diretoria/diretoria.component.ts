@@ -16,6 +16,7 @@ export class DiretoriaComponent implements OnInit {
   authService: AuthService;
   solicitacoes_viagens: Viajem[];
   viajemSelecionada: Viajem;
+  gastosTotaisSelecionado: number = 0;
 
   constructor(private diretoriaService: DiretoriaService, private activateRoute: ActivatedRoute, authService: AuthService)
   {
@@ -39,6 +40,12 @@ export class DiretoriaComponent implements OnInit {
 
     abrirModal(viajem: Viajem) {
       this.viajemSelecionada = viajem;
+
+      this.gastosTotaisSelecionado = viajem.especificacoes_gastos.reduce((sum, item) => sum + item.valor_especificacao, 0);
+
+
+      console.log(this.gastosTotaisSelecionado);
+      
       console.log("PROVISAO NO COMPONENT");
       console.log(viajem);
       this.diretoriaService.abrirModal();

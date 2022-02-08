@@ -15,12 +15,12 @@ export class FormDiretoriaComponent implements OnInit {
   especificacoes: any = []; //data
 
   @Input() viajem: Viajem;
+  @Input() gastos_totais: number;
   
   viajemAny: any;
   status_change: number = -1;
   flagDiretoria: boolean = false;
   title: string = "Analise da Diretoria";
-  gastosTotais: number = 0;
 
 
   especificacoes_spinner: any = Utils.getEspecificacoes();
@@ -33,9 +33,7 @@ export class FormDiretoriaComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.gastosTotais = this.especificacoes.reduce((sum, item) => parseInt(sum) + parseInt(item.valor_especificacao), 0);
-
-     
+         
   }
 
   fecharModal(){
@@ -54,10 +52,7 @@ compararEspec(uf_1, uf_2): boolean{
 
 update(validadaoDiretoria: number): void {
 
-  console.log("VIAJEM");
-  console.log(this.viajem);
-
-  
+    
   this.getObjectViagem(validadaoDiretoria);
 
   this.activateRoute.params.subscribe( params => {
@@ -81,7 +76,8 @@ update(validadaoDiretoria: number): void {
 private getObjectViagem(validadaoDiretoria: number): void {
 
 
-
+  
+  console.log(this.viajem.especificacoes_gastos);
 
     this.viajemAny = 
      {

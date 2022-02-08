@@ -5,4 +5,5 @@ export class EspecificacaoGasto {
     descricao_especificacao_gasto: string;
     sub_especificacoes_gastos: SubEspecificacaoGasto[];
     createAt: string;
+    valor_especificacao: number;
 }

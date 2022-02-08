@@ -19,8 +19,8 @@
                           <p class="card-text">Destino: {{viajem.cidade.descricao_cidade | uppercase}}/{{viajem.cidade.uf.sigla_uf}}</p>
                           
                           <!--PREVISÕS DO FINACEIRO-->
-                          <table *ngIf="viajem.especificacoes_gastos.length > 0" class="table table-bordered mt-3">
-                            <thead class="thead-black">
+                          <table *ngIf="viajem.especificacoes_gastos.length > 0" class="table table-bordered mt-3" style="padding: 20px;">
+                            <thead class="thead-black" style="color: white; background-color: blue;">
                               <tr>
                                 <th>Especificacao</th>
                                 <th>Valor</th>
@@ -33,21 +33,21 @@
                               </tr>
                             </tbody>
                             <tfoot>
-                              <tr>
+                              <tr style="color: white; background-color: blue;">
                                   <th scope="row">Total</th>
-                                  <td colspan="1">R$ {{gastosTotais | number: '1.2-4'}}</td>
+                                  <td colspan="1">R$ {{gastos_totais | number: '1.2-4'}}</td>
                               </tr>
                           </tfoot>
                           </table>                          <!--FIM PREVISÕS DO FINACEIRO-->
                           <div class="form-group row margin-form text-center">
                             <div class="col-sm-6">
-                               <button [disabled]="buttonVisible(viajem.status)" class="espaco button-edit" mat-raised-button (click)="update(2)">Aprovada <mat-icon>done</mat-icon></button> 
+                               <button [disabled]="buttonVisible(viajem.status)" class="espaco button-add" mat-raised-button (click)="update(2)">Aprovada <mat-icon>done</mat-icon></button> 
                                <button [disabled]="buttonVisible(viajem.status)" class="espaco button-remove" mat-raised-button (click)="update(3)">Reprovada <mat-icon>highlight_off</mat-icon></button> 
                            </div>
                         </div>  
                     </div>
-                        <div class="card-footer text-muted">
-                          2 days ago
+                        <div class="card-footer">
+                          <button (click)="fecharModal()" mat-stroked-button color="warn">Sair <mat-icon>exit_to_app</mat-icon></button>
                         </div>
                       </div>
                     </div>
