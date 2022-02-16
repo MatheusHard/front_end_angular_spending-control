@@ -50,6 +50,7 @@ compararEspec(uf_1, uf_2): boolean{
   return uf_1 === null || uf_2 === null || uf_1 === undefined || uf_2 === undefined ? false: uf_1.id === uf_2.id;
 }
 
+/*****UPDATE VIAJEM*****/
 update(validadaoDiretoria: number): void {
 
     
@@ -103,6 +104,30 @@ buttonVisible(status): boolean{
     return true;
   }
 }
+
+/*****NEGAR VIAJEM*****/
+
+deniedViajem(status){
+ 
+  Swal.fire({
+   title: 'Tem Certeza?',
+   text: `Realmente deseja reprovar a Viajem de: ${this.viajem.funcionario.nome} à
+   ${this.viajem.cidade.descricao_cidade}/${this.viajem.cidade.uf.descricao_uf}?`,
+   icon: 'warning',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: 'Sim, negar!',
+   cancelButtonText: 'Cancelar!',
+ 
+ }).then((result) => {
+   if (result.isConfirmed) {
+     
+     this.update(status);
+     
+   }
+ })
+ }
 
 }
 
