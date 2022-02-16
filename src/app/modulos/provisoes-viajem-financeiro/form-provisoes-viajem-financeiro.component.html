@@ -42,7 +42,6 @@
                               </div>
                           </div>
 
-                          <!--Valor-->
                           <div class="form-group row margin-form">
                             <label for="valor_espec" class="col-form-label col-sm-2">Valor</label>
                             <div class="col-sm-6">
@@ -93,7 +92,7 @@
                     
                     <!--LIST PROVISÕES JA ADDS FINANCEIRO-->
 
-                    <mat-card class="example-card" *ngIf="viajem.status === 'ANALISE_DIRETORIA'">
+                    <mat-card class="example-card" *ngIf="viajem.status !== 'ANALISE_FINANCEIRA'">
                       <mat-card-header>
                         <mat-card-title>Previsõs de Viajem</mat-card-title>
                        </mat-card-header>

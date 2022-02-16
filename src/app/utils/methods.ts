@@ -36,18 +36,16 @@ static getHttpHeaders(){
 
 }
 
-static getBaseUrl(){
+static getUrlBase(){
+    return 'http://localhost:8080/api';
+}
 
-    let URL_BASE = 'http://localhost:8080/api';
-    return URL_BASE;
-
+static getUrlViagens(){
+    return '/viagens';
 }
 
 static getUrlPage(){
-
-    let URL_PAGE: string = '/page/';
-    return URL_PAGE;
-
+    return '/page/';
 }
 
     

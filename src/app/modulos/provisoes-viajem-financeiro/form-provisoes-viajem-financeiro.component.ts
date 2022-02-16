@@ -71,10 +71,7 @@ compararEspec(uf_1, uf_2): boolean{
 
 addEspecificacaoFinanceiro(descricao_espec, valor): void{
 
-  console.log("ESPECS")
-  console.log(valor.value);
-  console.log(descricao_espec.value);
-
+ 
   if(descricao_espec.value !== '' && descricao_espec.value !== null){
     console.log("OK");
   }
@@ -132,9 +129,9 @@ update(): void {
 
 private getObjectViagem(): void {
 
-  console.log("STATUSSSS");
+  console.log("STATUSSSS VIAJEM");
   
-console.log(this.viajem.status);
+console.log(this.viajem);
 
 if(this.viajem.status.toString() === 'ANALISE_FINANCEIRA'){
   this.status_change = 1;

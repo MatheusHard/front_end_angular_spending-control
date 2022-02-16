@@ -92,5 +92,13 @@ export class SolicitarViajemComponent implements OnInit {
    })
 
    }
+
+   buttonVisible(status): boolean{
+  
+ 
+    if(status.toString() !== 'ANALISE_FINANCEIRA'){
+      return true;
+    }
+  }
    
 }

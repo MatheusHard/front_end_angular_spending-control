@@ -10,7 +10,7 @@
 </div>
 
 <!--Card com as Informações-->
-<div class="card border-primary mb-3 example-card-cidades" *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_GERENTE')">
+<div class="card border-primary mb-3 example-card-solicitar" *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_GERENTE')">
     <div class="style-titulo-card card-header">{{title}}</div>
     <div class="card-body text-primary">
 <div class="ny-2 text-left">
@@ -45,14 +45,16 @@
             <td>{{s.createAt | date: "dd/MM/yyyy"}}</td>
             <td style="align-content: center; text-align: center;" *ngIf="authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_GERENTE')"> 
                
+                <!--) && s.status === 'ANALISE_FINANCEIRA'-->
+                
                 <div *ngIf="authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_GERENTE')" class="centro-buttons texto-centro example-button-container">
                     <abbr title="Editar">
-                        <button  [routerLink]="['/solicitar_viajem/form', s.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
+                        <button  [disabled]="buttonVisible(s.status)" [routerLink]="['/solicitar_viajem/form', s.id]" class="espaco" mat-mini-fab color="primary" aria-label="Botão Editar" name="editar">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </abbr>
                     <abbr title="Excluir">
-                        <button (click)="delete(s)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                        <button [disabled]="buttonVisible(s.status)" (click)="delete(s)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </abbr>

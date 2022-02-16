@@ -1,0 +1,60 @@
+<app-form-diretoria *ngIf="viajemSelecionada" [viajem]="viajemSelecionada" [gastos_totais]="gastosTotaisSelecionado"></app-form-diretoria>
+
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
+    Obrigatória Autenticação!!! 
+    <button  [routerLink]="['/login']" mat-stroked-button><mat-icon>login</mat-icon></button>
+</div>
+
+<!--Alert quando não esta logado-->
+<div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.hasHole('ROLE_ADMIN') && !authService.hasHole('ROLE_DIRETORIA')">
+    Acesso Restrito!!! 
+</div>
+
+<!--Card com as Informações-->
+<div class="card border-primary mb-3 example-card-cidades" *ngIf="authService.isAuthenticated() && authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_DIRETORIA')">
+    <div class="style-titulo-card card-header">{{title}}</div>
+    <div class="card-body text-primary">
+<p></p>
+<table class="table table-bordered table-striped texto-centro">
+    <thead>
+        <tr>
+            <th>STATUS</th>
+            <th>DESTINO</th>
+            <th>FUNCIONARIO</th>
+            <th>DATA INICIAL</th>
+            <th>DATA FINAL</th>
+            <th>CRIADA</th>
+            <th *ngIf="authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_DIRETORIA')">AÇÕES</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of solicitacoes_viagens">
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.status}}</td>
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.cidade.descricao_cidade | uppercase}}/{{s.cidade.uf.sigla_uf | uppercase}}</td>
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.funcionario.nome}}</td>
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.dataInicial | date: "dd/MM/yyyy"}}</td>
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.dataFinal | date: "dd/MM/yyyy"}}</td>
+            <td *ngIf="s.status === 'ANALISE_DIRETORIA'">{{s.createAt | date: "dd/MM/yyyy"}}</td>
+            <td style="align-content: center; text-align: center;" *ngIf="(authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_DIRETORIA')) && s.status === 'ANALISE_DIRETORIA'"> 
+               
+                <div *ngIf="authService.hasHole('ROLE_ADMIN') || authService.hasHole('ROLE_DIRETORIA')" class="centro-buttons texto-centro example-button-container">
+                    <abbr title="Previsão de Viajem">
+                        <button  (click)="abrirModal(s)" class="espaco" mat-mini-fab color="primary" aria-label="Botão Previsões" name="previsao">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                    </abbr>
+                   
+                </div>
+                <!--<button class="espaco"  mat-raised-button color="primary" [routerLink]="['/cidades/form', cidade.id]" >Editar</button>
+                <button (click)="delete(cidade)" mat-raised-button color="primary">Excluir</button>-->
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+<!--<paginator-diretoria class="margin-paginator" *ngIf="paginador" [paginador]="paginador"></paginator-diretoria>
+-->    
+</div>
+  </div>
