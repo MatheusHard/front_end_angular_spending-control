@@ -41,7 +41,7 @@
                           </table>
                           
                           <!--FIM PREVISÕS DO FINACEIRO-->
-                          <div class="form-group row margin-form text-center">
+                          <div *ngIf="viajem.especificacoes_gastos.length > 0 " class="form-group row margin-form text-center">
                             <div class="col-sm-6">
                                <button [disabled]="buttonVisible(viajem.status)" class="espaco button-add" mat-raised-button (click)="update(2)">Aprovada <mat-icon>done</mat-icon></button> 
                                <button [disabled]="buttonVisible(viajem.status)" class="espaco button-remove" mat-raised-button (click)="deniedViajem(3)">Reprovada <mat-icon>highlight_off</mat-icon></button> 
