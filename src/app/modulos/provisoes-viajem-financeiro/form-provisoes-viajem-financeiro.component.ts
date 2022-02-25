@@ -22,6 +22,9 @@ export class FormProvisoesViajemFinanceiroComponent implements OnInit {
   especificacao: EspecificacaoGasto = new EspecificacaoGasto();
   gastosTotais: number = 0;
   viajemAny: any;
+  @Input() title_status_dire: string;
+  @Input() src_img_diretoria: string;
+
   status_change: number = -1;
   flagDiretoria: boolean = false;
 
@@ -50,6 +53,9 @@ export class FormProvisoesViajemFinanceiroComponent implements OnInit {
 
   fecharModal(){
     this.provisoesViajemFinanceiroService.cerrarModal();
+    
+    console.log(this.src_img_diretoria);
+        console.log(this.title_status_dire);
   }
 
 
@@ -168,5 +174,11 @@ buttonVisible(status): boolean{
     return true;
   }
 }
+
+
+ 
+  
+
+
 
 }

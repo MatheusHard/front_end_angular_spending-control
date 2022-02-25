@@ -84,14 +84,11 @@
                                 <td colspan="1">R$ {{gastosTotais | number: '1.2-4'}}</td>
                             </tr>
                         </tfoot>
-                        </table>
-                        </div>
-                     
-
+                       </table>
+                      </div>
                     <!--FIM ADD PROVISÕES-->
                     
                     <!--LIST PROVISÕES JA ADDS FINANCEIRO-->
-
                     <mat-card class="example-card" *ngIf="viajem.status !== 'ANALISE_FINANCEIRA'">
                       <mat-card-header>
                         <mat-card-title>Previsõs de Viajem</mat-card-title>
@@ -106,12 +103,19 @@
                         </mat-list>
                       </mat-card-content>
                      </mat-card>
-
-                   
-                    
                     </div>
 
-                    <!--viajem.status === 'ANALISE_FINANCEIRA-->
+                    <!--RESPOSTA STATUS DIRETORIA -->
+                    <div *ngIf="viajem.status == 'APROVADA_DIRETORIA' || viajem.status == 'REPROVADA_DIRETORIA'" class="form-group row margin-form text-center">
+                      <div class="col-sm-6">
+                        <abbr title={{title_status_dire}}>
+                          <img src = {{src_img_diretoria}}
+                               alt="Sin foto" class="img-thumbnail rounded"
+                               style="width:45px; orientation: center; cursor: pointer;">
+                        </abbr>
+                     </div>
+                    </div>
+
                     <!--UPDATE TO DIRETORIA [ngStyle]="{'color': (getValueTotal() < 0)  ? '#75fa78' : '#f7866f'}"-->
                       <div class="form-group row margin-form text-center">
                         <div class="col-sm-6">
@@ -120,6 +124,7 @@
                         </div>
                     </div>
                       <!--FIM UPDATE TO DIRETORIA-->
+                   
                   </div>
                   <div class="modal-footer">
                     <button (click)="fecharModal()" mat-stroked-button color="warn">Close</button>

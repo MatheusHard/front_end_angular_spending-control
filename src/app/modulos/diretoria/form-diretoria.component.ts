@@ -93,7 +93,7 @@ private getObjectViagem(validadaoDiretoria: number): void {
         cidade: {
           id: this.viajem.cidade.id
           },
-        especificacoes_gastos: this.viajem.especificacoes_gastos
+       // especificacoes_gastos: this.viajem.especificacoes_gastos
     }
 }
 
@@ -112,7 +112,7 @@ deniedViajem(status){
   Swal.fire({
    title: 'Tem Certeza?',
    text: `Realmente deseja reprovar a Viajem de: ${this.viajem.funcionario.nome} à
-   ${this.viajem.cidade.descricao_cidade}/${this.viajem.cidade.uf.descricao_uf}?`,
+   ${this.viajem.cidade.descricao_cidade.toLocaleUpperCase()}/${this.viajem.cidade.uf.sigla_uf}?`,
    icon: 'warning',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',

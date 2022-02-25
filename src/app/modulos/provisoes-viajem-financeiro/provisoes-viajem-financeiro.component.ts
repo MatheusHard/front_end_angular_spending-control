@@ -19,6 +19,8 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
   authService: AuthService;
   solicitacoes_viagens: Viajem[];
   viajemSelecionada: Viajem;
+  title_status_dire_selecionado: string;
+  src_img_diretoria_selecionado: string;
   paginador: any;
 
 
@@ -54,9 +56,18 @@ export class ProvisoesViajemFinanceiroComponent implements OnInit {
     }
 
     abrirModal(viajem: Viajem) {
+
+      if(viajem.status.toString() == 'APROVADA_DIRETORIA'){
+        this.title_status_dire_selecionado = "Aprovada pela Diretoria";
+        this.src_img_diretoria_selecionado =  "assets/images/like_icon.png";
+       
+      }
+      else if(viajem.status.toString() == 'REPROVADA_DIRETORIA'){
+      this.title_status_dire_selecionado = "Reprovada pela Diretoria";
+      this.src_img_diretoria_selecionado =  "assets/images/no_like_icon.png";
+    
+      }
       this.viajemSelecionada = viajem;
-      console.log("PROVISAO NO COMPONENT");
-      console.log(viajem);
       this.provisoesViajemFinanceiroService.abrirModal();
     }
 }

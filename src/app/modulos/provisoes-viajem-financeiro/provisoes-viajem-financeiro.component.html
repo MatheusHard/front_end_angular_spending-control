@@ -1,4 +1,4 @@
-<app-form-provisoes-viajem-financeiro *ngIf="viajemSelecionada" [viajem]="viajemSelecionada"></app-form-provisoes-viajem-financeiro>
+<app-form-provisoes-viajem-financeiro *ngIf="viajemSelecionada" [src_img_diretoria]="src_img_diretoria_selecionado" [title_status_dire]="title_status_dire_selecionado" [viajem]="viajemSelecionada"></app-form-provisoes-viajem-financeiro>
 
 <!--Alert quando não esta logado-->
 <div style="text-align: center;" class="alert alert-warning" role="alert" *ngIf="!authService.isAuthenticated()">
